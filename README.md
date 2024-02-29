@@ -26,5 +26,9 @@ GET https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=yourAPIKey
 
 ### 2/29일
 - 폴더구조/ 프로젝트 생성 / 요구사항정리
-- 네트워크 레이어 생성
 - Entity DTO 정리
+
+### 3/1 
+- 네트워크 레이어 생성
+- 네트워크 테스트
+- Search UI Base
