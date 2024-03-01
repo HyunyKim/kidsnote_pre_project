@@ -25,6 +25,7 @@ protocol API {
     var query: [String : Any]? { get }
     var bodyParametersEncodable: ParameterEncodable? { get }
     var bodyParameters: [String : Any]? { get }
+    var timeOut: TimeInterval { get }
     
     func request() throws -> URLRequest
 }
@@ -36,6 +37,10 @@ extension API {
         header["Accept"] = "application/json"
         //TODO: - 이고셍서 토큰을 넣는것을 생각해 보자.
         return header
+    }
+
+    var timeOut: TimeInterval {
+        30.0
     }
     
     func requestURL() throws -> URL {
@@ -68,6 +73,7 @@ extension API {
         Log.info("Basic request header", urlRequest.allHTTPHeaderFields ?? "")
         urlRequest.allHTTPHeaderFields = header
         urlRequest.httpMethod = method.rawValue
+        urlRequest.timeoutInterval = timeOut
         
         if let bodyParam = try? bodyParametersEncodable?.asDictionary() ?? self.bodyParameters , !bodyParam.isEmpty, let data = try? JSONSerialization.data(withJSONObject: bodyParam) {
             urlRequest.httpBody = data

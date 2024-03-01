@@ -22,6 +22,7 @@
 		537AA4272B91C05900D2B860 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA4262B91C05900D2B860 /* NetworkService.swift */; };
 		537AA4292B91C2FB00D2B860 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA4282B91C2FB00D2B860 /* API.swift */; };
 		537AA42B2B91C56000D2B860 /* ParameterEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA42A2B91C56000D2B860 /* ParameterEncodable.swift */; };
+		537AA42D2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA42C2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift */; };
 		53FF93AB2B90CDBA0026E946 /* EBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AA2B90CDBA0026E946 /* EBook.swift */; };
 		53FF93AE2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */; };
 		53FF93B52B90E6A40026E946 /* ReadJsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */; };
@@ -53,6 +54,7 @@
 		537AA4262B91C05900D2B860 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		537AA4282B91C2FB00D2B860 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		537AA42A2B91C56000D2B860 /* ParameterEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncodable.swift; sourceTree = "<group>"; };
+		537AA42C2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBookNetworkTest.swift; sourceTree = "<group>"; };
 		53FF93AA2B90CDBA0026E946 /* EBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBook.swift; sourceTree = "<group>"; };
 		53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EBooksResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		53FF93B22B90E5500026E946 /* Searchvolumes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Searchvolumes.json; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				53653F002B9087FA005454C1 /* GooglePlayBookTests.swift */,
 				53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */,
 				53FF93B62B90E7CE0026E946 /* GooglePlayBookDTOTest.swift */,
+				537AA42C2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift */,
 			);
 			path = GooglePlayBookTests;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 			files = (
 				53FF93B72B90E7CE0026E946 /* GooglePlayBookDTOTest.swift in Sources */,
 				53FF93B52B90E6A40026E946 /* ReadJsonParsing.swift in Sources */,
+				537AA42D2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift in Sources */,
 				53653F012B9087FA005454C1 /* GooglePlayBookTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
