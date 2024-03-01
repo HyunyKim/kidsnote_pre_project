@@ -11,7 +11,7 @@ import SnapKit
 final class ViewController: UIViewController {
 
     private var testLabel: UILabel = UILabel()
-    private var textView: UITextView = UITextView()
+    private var testButton: UIButton = UIButton(type: .custom)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,21 +25,26 @@ final class ViewController: UIViewController {
         self.view.addSubview(testLabel)
         testLabel.backgroundColor = .red
         testLabel.numberOfLines = 0
-        testLabel.text = "sdfasdfasdfasdfasdfasdfasfasd"
+        testLabel.text = "ㅁㄴㅇㅁㄴㅇ"
         testLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(100)
             make.leading.equalToSuperview().offset(30)
             make.width.equalTo(100)
         }
+        self.view.addSubview(testButton)
+        testButton.backgroundColor = .systemBrown
+        testButton.setTitle("Test", for: .normal)
+        testButton.addTarget(self, action: #selector(networkTest), for: .touchUpInside)
         
-        self.view.addSubview(textView)
-        textView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-120)
-            make.height.equalTo(100)
-            make.top.equalTo(self.testLabel.snp.bottom).offset(100)
-            make.centerX.equalTo(self.view)
+        testButton.snp.makeConstraints { make in
+            make.top.equalTo(self.testLabel.snp.bottom).offset(20)
+            make.size.equalTo(CGSize(width: 100, height: 40))
+            make.leading.equalTo(self.testLabel.snp.leading)
         }
+    }
+    
+    @objc func networkTest(sender: UIResponder) {
+        print("test")
     }
 
 

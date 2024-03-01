@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5305A1CD2B91AC0900455B11 /* LevelOSLog in Frameworks */ = {isa = PBXBuildFile; productRef = 5305A1CC2B91AC0900455B11 /* LevelOSLog */; };
 		53653EEA2B9087F9005454C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53653EE92B9087F9005454C1 /* AppDelegate.swift */; };
 		53653EEC2B9087F9005454C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53653EEB2B9087F9005454C1 /* SceneDelegate.swift */; };
 		53653EEE2B9087F9005454C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53653EED2B9087F9005454C1 /* ViewController.swift */; };
@@ -18,6 +19,9 @@
 		53653F302B9093B4005454C1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 53653F2F2B9093B4005454C1 /* RxSwift */; };
 		53653F322B9093B4005454C1 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 53653F312B9093B4005454C1 /* RxDataSources */; };
 		53653F342B9093B4005454C1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 53653F332B9093B4005454C1 /* SnapKit */; };
+		537AA4272B91C05900D2B860 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA4262B91C05900D2B860 /* NetworkService.swift */; };
+		537AA4292B91C2FB00D2B860 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA4282B91C2FB00D2B860 /* API.swift */; };
+		537AA42B2B91C56000D2B860 /* ParameterEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA42A2B91C56000D2B860 /* ParameterEncodable.swift */; };
 		53FF93AB2B90CDBA0026E946 /* EBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AA2B90CDBA0026E946 /* EBook.swift */; };
 		53FF93AE2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */; };
 		53FF93B52B90E6A40026E946 /* ReadJsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */; };
@@ -46,6 +50,9 @@
 		53653EFC2B9087FA005454C1 /* GooglePlayBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GooglePlayBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53653F002B9087FA005454C1 /* GooglePlayBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBookTests.swift; sourceTree = "<group>"; };
 		53653F232B909217005454C1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		537AA4262B91C05900D2B860 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		537AA4282B91C2FB00D2B860 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		537AA42A2B91C56000D2B860 /* ParameterEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncodable.swift; sourceTree = "<group>"; };
 		53FF93AA2B90CDBA0026E946 /* EBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBook.swift; sourceTree = "<group>"; };
 		53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EBooksResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		53FF93B22B90E5500026E946 /* Searchvolumes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Searchvolumes.json; sourceTree = "<group>"; };
@@ -62,6 +69,7 @@
 				53653F342B9093B4005454C1 /* SnapKit in Frameworks */,
 				53653F302B9093B4005454C1 /* RxSwift in Frameworks */,
 				53653F2E2B9093B4005454C1 /* RxCocoa in Frameworks */,
+				5305A1CD2B91AC0900455B11 /* LevelOSLog in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +182,7 @@
 		53653F1F2B908B73005454C1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				537AA42A2B91C56000D2B860 /* ParameterEncodable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -188,6 +197,8 @@
 		53FF93A82B90C8AF0026E946 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				537AA4262B91C05900D2B860 /* NetworkService.swift */,
+				537AA4282B91C2FB00D2B860 /* API.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -245,6 +256,7 @@
 				53653F2F2B9093B4005454C1 /* RxSwift */,
 				53653F312B9093B4005454C1 /* RxDataSources */,
 				53653F332B9093B4005454C1 /* SnapKit */,
+				5305A1CC2B91AC0900455B11 /* LevelOSLog */,
 			);
 			productName = GooglePlayBook;
 			productReference = 53653EE62B9087F9005454C1 /* GooglePlayBook.app */;
@@ -300,6 +312,7 @@
 				53653F252B90935C005454C1 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				53653F2A2B909382005454C1 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				53653F2B2B9093A0005454C1 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5305A1CB2B91AC0900455B11 /* XCRemoteSwiftPackageReference "LevelOSLog" */,
 			);
 			productRefGroup = 53653EE72B9087F9005454C1 /* Products */;
 			projectDirPath = "";
@@ -338,10 +351,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				53653EEE2B9087F9005454C1 /* ViewController.swift in Sources */,
+				537AA42B2B91C56000D2B860 /* ParameterEncodable.swift in Sources */,
 				53653EEA2B9087F9005454C1 /* AppDelegate.swift in Sources */,
 				53FF93AB2B90CDBA0026E946 /* EBook.swift in Sources */,
 				53653EEC2B9087F9005454C1 /* SceneDelegate.swift in Sources */,
+				537AA4272B91C05900D2B860 /* NetworkService.swift in Sources */,
 				53FF93AE2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift in Sources */,
+				537AA4292B91C2FB00D2B860 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +637,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5305A1CB2B91AC0900455B11 /* XCRemoteSwiftPackageReference "LevelOSLog" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HyunyKim/LevelOSLog.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		53653F252B90935C005454C1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -648,6 +672,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5305A1CC2B91AC0900455B11 /* LevelOSLog */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5305A1CB2B91AC0900455B11 /* XCRemoteSwiftPackageReference "LevelOSLog" */;
+			productName = LevelOSLog;
+		};
 		53653F2D2B9093B4005454C1 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 53653F252B90935C005454C1 /* XCRemoteSwiftPackageReference "RxSwift" */;

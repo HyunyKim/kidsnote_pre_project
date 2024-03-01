@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "leveloslog",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/HyunyKim/LevelOSLog.git",
+      "state" : {
+        "revision" : "cfc7ae8bb96a327404d53c6b8d958e12d17c3de5",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "rxdatasources",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RxSwiftCommunity/RxDataSources.git",
