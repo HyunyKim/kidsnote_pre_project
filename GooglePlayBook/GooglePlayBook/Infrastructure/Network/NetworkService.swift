@@ -31,37 +31,50 @@ protocol NetworkService {
 
 extension NetworkService {
     func request<T>(endpoint: API, completion: @escaping(CompleteHandler<T>)) -> Cancellable? {
-        //TODO: - request에 throw에 대해서 어떻게 해결할텐가
-        let cancellable = URLSession.shared.dataTask(with: try! endpoint.request()) { data, response, error in
-            if let error = error , let httpResponse =  response as? HTTPURLResponse {
+        do {
+            let request = try endpoint.request()
+            let cancellable = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error  {
+                    completion(.failure(.unKownError(description: error.localizedDescription)))
+                    return
+                }
+                
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    completion(.failure(.unKownError(description: "No valid HTTP response")))
+                    return
+                }
                 switch httpResponse.statusCode {
+                    
+                case 200..<300:
+                    do {
+                        guard let responseData = data else {
+                            completion(.failure(.jsonParsingError(description: "Data is Null")))
+                            return
+                        }
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .millisecondsSince1970
+                        let model = try decoder.decode(T.self, from: responseData)
+                        completion(.success(model))
+                    } catch {
+                        completion(.failure(.jsonParsingError(description: error.localizedDescription)))
+                    }
+                    
                 case 400..<500:
-                    completion(.failure(.clientError(statusCode: httpResponse.statusCode, description: error.localizedDescription)))
+                    completion(.failure(.clientError(statusCode: httpResponse.statusCode, description: "Client Error")))
                     return
                 case 500..<600:
-                    completion(.failure(.serverError(statusCode: httpResponse.statusCode, description: error.localizedDescription)))
+                    completion(.failure(.serverError(statusCode: httpResponse.statusCode, description: "Server Error")))
                     return
                 default:
-                    completion(.failure(.unKownError( description: error.localizedDescription)))
+                    completion(.failure(.unKownError( description: "Not Defined Error \(httpResponse.statusCode)")))
                     return
                 }
-            } else {
-                do {
-                    guard let responseData = data else {
-                        completion(.failure(.jsonParsingError(description: "Data is Null")))
-                        return
-                    }
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .millisecondsSince1970
-                    let model = try decoder.decode(T.self, from: responseData)
-                    completion(.success(model))
-                }catch let parsingError {
-                    completion(.failure(.jsonParsingError(description: parsingError.localizedDescription)))
-                }
             }
+            cancellable.resume()
+            return cancellable
+        } catch {
+            completion(.failure(.unKownError(description: error.localizedDescription)))
+            return nil
         }
-        cancellable.resume()
-        
-        return cancellable
     }
 }

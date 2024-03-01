@@ -26,14 +26,15 @@ GET https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=yourAPIKey
 
 ### 2/29일
 - 폴더구조/ 프로젝트 생성 / 요구사항정리
-- Entity DTO 정리
+- Entity DTO 정리, Test 추가
 
 ### 3/1 
 - 네트워크 레이어 생성
 - 네트워크 테스트
-- Search UI Base
+- Use Case 정리
 
-### 3/2 
+### 3/2
+- Search UI Base 
 - UI 작업 시작 스냅킷 적응
 - ReactorKit 도입 여부
 - 의존성 주입고려
