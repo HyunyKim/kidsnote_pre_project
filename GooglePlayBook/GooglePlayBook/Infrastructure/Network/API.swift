@@ -14,6 +14,9 @@ enum HTTPMethod: String {
     case post   = "POST"
 }
 
+protocol RequestAble {
+    
+}
 
 protocol API {
     var baseURL: String { get }
@@ -79,5 +82,32 @@ extension API {
             urlRequest.httpBody = data
         }
         return urlRequest
+    }
+}
+
+struct EndPoint<T:Decodable>: API {
+    typealias Response = T
+    var baseURL: String
+    var path: String
+    var method: HTTPMethod
+    var queryParametersEncodable: ParameterEncodable?
+    var query: [String : Any]?
+    var bodyParametersEncodable: ParameterEncodable?
+    var bodyParameters: [String : Any]?
+    
+    init(baseURL: String,
+         path: String,
+         method: HTTPMethod,
+         queryParametersEncodable: ParameterEncodable? = nil,
+         query: [String : Any]? = nil,
+         bodyParametersEncodable: ParameterEncodable? = nil,
+         bodyParameters: [String : Any]? = nil) {
+        self.baseURL = baseURL
+        self.path = path
+        self.method = method
+        self.queryParametersEncodable = queryParametersEncodable
+        self.query = query
+        self.bodyParametersEncodable = bodyParametersEncodable
+        self.bodyParameters = bodyParameters
     }
 }

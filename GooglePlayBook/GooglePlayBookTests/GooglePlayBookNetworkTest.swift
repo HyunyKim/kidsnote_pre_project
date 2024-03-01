@@ -10,21 +10,12 @@ import XCTest
 
 final class GooglePlayBookNetworkTest: XCTestCase {
 //https://www.googleapis.com/books/v1/volumes?filter=ebooks&maxResults=2&langRestrict=ko&q=ios&startIndex=0
-    struct TestEndPoint: API {
-        var baseURL: String
-        var path: String
-        var method: GooglePlayBook.HTTPMethod
-        var queryParametersEncodable: GooglePlayBook.ParameterEncodable?
-        var query: [String : Any]?
-        var bodyParametersEncodable: GooglePlayBook.ParameterEncodable?
-        var bodyParameters: [String : Any]?
-    }
     
     struct DefaultNetworkService: NetworkService {
         
     }
     
-    var testObject: TestEndPoint = TestEndPoint(baseURL: "https://www.googleapis.com/books/v1", path: "volumes", method: .get)
+    var testObject: EndPoint = EndPoint(baseURL: "https://www.googleapis.com/books/v1", path: "volumes", method: .get)
     var networkService: DefaultNetworkService = DefaultNetworkService()
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -45,7 +36,7 @@ final class GooglePlayBookNetworkTest: XCTestCase {
         
         let expectation = XCTestExpectation(description: "PlayBookTest")
         var responseObject: EBooksContainer?
-        var cancellable = networkService.request(endpoint: testObject) {  (result : Result<EBooksResponseDTO,NetworkError>) in
+        var _ = networkService.request(endpoint: testObject) {  (result : Result<EBooksResponseDTO,NetworkError>) in
             switch result {
             case .success(let success):
                 XCTAssertEqual(success.items.isEmpty, false,"통신에 성공시 값이 있어야 한다.")

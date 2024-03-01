@@ -30,6 +30,7 @@ protocol NetworkService {
 
 
 extension NetworkService {
+    @discardableResult
     func request<T>(endpoint: API, completion: @escaping(CompleteHandler<T>)) -> Cancellable? {
         do {
             let request = try endpoint.request()
