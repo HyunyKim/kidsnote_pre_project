@@ -11,6 +11,10 @@
 		535770AC2B92F9A3007EBCE4 /* ReadJsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */; };
 		535770AE2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535770AD2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift */; };
 		535770AF2B92FDE6007EBCE4 /* ReadJsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */; };
+		535770B22B930956007EBCE4 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 535770B12B930956007EBCE4 /* Swinject */; };
+		535770B52B930975007EBCE4 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535770B42B930975007EBCE4 /* DIContainer.swift */; };
+		535770B82B931026007EBCE4 /* DefaultMockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535770B72B931026007EBCE4 /* DefaultMockRepository.swift */; };
+		535770BA2B9313E1007EBCE4 /* Inject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535770B92B9313E1007EBCE4 /* Inject.swift */; };
 		53653EEA2B9087F9005454C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53653EE92B9087F9005454C1 /* AppDelegate.swift */; };
 		53653EEC2B9087F9005454C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53653EEB2B9087F9005454C1 /* SceneDelegate.swift */; };
 		53653EEE2B9087F9005454C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53653EED2B9087F9005454C1 /* ViewController.swift */; };
@@ -51,6 +55,9 @@
 /* Begin PBXFileReference section */
 		535770AB2B92F8D7007EBCE4 /* GooglePlayBookTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GooglePlayBookTestPlan.xctestplan; sourceTree = "<group>"; };
 		535770AD2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBookUseCaseTest.swift; sourceTree = "<group>"; };
+		535770B42B930975007EBCE4 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		535770B72B931026007EBCE4 /* DefaultMockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMockRepository.swift; sourceTree = "<group>"; };
+		535770B92B9313E1007EBCE4 /* Inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Inject.swift; path = GooglePlayBook/Inject.swift; sourceTree = SOURCE_ROOT; };
 		53653EE62B9087F9005454C1 /* GooglePlayBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GooglePlayBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53653EE92B9087F9005454C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53653EEB2B9087F9005454C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +95,7 @@
 				53653F302B9093B4005454C1 /* RxSwift in Frameworks */,
 				53653F2E2B9093B4005454C1 /* RxCocoa in Frameworks */,
 				5305A1CD2B91AC0900455B11 /* LevelOSLog in Frameworks */,
+				535770B22B930956007EBCE4 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +109,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		535770B32B930963007EBCE4 /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				535770B42B930975007EBCE4 /* DIContainer.swift */,
+			);
+			path = DIContainer;
+			sourceTree = "<group>";
+		};
+		535770B62B931015007EBCE4 /* TestHelper */ = {
+			isa = PBXGroup;
+			children = (
+				535770B72B931026007EBCE4 /* DefaultMockRepository.swift */,
+			);
+			path = TestHelper;
+			sourceTree = "<group>";
+		};
 		53653EDD2B9087F9005454C1 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +165,7 @@
 		53653EFF2B9087FA005454C1 /* GooglePlayBookTests */ = {
 			isa = PBXGroup;
 			children = (
+				535770B62B931015007EBCE4 /* TestHelper */,
 				53FF93B12B90E5170026E946 /* JsonFiles */,
 				53653F002B9087FA005454C1 /* GooglePlayBookTests.swift */,
 				53FF93B62B90E7CE0026E946 /* GooglePlayBookDTOTest.swift */,
@@ -153,6 +178,7 @@
 		53653F192B908ABE005454C1 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				535770B32B930963007EBCE4 /* DIContainer */,
 				53653EE92B9087F9005454C1 /* AppDelegate.swift */,
 				53653EEB2B9087F9005454C1 /* SceneDelegate.swift */,
 			);
@@ -206,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				537AA42A2B91C56000D2B860 /* ParameterEncodable.swift */,
+				535770B92B9313E1007EBCE4 /* Inject.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -332,6 +359,7 @@
 				53653F312B9093B4005454C1 /* RxDataSources */,
 				53653F332B9093B4005454C1 /* SnapKit */,
 				5305A1CC2B91AC0900455B11 /* LevelOSLog */,
+				535770B12B930956007EBCE4 /* Swinject */,
 			);
 			productName = GooglePlayBook;
 			productReference = 53653EE62B9087F9005454C1 /* GooglePlayBook.app */;
@@ -388,6 +416,7 @@
 				53653F2A2B909382005454C1 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				53653F2B2B9093A0005454C1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				5305A1CB2B91AC0900455B11 /* XCRemoteSwiftPackageReference "LevelOSLog" */,
+				535770B02B930956007EBCE4 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 53653EE72B9087F9005454C1 /* Products */;
 			projectDirPath = "";
@@ -436,7 +465,9 @@
 				535770AC2B92F9A3007EBCE4 /* ReadJsonParsing.swift in Sources */,
 				53653EEC2B9087F9005454C1 /* SceneDelegate.swift in Sources */,
 				537AA4272B91C05900D2B860 /* NetworkService.swift in Sources */,
+				535770BA2B9313E1007EBCE4 /* Inject.swift in Sources */,
 				53FF93AE2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift in Sources */,
+				535770B52B930975007EBCE4 /* DIContainer.swift in Sources */,
 				537AA43E2B92360A00D2B860 /* EBookRepository.swift in Sources */,
 				537AA4412B9237F100D2B860 /* DefaultEBookRepository.swift in Sources */,
 				537AA4292B91C2FB00D2B860 /* API.swift in Sources */,
@@ -448,6 +479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53FF93B72B90E7CE0026E946 /* GooglePlayBookDTOTest.swift in Sources */,
+				535770B82B931026007EBCE4 /* DefaultMockRepository.swift in Sources */,
 				535770AE2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift in Sources */,
 				537AA42D2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift in Sources */,
 				535770AF2B92FDE6007EBCE4 /* ReadJsonParsing.swift in Sources */,
@@ -729,6 +761,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		535770B02B930956007EBCE4 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
 		53653F252B90935C005454C1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -760,6 +800,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5305A1CB2B91AC0900455B11 /* XCRemoteSwiftPackageReference "LevelOSLog" */;
 			productName = LevelOSLog;
+		};
+		535770B12B930956007EBCE4 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 535770B02B930956007EBCE4 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 		53653F2D2B9093B4005454C1 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
