@@ -28,6 +28,10 @@ final class DIContainer {
         self.container.register(SearchEBookUseCase.self) { resolver in
             DefaultSearchEBookUseCase(ebookRepository: resolver.resolve(EBookRepository.self)!)
         }
+        
+        self.container.register(SearchViewModel.self) { resolver in
+            SearchViewModel()
+        }
     }
     
     func regitst<T>(_ dependency: T) {
