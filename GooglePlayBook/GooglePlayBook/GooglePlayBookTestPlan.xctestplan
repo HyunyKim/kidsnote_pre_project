@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "DBA3441A-7640-4081-9A30-9B32C5D46EDF",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:GooglePlayBook.xcodeproj",
+        "identifier" : "53653EFB2B9087FA005454C1",
+        "name" : "GooglePlayBookTests"
+      }
+    }
+  ],
+  "version" : 1
+}

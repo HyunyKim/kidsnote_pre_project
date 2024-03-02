@@ -9,6 +9,7 @@ import Foundation
 
 protocol SearchEBookUseCase {
     typealias SearchComplteHandler = (Swift.Result<EBooksContainer, Error>) -> Void
+    @discardableResult
     func requestItems(
         query: SearchQuery,
         completion: @escaping(Swift.Result<EBooksContainer, Error>) -> Void
@@ -24,6 +25,7 @@ struct DefaultSearchEBookUseCase {
 }
 
 extension DefaultSearchEBookUseCase: SearchEBookUseCase {
+    @discardableResult
     func requestItems(query: SearchQuery, completion: @escaping (Result<EBooksContainer, Error>) -> Void) -> Cancellable? {
         ebookRepository.fetchEBookItems(parameter:query,         completion: completion)
     }

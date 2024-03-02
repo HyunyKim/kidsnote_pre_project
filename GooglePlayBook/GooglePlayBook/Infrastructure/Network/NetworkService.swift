@@ -7,6 +7,7 @@
 
 import Foundation
 import Network
+import LevelOSLog
 
 enum NetworkError: Error {
     case invalidRequest
@@ -34,6 +35,7 @@ struct DefaultNetworkService: NetworkService {
     func request<T>(endpoint: API, completion: @escaping(CompleteHandler<T>)) -> Cancellable? {
         do {
             let request = try endpoint.request()
+            Log.network(request.url ?? "Invalid URL")
             let cancellable = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error  {
                     completion(.failure(.unKownError(description: error.localizedDescription)))

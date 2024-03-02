@@ -73,7 +73,6 @@ extension API {
         let url = try self.requestURL()
         var urlRequest = URLRequest(url: url)
         
-        Log.info("Basic request header", urlRequest.allHTTPHeaderFields ?? "")
         urlRequest.allHTTPHeaderFields = header
         urlRequest.httpMethod = method.rawValue
         urlRequest.timeoutInterval = timeOut

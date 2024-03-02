@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import GooglePlayBook
+//@testable import GooglePlayBook
 
 protocol ReadJsonParsing {
     func readJsonObject<T:Decodable>(fileName: String) -> T?

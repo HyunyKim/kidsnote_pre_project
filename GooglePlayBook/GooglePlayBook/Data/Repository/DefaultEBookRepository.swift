@@ -11,7 +11,7 @@ import LevelOSLog
 struct DefaultEBookRepository {
     private let networkService: NetworkService
     
-    init(networkService: NetworkService) {
+    init(networkService: NetworkService = DefaultNetworkService()) {
         self.networkService = networkService
     }
 }
@@ -33,11 +33,8 @@ extension DefaultEBookRepository: EBookRepository {
             return networkService.request(endpoint: SearchAPI.getItems(with: ebookRequestDTO)) { (result: Swift.Result<EBooksResponseDTO,NetworkError>) in
                 switch result {
                 case .success(let responseDTO):
-                    Log.network("Search Items", responseDTO)
-                    Log.network("Search Items", responseDTO.toDomain())
                     completion(.success(responseDTO.toDomain()))
                 case .failure(let error):
-                    Log.error("search itemsError", error.localizedDescription)
                     completion(.failure(error))
                 }
             }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5305A1CD2B91AC0900455B11 /* LevelOSLog in Frameworks */ = {isa = PBXBuildFile; productRef = 5305A1CC2B91AC0900455B11 /* LevelOSLog */; };
+		535770AC2B92F9A3007EBCE4 /* ReadJsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */; };
+		535770AE2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535770AD2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift */; };
+		535770AF2B92FDE6007EBCE4 /* ReadJsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */; };
 		53653EEA2B9087F9005454C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53653EE92B9087F9005454C1 /* AppDelegate.swift */; };
 		53653EEC2B9087F9005454C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53653EEB2B9087F9005454C1 /* SceneDelegate.swift */; };
 		53653EEE2B9087F9005454C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53653EED2B9087F9005454C1 /* ViewController.swift */; };
@@ -31,7 +34,6 @@
 		537AA4412B9237F100D2B860 /* DefaultEBookRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA4402B9237F100D2B860 /* DefaultEBookRepository.swift */; };
 		53FF93AB2B90CDBA0026E946 /* EBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AA2B90CDBA0026E946 /* EBook.swift */; };
 		53FF93AE2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */; };
-		53FF93B52B90E6A40026E946 /* ReadJsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */; };
 		53FF93B72B90E7CE0026E946 /* GooglePlayBookDTOTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B62B90E7CE0026E946 /* GooglePlayBookDTOTest.swift */; };
 		53FF93B82B90EDF20026E946 /* Searchvolumes.json in Resources */ = {isa = PBXBuildFile; fileRef = 53FF93B22B90E5500026E946 /* Searchvolumes.json */; };
 /* End PBXBuildFile section */
@@ -47,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		535770AB2B92F8D7007EBCE4 /* GooglePlayBookTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GooglePlayBookTestPlan.xctestplan; sourceTree = "<group>"; };
+		535770AD2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBookUseCaseTest.swift; sourceTree = "<group>"; };
 		53653EE62B9087F9005454C1 /* GooglePlayBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GooglePlayBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53653EE92B9087F9005454C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53653EEB2B9087F9005454C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				53653F1A2B908ACF005454C1 /* Resource */,
 				53653EED2B9087F9005454C1 /* ViewController.swift */,
 				53653EF72B9087FA005454C1 /* Info.plist */,
+				535770AB2B92F8D7007EBCE4 /* GooglePlayBookTestPlan.xctestplan */,
 			);
 			path = GooglePlayBook;
 			sourceTree = "<group>";
@@ -138,9 +143,9 @@
 			children = (
 				53FF93B12B90E5170026E946 /* JsonFiles */,
 				53653F002B9087FA005454C1 /* GooglePlayBookTests.swift */,
-				53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */,
 				53FF93B62B90E7CE0026E946 /* GooglePlayBookDTOTest.swift */,
 				537AA42C2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift */,
+				535770AD2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift */,
 			);
 			path = GooglePlayBookTests;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 		53FF93B12B90E5170026E946 /* JsonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */,
 				53FF93B22B90E5500026E946 /* Searchvolumes.json */,
 			);
 			path = JsonFiles;
@@ -427,6 +433,7 @@
 				537AA42B2B91C56000D2B860 /* ParameterEncodable.swift in Sources */,
 				53653EEA2B9087F9005454C1 /* AppDelegate.swift in Sources */,
 				53FF93AB2B90CDBA0026E946 /* EBook.swift in Sources */,
+				535770AC2B92F9A3007EBCE4 /* ReadJsonParsing.swift in Sources */,
 				53653EEC2B9087F9005454C1 /* SceneDelegate.swift in Sources */,
 				537AA4272B91C05900D2B860 /* NetworkService.swift in Sources */,
 				53FF93AE2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift in Sources */,
@@ -441,8 +448,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				53FF93B72B90E7CE0026E946 /* GooglePlayBookDTOTest.swift in Sources */,
-				53FF93B52B90E6A40026E946 /* ReadJsonParsing.swift in Sources */,
+				535770AE2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift in Sources */,
 				537AA42D2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift in Sources */,
+				535770AF2B92FDE6007EBCE4 /* ReadJsonParsing.swift in Sources */,
 				53653F012B9087FA005454C1 /* GooglePlayBookTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
