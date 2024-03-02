@@ -29,7 +29,7 @@ protocol NetworkService {
 }
 
 
-extension NetworkService {
+struct DefaultNetworkService: NetworkService {
     @discardableResult
     func request<T>(endpoint: API, completion: @escaping(CompleteHandler<T>)) -> Cancellable? {
         do {

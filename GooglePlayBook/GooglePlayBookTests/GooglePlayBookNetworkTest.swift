@@ -11,11 +11,9 @@ import XCTest
 final class GooglePlayBookNetworkTest: XCTestCase {
 //https://www.googleapis.com/books/v1/volumes?filter=ebooks&maxResults=2&langRestrict=ko&q=ios&startIndex=0
     
-    struct DefaultNetworkService: NetworkService {
-        
-    }
+
     
-    var testObject: EndPoint = EndPoint(baseURL: "https://www.googleapis.com/books/v1", path: "volumes", method: .get)
+    var testObject: EndPoint = EndPoint<EBooksResponseDTO>(baseURL: "https://www.googleapis.com/books/v1", path: "volumes", method: .get)
     var networkService: DefaultNetworkService = DefaultNetworkService()
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

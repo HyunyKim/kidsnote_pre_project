@@ -9,6 +9,7 @@ import Foundation
 
 protocol EBookRepository {
     func fetchEBookItems(
-        complition: @escaping(Swift.Result<EBooksContainer, Error>) -> Void
+        parameter: SearchQuery,
+        completion: @escaping(Swift.Result<EBooksContainer, Error>) -> Void
     ) -> Cancellable?
 }
