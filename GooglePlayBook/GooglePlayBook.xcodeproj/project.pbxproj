@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5305A1CD2B91AC0900455B11 /* LevelOSLog in Frameworks */ = {isa = PBXBuildFile; productRef = 5305A1CC2B91AC0900455B11 /* LevelOSLog */; };
+		535770AC2B92F9A3007EBCE4 /* ReadJsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */; };
+		535770AE2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535770AD2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift */; };
+		535770AF2B92FDE6007EBCE4 /* ReadJsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */; };
 		53653EEA2B9087F9005454C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53653EE92B9087F9005454C1 /* AppDelegate.swift */; };
 		53653EEC2B9087F9005454C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53653EEB2B9087F9005454C1 /* SceneDelegate.swift */; };
 		53653EEE2B9087F9005454C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53653EED2B9087F9005454C1 /* ViewController.swift */; };
@@ -18,9 +22,18 @@
 		53653F302B9093B4005454C1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 53653F2F2B9093B4005454C1 /* RxSwift */; };
 		53653F322B9093B4005454C1 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 53653F312B9093B4005454C1 /* RxDataSources */; };
 		53653F342B9093B4005454C1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 53653F332B9093B4005454C1 /* SnapKit */; };
+		537AA4272B91C05900D2B860 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA4262B91C05900D2B860 /* NetworkService.swift */; };
+		537AA4292B91C2FB00D2B860 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA4282B91C2FB00D2B860 /* API.swift */; };
+		537AA42B2B91C56000D2B860 /* ParameterEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA42A2B91C56000D2B860 /* ParameterEncodable.swift */; };
+		537AA42D2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA42C2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift */; };
+		537AA4302B9210C600D2B860 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA42F2B9210C600D2B860 /* Search.swift */; };
+		537AA4352B9220C700D2B860 /* SearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA4342B9220C700D2B860 /* SearchQuery.swift */; };
+		537AA4372B922A0500D2B860 /* EBookRequestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA4362B922A0500D2B860 /* EBookRequestDTO+Mapping.swift */; };
+		537AA43A2B9234A600D2B860 /* SearchEBookUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA4392B9234A600D2B860 /* SearchEBookUseCase.swift */; };
+		537AA43E2B92360A00D2B860 /* EBookRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA43D2B92360A00D2B860 /* EBookRepository.swift */; };
+		537AA4412B9237F100D2B860 /* DefaultEBookRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537AA4402B9237F100D2B860 /* DefaultEBookRepository.swift */; };
 		53FF93AB2B90CDBA0026E946 /* EBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AA2B90CDBA0026E946 /* EBook.swift */; };
 		53FF93AE2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */; };
-		53FF93B52B90E6A40026E946 /* ReadJsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */; };
 		53FF93B72B90E7CE0026E946 /* GooglePlayBookDTOTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B62B90E7CE0026E946 /* GooglePlayBookDTOTest.swift */; };
 		53FF93B82B90EDF20026E946 /* Searchvolumes.json in Resources */ = {isa = PBXBuildFile; fileRef = 53FF93B22B90E5500026E946 /* Searchvolumes.json */; };
 /* End PBXBuildFile section */
@@ -36,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		535770AB2B92F8D7007EBCE4 /* GooglePlayBookTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GooglePlayBookTestPlan.xctestplan; sourceTree = "<group>"; };
+		535770AD2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBookUseCaseTest.swift; sourceTree = "<group>"; };
 		53653EE62B9087F9005454C1 /* GooglePlayBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GooglePlayBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53653EE92B9087F9005454C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53653EEB2B9087F9005454C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +61,16 @@
 		53653EFC2B9087FA005454C1 /* GooglePlayBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GooglePlayBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53653F002B9087FA005454C1 /* GooglePlayBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBookTests.swift; sourceTree = "<group>"; };
 		53653F232B909217005454C1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		537AA4262B91C05900D2B860 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		537AA4282B91C2FB00D2B860 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		537AA42A2B91C56000D2B860 /* ParameterEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncodable.swift; sourceTree = "<group>"; };
+		537AA42C2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBookNetworkTest.swift; sourceTree = "<group>"; };
+		537AA42F2B9210C600D2B860 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		537AA4342B9220C700D2B860 /* SearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQuery.swift; sourceTree = "<group>"; };
+		537AA4362B922A0500D2B860 /* EBookRequestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EBookRequestDTO+Mapping.swift"; sourceTree = "<group>"; };
+		537AA4392B9234A600D2B860 /* SearchEBookUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEBookUseCase.swift; sourceTree = "<group>"; };
+		537AA43D2B92360A00D2B860 /* EBookRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBookRepository.swift; sourceTree = "<group>"; };
+		537AA4402B9237F100D2B860 /* DefaultEBookRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEBookRepository.swift; sourceTree = "<group>"; };
 		53FF93AA2B90CDBA0026E946 /* EBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBook.swift; sourceTree = "<group>"; };
 		53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EBooksResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		53FF93B22B90E5500026E946 /* Searchvolumes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Searchvolumes.json; sourceTree = "<group>"; };
@@ -62,6 +87,7 @@
 				53653F342B9093B4005454C1 /* SnapKit in Frameworks */,
 				53653F302B9093B4005454C1 /* RxSwift in Frameworks */,
 				53653F2E2B9093B4005454C1 /* RxCocoa in Frameworks */,
+				5305A1CD2B91AC0900455B11 /* LevelOSLog in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,15 +124,16 @@
 			isa = PBXGroup;
 			children = (
 				53653F232B909217005454C1 /* README.md */,
-				53653F1D2B908AFD005454C1 /* Data */,
+				53653F192B908ABE005454C1 /* Application */,
 				53653F1C2B908AEE005454C1 /* Presentation */,
 				53653F1B2B908AE2005454C1 /* Domain */,
-				53653F192B908ABE005454C1 /* Application */,
+				53653F1D2B908AFD005454C1 /* Data */,
 				53653F1E2B908B4C005454C1 /* Infrastructure */,
 				53653F1F2B908B73005454C1 /* Common */,
 				53653F1A2B908ACF005454C1 /* Resource */,
 				53653EED2B9087F9005454C1 /* ViewController.swift */,
 				53653EF72B9087FA005454C1 /* Info.plist */,
+				535770AB2B92F8D7007EBCE4 /* GooglePlayBookTestPlan.xctestplan */,
 			);
 			path = GooglePlayBook;
 			sourceTree = "<group>";
@@ -116,8 +143,9 @@
 			children = (
 				53FF93B12B90E5170026E946 /* JsonFiles */,
 				53653F002B9087FA005454C1 /* GooglePlayBookTests.swift */,
-				53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */,
 				53FF93B62B90E7CE0026E946 /* GooglePlayBookDTOTest.swift */,
+				537AA42C2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift */,
+				535770AD2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift */,
 			);
 			path = GooglePlayBookTests;
 			sourceTree = "<group>";
@@ -144,6 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				53FF93A92B90CD980026E946 /* Entities */,
+				537AA4382B92348800D2B860 /* Usecases */,
+				537AA43B2B9235B200D2B860 /* Interfaces */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -158,6 +188,7 @@
 		53653F1D2B908AFD005454C1 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				537AA43F2B9237D300D2B860 /* Repository */,
 				53FF93AF2B90E0AB0026E946 /* Network */,
 			);
 			path = Data;
@@ -174,6 +205,7 @@
 		53653F1F2B908B73005454C1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				537AA42A2B91C56000D2B860 /* ParameterEncodable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -185,9 +217,59 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		537AA42E2B920B4C00D2B860 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				537AA4312B92117700D2B860 /* Search */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		537AA4312B92117700D2B860 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				537AA42F2B9210C600D2B860 /* Search.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		537AA4382B92348800D2B860 /* Usecases */ = {
+			isa = PBXGroup;
+			children = (
+				537AA4392B9234A600D2B860 /* SearchEBookUseCase.swift */,
+			);
+			path = Usecases;
+			sourceTree = "<group>";
+		};
+		537AA43B2B9235B200D2B860 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				537AA43C2B9235D200D2B860 /* Repositories */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		537AA43C2B9235D200D2B860 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				537AA43D2B92360A00D2B860 /* EBookRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		537AA43F2B9237D300D2B860 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				537AA4402B9237F100D2B860 /* DefaultEBookRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		53FF93A82B90C8AF0026E946 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				537AA4262B91C05900D2B860 /* NetworkService.swift */,
+				537AA4282B91C2FB00D2B860 /* API.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -196,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				53FF93AA2B90CDBA0026E946 /* EBook.swift */,
+				537AA4342B9220C700D2B860 /* SearchQuery.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -203,6 +286,7 @@
 		53FF93AC2B90D4B40026E946 /* DataMapping */ = {
 			isa = PBXGroup;
 			children = (
+				537AA4362B922A0500D2B860 /* EBookRequestDTO+Mapping.swift */,
 				53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */,
 			);
 			path = DataMapping;
@@ -211,6 +295,7 @@
 		53FF93AF2B90E0AB0026E946 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				537AA42E2B920B4C00D2B860 /* Endpoints */,
 				53FF93AC2B90D4B40026E946 /* DataMapping */,
 			);
 			path = Network;
@@ -219,6 +304,7 @@
 		53FF93B12B90E5170026E946 /* JsonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */,
 				53FF93B22B90E5500026E946 /* Searchvolumes.json */,
 			);
 			path = JsonFiles;
@@ -245,6 +331,7 @@
 				53653F2F2B9093B4005454C1 /* RxSwift */,
 				53653F312B9093B4005454C1 /* RxDataSources */,
 				53653F332B9093B4005454C1 /* SnapKit */,
+				5305A1CC2B91AC0900455B11 /* LevelOSLog */,
 			);
 			productName = GooglePlayBook;
 			productReference = 53653EE62B9087F9005454C1 /* GooglePlayBook.app */;
@@ -300,6 +387,7 @@
 				53653F252B90935C005454C1 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				53653F2A2B909382005454C1 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				53653F2B2B9093A0005454C1 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5305A1CB2B91AC0900455B11 /* XCRemoteSwiftPackageReference "LevelOSLog" */,
 			);
 			productRefGroup = 53653EE72B9087F9005454C1 /* Products */;
 			projectDirPath = "";
@@ -337,11 +425,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				537AA4302B9210C600D2B860 /* Search.swift in Sources */,
+				537AA4372B922A0500D2B860 /* EBookRequestDTO+Mapping.swift in Sources */,
+				537AA43A2B9234A600D2B860 /* SearchEBookUseCase.swift in Sources */,
 				53653EEE2B9087F9005454C1 /* ViewController.swift in Sources */,
+				537AA4352B9220C700D2B860 /* SearchQuery.swift in Sources */,
+				537AA42B2B91C56000D2B860 /* ParameterEncodable.swift in Sources */,
 				53653EEA2B9087F9005454C1 /* AppDelegate.swift in Sources */,
 				53FF93AB2B90CDBA0026E946 /* EBook.swift in Sources */,
+				535770AC2B92F9A3007EBCE4 /* ReadJsonParsing.swift in Sources */,
 				53653EEC2B9087F9005454C1 /* SceneDelegate.swift in Sources */,
+				537AA4272B91C05900D2B860 /* NetworkService.swift in Sources */,
 				53FF93AE2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift in Sources */,
+				537AA43E2B92360A00D2B860 /* EBookRepository.swift in Sources */,
+				537AA4412B9237F100D2B860 /* DefaultEBookRepository.swift in Sources */,
+				537AA4292B91C2FB00D2B860 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +448,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				53FF93B72B90E7CE0026E946 /* GooglePlayBookDTOTest.swift in Sources */,
-				53FF93B52B90E6A40026E946 /* ReadJsonParsing.swift in Sources */,
+				535770AE2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift in Sources */,
+				537AA42D2B91E98900D2B860 /* GooglePlayBookNetworkTest.swift in Sources */,
+				535770AF2B92FDE6007EBCE4 /* ReadJsonParsing.swift in Sources */,
 				53653F012B9087FA005454C1 /* GooglePlayBookTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,6 +721,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5305A1CB2B91AC0900455B11 /* XCRemoteSwiftPackageReference "LevelOSLog" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HyunyKim/LevelOSLog.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		53653F252B90935C005454C1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -648,6 +756,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5305A1CC2B91AC0900455B11 /* LevelOSLog */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5305A1CB2B91AC0900455B11 /* XCRemoteSwiftPackageReference "LevelOSLog" */;
+			productName = LevelOSLog;
+		};
 		53653F2D2B9093B4005454C1 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 53653F252B90935C005454C1 /* XCRemoteSwiftPackageReference "RxSwift" */;
