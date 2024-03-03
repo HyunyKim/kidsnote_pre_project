@@ -14,15 +14,14 @@ import RxDataSources
 import LevelOSLog
 
 final class SearchResultViewController: UIViewController {
-// UIComponents
+    // UIComponents
     private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: createBasicLayout())
         return collectionview
     }()
-    private let segmentControll: UISegmentedControl = TopSegmentControl(items: ["Ebook","AudioBook"])
     
-// Variable
+    
+    // Variable
     @Inject private var viewModel: SearchViewModel
     private var disposeBag = DisposeBag()
     private let loadMoreSubject = PublishSubject<Void>()
@@ -30,32 +29,40 @@ final class SearchResultViewController: UIViewController {
     let searchKeywordSubject = PublishSubject<String>()
     
     override func viewDidLoad() {
-        setUI()
-        setdConstraints()
+        layoutUI()
         setCollectionView()
         bindViewModel()
     }
     
-    private func setUI() {
-        self.view.backgroundColor = .systemBackground
-        self.view.addSubview(segmentControll)
-        self.view.addSubview(collectionView)
-        segmentControll.setTitleTextAttributes([.foregroundColor: UIColor.gray], for: .normal)
-        segmentControll.setTitleTextAttributes([.foregroundColor: UIColor.blue, .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
-        segmentControll.selectedSegmentIndex = 0
+    private func createBasicLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
+            let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = 2
+            
+            switch sectionIndex {
+            case 0,1:
+                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50))
+                let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+                section.boundarySupplementaryItems = [header]
+            default:
+                break
+            }
+            return section
+        }
+        return layout
+        
     }
     
-    private func setdConstraints() {
+    private func layoutUI() {
+        self.view.backgroundColor = .systemBackground
         
-        segmentControll.snp.makeConstraints { make in
-            make.top.equalTo(self.view.snp.top).offset(self.navigationController?.navigationBar.safeAreaInsets.top ?? 100)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.height.equalTo(40)
-        }
         
+        self.view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(self.segmentControll.snp.bottom)
+            make.top.equalTo(view.snp.top).offset(self.view.safeAreaInsets.top)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
@@ -63,8 +70,9 @@ final class SearchResultViewController: UIViewController {
     }
     
     private func setCollectionView() {
-  
-        collectionView.register(SearchResultItemCell.self, forCellWithReuseIdentifier: SearchResultItemCell.identifier)
+        collectionView.register(EBookInfoCell.self, forCellWithReuseIdentifier: EBookInfoCell.identifier)
+        collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
+        collectionView.register(TopSegmentReuseableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TopSegmentReuseableView.identifier)
         
         sectionModelSubject
             .bind(to: collectionView.rx.items(dataSource: sectionReloadDataSource()))
@@ -87,23 +95,40 @@ final class SearchResultViewController: UIViewController {
     }
     
     private func emitDataSource(data: [EBook]) {
-        let ebookItemSection = SearchResultSectionModel.EBookItemSection(items: data.map {
-            SearchResultSectionItem.EBookItem(item: $0) })
-        let loadMoreSection = SearchResultSectionModel.LoadMoreSection(item: [])
-        
-        sectionModelSubject.onNext([ebookItemSection,loadMoreSection])
+        let segmentSection = SearchResultSectionModel.segmentSection
+        let ebookItemSection = SearchResultSectionModel.eBookItemSection(items: data.map {
+            SearchResultSectionItem.eBookItem(item: $0) })
+        let loadMoreSection = SearchResultSectionModel.loadMoreSection(item: [])
+        sectionModelSubject.onNext([segmentSection,ebookItemSection,loadMoreSection])
     }
     
     private func sectionReloadDataSource() -> RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel> {
-        return RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel> { dataSource, collectionView, indexPath, item in
-            switch item {
-            case .EBookItem(item: let item):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultItemCell.identifier, for: indexPath)
-                return cell
-            case .LoadMore:
-                return UICollectionViewCell()
-            }
-        }
+        return RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel>(
+            configureCell: { dataSource, collectionView, indexPath, item in
+                switch item {
+                case .segment:
+                    return UICollectionViewCell()
+                case .eBookItem(item: let item):
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EBookInfoCell.identifier, for: indexPath) as! EBookInfoCell
+                    cell.updateUI(ebook: item)
+                    
+                    return cell
+                case .loadMore:
+                    return UICollectionViewCell()
+                }
+            },
+            configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
+                switch indexPath.section {
+                case 0:
+                    let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TopSegmentReuseableView.identifier, for: indexPath) as! TopSegmentReuseableView
+                    return header
+                case 1:
+                    let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchResultResuableView.identifier, for: indexPath) as! SearchResultResuableView
+                    header.updateUI(type: .googlePlaySearchResult )
+                    return header
+                default:
+                    return UICollectionReusableView()
+                }
+            })
     }
-
 }

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class TopSegmentControl: UISegmentedControl {
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.removeBasicUI()
@@ -29,8 +29,17 @@ class TopSegmentControl: UISegmentedControl {
         self.setBackgroundImage(image, for: .normal, barMetrics: .default)
         self.setBackgroundImage(image, for: .selected, barMetrics: .default)
         self.setBackgroundImage(image, for: .highlighted, barMetrics: .default)
-        
         self.setDividerImage(image, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
+        
+        let underLineView = UIView()
+        self.addSubview(underLineView)
+        underLineView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.height.equalTo(0.5)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+        }
+        underLineView.backgroundColor = .red
     }
     
     private lazy var underLineView: UIView = {
@@ -51,8 +60,6 @@ class TopSegmentControl: UISegmentedControl {
         let underLineFinalXPostion = (self.bounds.width / CGFloat(self.numberOfSegments)) * CGFloat(self.selectedSegmentIndex)
         UIView.animate(withDuration: 0.3) {
             self.underLineView.frame.origin.x = underLineFinalXPostion
-        }
-        
+        }   
     }
-    
 }

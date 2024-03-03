@@ -9,13 +9,15 @@ import Foundation
 import RxDataSources
 
 enum SearchResultSectionItem {
-    case EBookItem(item: EBook)
-    case LoadMore
+    case segment
+    case eBookItem(item: EBook)
+    case loadMore
 }
 
 enum SearchResultSectionModel {
-    case EBookItemSection(items: [SearchResultSectionItem])
-    case LoadMoreSection(item: [SearchResultSectionItem])
+    case segmentSection
+    case eBookItemSection(items: [SearchResultSectionItem])
+    case loadMoreSection(item: [SearchResultSectionItem])
 }
 
 extension SearchResultSectionModel: SectionModelType {
@@ -23,19 +25,24 @@ extension SearchResultSectionModel: SectionModelType {
     
     var items: [SearchResultSectionItem] {
         switch self {
-        case .EBookItemSection(items: let items):
+        case .segmentSection:
+            return []
+        case .eBookItemSection(items: let items):
             return items.map({$0})
-        case .LoadMoreSection(item: let items):
+        case .loadMoreSection(item: let items):
             return items.map({$0})
+
         }
     }
     
     init(original orignal: SearchResultSectionModel, items:[SearchResultSectionItem]) {
         switch orignal {
-        case .EBookItemSection(items: let items):
-            self = .EBookItemSection(items: items)
-        case .LoadMoreSection(item: let items):
-            self = .LoadMoreSection(item: items)
+        case .segmentSection:
+            self = .segmentSection
+        case .eBookItemSection(items: let items):
+            self = .eBookItemSection(items: items)
+        case .loadMoreSection(item: let items):
+            self = .loadMoreSection(item: items)
         }
     }
 }

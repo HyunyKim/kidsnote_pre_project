@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-// TODO: - ReactorKit으로 가느냐 ViewModelType을 세분화 하느냐..... 
+// TODO: - ReactorKit으로 가느냐 ViewModelType을 세분화 하느냐.....
 
 final class SearchViewModel: ViewModelType {
     typealias SearchResult = Swift.Result<EBooksContainer,Error>
@@ -53,7 +53,7 @@ final class SearchViewModel: ViewModelType {
     private func searchRequest(keyword: String) -> Observable<EBooksContainer> {
         return Observable<EBooksContainer>.create { [weak self] observer in
             guard let self = self else {
-//                TODO: - 컴플리트 할지 말지 고민
+                //TODO: - 컴플리트 할지 말지 고민
                 observer.onCompleted()
                 return Disposables.create()
             }
