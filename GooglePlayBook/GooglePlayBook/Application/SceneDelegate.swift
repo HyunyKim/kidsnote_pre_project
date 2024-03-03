@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         DIContainer.shared.defaultContainer()
         window = UIWindow(windowScene: windowScene)
-        let rootNavigationController = UINavigationController(rootViewController: ViewController())
+        let rootNavigationController = UINavigationController(rootViewController: MainViewController())
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
     }
