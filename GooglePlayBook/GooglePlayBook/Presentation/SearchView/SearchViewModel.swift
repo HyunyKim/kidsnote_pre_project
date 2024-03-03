@@ -15,10 +15,12 @@ final class SearchViewModel: ViewModelType {
     typealias SearchResult = Swift.Result<(items:[EBook],hasMore: Bool),Error>
     struct Input {
         var searchKeyword: Observable<String>
+        var typingAction: Observable<String>
         var loadMoreAction: Observable<Void>
     }
     struct Output {
         var searchResult: Driver<SearchResult>
+        var restValues: Observable<Void>
     }
     
     @Inject private var useCase: SearchEBookUseCase
@@ -27,6 +29,14 @@ final class SearchViewModel: ViewModelType {
     private var ebookItems: [EBook] = []
     
     func transform(input: Input) -> Output {
+        
+        let reset = input.typingAction
+            .do { [weak self] _ in
+                self?.currentKeyword = ""
+                self?.ebookItems.removeAll()
+            }.flatMapLatest { _ -> Observable<Void> in
+                return .just(())
+            }
         
         let result = input.searchKeyword
             .do { [weak self] keyword in
@@ -62,7 +72,7 @@ final class SearchViewModel: ViewModelType {
             .asDriver { error in
                     .just(.failure(error))
             }
-        return Output(searchResult: total)
+        return Output(searchResult: total,restValues: reset)
     }
     
     private func searchRequest(keyword: String) -> Observable<EBooksContainer> {
