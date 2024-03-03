@@ -22,8 +22,7 @@ protocol API {
     var baseURL: String { get }
     var path: String { get }
     var method: HTTPMethod { get }
-    //TODO: - 명칭을 Header라 할것인가 HeaderParamerter로 할것인가.
-    var header: [String : String] { get }
+    var headerParamerter: [String : String]? { get }
     var queryParametersEncodable: ParameterEncodable? { get }
     var query: [String : Any]? { get }
     var bodyParametersEncodable: ParameterEncodable? { get }
@@ -36,9 +35,13 @@ protocol API {
 extension API {
     
     var header: [String : String] {
+        guard self.headerParamerter == nil else {
+            return self.headerParamerter!
+        }
+        //TODO: - 이고셍서 토큰을 넣는것을 생각해 보자.
         var header = ["Content-Type" : "application/json"]
         header["Accept"] = "application/json"
-        //TODO: - 이고셍서 토큰을 넣는것을 생각해 보자.
+        
         return header
     }
 
@@ -89,6 +92,7 @@ struct EndPoint<T:Decodable>: API {
     var baseURL: String
     var path: String
     var method: HTTPMethod
+    var headerParamerter: [String : String]?
     var queryParametersEncodable: ParameterEncodable?
     var query: [String : Any]?
     var bodyParametersEncodable: ParameterEncodable?
@@ -97,6 +101,7 @@ struct EndPoint<T:Decodable>: API {
     init(baseURL: String,
          path: String,
          method: HTTPMethod,
+         headerParamerter: [String : String]? = nil,
          queryParametersEncodable: ParameterEncodable? = nil,
          query: [String : Any]? = nil,
          bodyParametersEncodable: ParameterEncodable? = nil,
@@ -104,6 +109,7 @@ struct EndPoint<T:Decodable>: API {
         self.baseURL = baseURL
         self.path = path
         self.method = method
+        self.headerParamerter = headerParamerter
         self.queryParametersEncodable = queryParametersEncodable
         self.query = query
         self.bodyParametersEncodable = bodyParametersEncodable
