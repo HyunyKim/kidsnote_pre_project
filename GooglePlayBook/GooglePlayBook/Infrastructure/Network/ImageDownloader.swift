@@ -21,6 +21,7 @@ final class ImageDownloader: ImageDownloadable {
         }
         var request = URLRequest(url: imageURL,cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
         if let tag = etag {
+//TODO: - Etag...필드가 없음..
             request.addValue(tag, forHTTPHeaderField: "If-None-Match")
         }
         let cancellable = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -31,7 +32,10 @@ final class ImageDownloader: ImageDownloadable {
                 completion(.failure(NetworkError.unKownError(description: "Invalid HTTP Response")))
                 return
             }
-            
+            if let tag = httpResponse.allHeaderFields["Etag"] as? String {
+                print("Etg - ",tag)
+            }
+                
             switch httpResponse.statusCode {
                 case 200..<300:
                     completion(.success(data))

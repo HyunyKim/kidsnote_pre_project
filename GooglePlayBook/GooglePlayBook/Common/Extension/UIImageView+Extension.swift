@@ -41,7 +41,7 @@ extension UIImageView {
                 self.image = image
             }
             return
-        } else if let imageData = UIImageDiskCache.sharaed.content(for: imagekey) {
+        } else if let imageData = UIImageDiskCache.shared.content(for: imagekey) {
             if let image = UIImage(data: imageData) {
                 DispatchQueue.main.async {
                     self.image = image
@@ -61,7 +61,7 @@ extension UIImageView {
                         self?.image = downImage
                     }
                     UIImageMemoryCache.shared.add(with: imagekey, content: downImage)
-                    UIImageDiskCache.sharaed.add(with: imagekey, content: data)
+                    UIImageDiskCache.shared.add(with: imagekey, content: data)
                     self?.downloadCancellable = nil
                 case .failure(let error):
                     Log.error("Image download error", error.localizedDescription)

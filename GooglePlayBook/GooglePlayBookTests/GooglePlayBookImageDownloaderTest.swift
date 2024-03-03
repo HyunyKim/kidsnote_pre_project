@@ -20,6 +20,8 @@ final class GooglePlayBookImageDownloaderTest: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        UIImageMemoryCache.shared.removeAll()
+        UIImageDiskCache.shared.removeAll()
     }
 
     func testImageDownloader() throws {
@@ -58,12 +60,54 @@ final class GooglePlayBookImageDownloaderTest: XCTestCase {
         wait(for: [expectation],timeout: 10)
     }
     
-    func testImageCache() throws {
+    func testMemoryCache() throws {
         let contentKey = "googlePlayBook"
         let image = UIImage(resource: .playbook)
-        UIImageMemoryCache.shared.add(with: "googlePlayBook", content: image)
+        UIImageMemoryCache.shared.add(with: contentKey, content: image)
+        XCTAssertNotNil(UIImageMemoryCache.shared.content(for: contentKey), "방금 저장한 이미지는 존재 해야 한다")
         
-        XCTAssertNotNil(UIImageMemoryCache.shared.content(for: contentKey), "방금 저장한 이미지는 존재 해야 한다.")
+        UIImageMemoryCache.shared.remove(with: contentKey)
+        XCTAssertNil(UIImageMemoryCache.shared.content(for: contentKey), "삭제가 제대로 동작해야 한다")
+        
+        UIImageMemoryCache.shared.add(with: contentKey, content: image)
+        UIImageMemoryCache.shared.add(with: "abcdde", content: image)
+        UIImageMemoryCache.shared.add(with: "가나다라마자사", content: image)
+        UIImageMemoryCache.shared.removeAll()
+        XCTAssertNil(UIImageMemoryCache.shared.content(for: contentKey),"전체삭제가 제대로 동작해야한다")
+        XCTAssertNil(UIImageMemoryCache.shared.content(for: "abcdde"),"전체삭제가 제대로 동작해야한다")
+        XCTAssertNil(UIImageMemoryCache.shared.content(for: "가나다라마자사"),"전체삭제가 제대로 동작해야한다")
+        
+    }
+    
+    func testDiskCache() throws {
+        let contentKey = "googlePlayBook"
+        guard let imageData = UIImage(resource: .playbook).pngData() else {
+            XCTAssertFalse(true, "똑바로 준비해야한다") 
+            return
+        }
+        UIImageDiskCache.shared.add(with: contentKey, content: imageData)
+        XCTAssertNotNil(UIImageDiskCache.shared.content(for: contentKey), "방금 저장한 이미지는 존재 해야 한다")
+        
+        UIImageDiskCache.shared.remove(with: contentKey)
+        XCTAssertNil(UIImageDiskCache.shared.content(for: contentKey), "삭제가 제대로 동작해야 한다")
+        
+        UIImageDiskCache.shared.add(with: contentKey, content: imageData)
+        UIImageDiskCache.shared.add(with: "abcdde", content: imageData)
+        UIImageDiskCache.shared.add(with: "가나다라마자사", content: imageData)
+        UIImageDiskCache.shared.removeAll()
+        XCTAssertNil(UIImageDiskCache.shared.content(for: contentKey),"전체삭제가 제대로 동작해야한다")
+        XCTAssertNil(UIImageDiskCache.shared.content(for: "abcdde"),"전체삭제가 제대로 동작해야한다")
+        XCTAssertNil(UIImageDiskCache.shared.content(for: "가나다라마자사"),"전체삭제가 제대로 동작해야한다")
+    }
+    
+    func testUIImageView() throws {
+        let expectaion = XCTestExpectation(description: "UIImageViewTest")
+        imageView.setImage(urlString: urlString1)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            expectaion.fulfill()
+        }
+        wait(for: [expectaion],timeout: 5)
+        XCTAssertNotNil(imageView.image,"이미지가 정상적으로 설정되어야한다")
     }
 
     func testPerformanceExample() throws {

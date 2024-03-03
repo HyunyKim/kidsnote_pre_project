@@ -39,7 +39,7 @@ final class UIImageMemoryCache: Cacheable {
 
 final class UIImageDiskCache: Cacheable {
     
-    static var sharaed: UIImageDiskCache = UIImageDiskCache()
+    static var shared: UIImageDiskCache = UIImageDiskCache()
     
     private let fileManager = FileManager()
     private let cacheURL: URL
