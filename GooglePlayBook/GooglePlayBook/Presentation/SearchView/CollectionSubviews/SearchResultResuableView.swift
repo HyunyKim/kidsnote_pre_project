@@ -15,7 +15,7 @@ enum HeaderType {
 
 final class TopSegmentReuseableView: UICollectionReusableView {
     
-    private let segmentControll: UISegmentedControl = TopSegmentControl(items: ["eBook","AudioBook"])
+    private let segmentControll: UISegmentedControl = PlayBookSegmentControl(items: ["eBook","AudioBookabc"])
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,15 +31,13 @@ final class TopSegmentReuseableView: UICollectionReusableView {
         segmentControll.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        segmentControll.setTitleTextAttributes([.foregroundColor: UIColor.gray], for: .normal)
-        segmentControll.setTitleTextAttributes([.foregroundColor: UIColor.blue, .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
+        segmentControll.setTitleTextAttributes([.foregroundColor: UIColor(resource: .eLightGray)], for: .normal)
+        segmentControll.setTitleTextAttributes([.foregroundColor: UIColor(resource: .eBlue), .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
         segmentControll.selectedSegmentIndex = 0
     }
 }
 
 final class SearchResultResuableView: UICollectionReusableView {
-
-    static let reuseIdentifier = "MyHeaderView"
     
     private var titleLabel: UILabel = {
         let label = UILabel()
