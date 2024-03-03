@@ -12,7 +12,7 @@ final class GooglePlayBookImageDownloaderTest: XCTestCase {
 
     let urlString1 = "http://books.google.com/books/content?id=0HJXEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
     let urlStirng2 = "http://books.google.com/books/content?id=PeRFEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
-    let bedURL = "http://books.google.com/books/content?id=kidnote&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+    let bedURL = "http://aserweddeqwe?id=kidnote&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
     let imageView = UIImageView()
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -49,16 +49,21 @@ final class GooglePlayBookImageDownloaderTest: XCTestCase {
         ImageDownloader.shared.downloadImage(urlString: bedURL) { result in
             switch result {
             case .success(let data):
-                if let loadData = data {
-                    XCTAssertFalse(true,"에러로직이 동작해야한다. - \(String(data: loadData, encoding: .utf8))")
-                }
-                XCTAssertFalse(true,"에러로직이 동작해야한다.")
+                data == nil ? XCTAssertFalse(true,"에러로직이 동작해야한다.") : XCTAssertFalse(true,"에러로직이 동작해야한다.\(String(data: data!, encoding: .utf8) ?? "알수없는 데이터" ) ")
             case .failure(let error):
                 print("error - \(error.localizedDescription)")
             }
             expectation.fulfill()
         }
         wait(for: [expectation],timeout: 10)
+    }
+    
+    func testImageCache() throws {
+        let contentKey = "googlePlayBook"
+        let image = UIImage(resource: .playbook)
+        UIImageMemoryCache.shared.add(with: "googlePlayBook", content: image)
+        
+        XCTAssertNotNil(UIImageMemoryCache.shared.content(for: contentKey), "방금 저장한 이미지는 존재 해야 한다.")
     }
 
     func testPerformanceExample() throws {
