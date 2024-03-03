@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TopSegmentControl: UISegmentedControl {
+class PlayBookSegmentControl: UISegmentedControl {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,27 +39,50 @@ class TopSegmentControl: UISegmentedControl {
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
         }
-        underLineView.backgroundColor = .red
+        underLineView.backgroundColor = UIColor(resource: .eLightGray)
+    }
+    
+    private func getSelectedTitleXPostion(titleWidth: CGFloat? = nil) -> CGFloat {
+        let segmentSize = self.bounds.width / CGFloat(self.numberOfSegments)
+        let width = titleWidth ?? getTitleStringSize().width
+        return CGFloat(self.selectedSegmentIndex * Int(segmentSize)) + ((segmentSize / 2) - (width / 2))
     }
     
     private lazy var underLineView: UIView = {
-        let width = self.bounds.width / CGFloat(self.numberOfSegments)
-        let height = 2.0
-        let xPosition = CGFloat(self.selectedSegmentIndex * Int(width))
-        let yPosition = self.bounds.size.height - 1.0
+        
+        let width: CGFloat = getTitleStringSize().width
+        let height: CGFloat = 6.0
+        let xPosition: CGFloat = getSelectedTitleXPostion(titleWidth: width)
+        let yPosition: CGFloat = self.bounds.size.height - 3.0
         let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
         let view = UIView(frame: frame)
-        view .backgroundColor = .blue
+        view .backgroundColor = UIColor(resource: .eBlue)
         self.addSubview(view)
+        view.layer.cornerRadius = 3
+        view.layer.masksToBounds = true
         return view
     }()
     
+    private func getTitleStringSize() -> CGSize {
+        guard let title = self.titleForSegment(at: self.selectedSegmentIndex) else {
+            return .zero
+        }
+        let attributed = self.titleTextAttributes(for: .selected)
+        return title.sizeInPixels(attributes: attributed ?? [:])
+        
+    }
+    
+
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        let underLineFinalXPostion = (self.bounds.width / CGFloat(self.numberOfSegments)) * CGFloat(self.selectedSegmentIndex)
+        var frame = self.underLineView.frame
+        frame.origin.x = getSelectedTitleXPostion()
+        frame.size.width = self.getTitleStringSize().width
         UIView.animate(withDuration: 0.3) {
-            self.underLineView.frame.origin.x = underLineFinalXPostion
-        }   
+            
+            self.underLineView.frame = frame
+            
+        }
     }
 }
