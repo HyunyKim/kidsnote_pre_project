@@ -18,7 +18,7 @@ class EBookInfoCell: UICollectionViewCell {
 
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14,weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 14,weight: .medium)
         label.textColor = .black
         label.numberOfLines = 2
         return label
@@ -48,8 +48,7 @@ class EBookInfoCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .lightGray
-        
+        self.backgroundColor = .systemBackground
         layoutUI()
     }
     
@@ -62,9 +61,8 @@ class EBookInfoCell: UICollectionViewCell {
         thumbNailImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.height.equalTo(80)
-//            make.bottom.equalToSuperview().offset(10)
             make.leading.equalToSuperview().offset(16)
-            make.width.equalTo(40)
+            make.width.equalTo(80)
             
         }
         

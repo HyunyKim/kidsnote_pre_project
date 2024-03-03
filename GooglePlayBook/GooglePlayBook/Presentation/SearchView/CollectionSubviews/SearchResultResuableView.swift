@@ -15,7 +15,7 @@ enum HeaderType {
 
 final class TopSegmentReuseableView: UICollectionReusableView {
     
-    private let segmentControll: UISegmentedControl = PlayBookSegmentControl(items: ["eBook","오디오북"])
+    private let segmentControll: UISegmentedControl = PlayBookSegmentControl(items: ["eBook","AudioBookabc"])
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,8 +38,6 @@ final class TopSegmentReuseableView: UICollectionReusableView {
 }
 
 final class SearchResultResuableView: UICollectionReusableView {
-
-    static let reuseIdentifier = "MyHeaderView"
     
     private var titleLabel: UILabel = {
         let label = UILabel()

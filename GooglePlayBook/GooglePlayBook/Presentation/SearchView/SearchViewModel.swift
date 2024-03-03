@@ -12,7 +12,7 @@ import RxCocoa
 // TODO: - ReactorKit으로 가느냐 ViewModelType을 세분화 하느냐.....
 
 final class SearchViewModel: ViewModelType {
-    typealias SearchResult = Swift.Result<EBooksContainer,Error>
+    typealias SearchResult = Swift.Result<(items:[EBook],hasMore: Bool),Error>
     struct Input {
         var searchKeyword: Observable<String>
         var loadMoreAction: Observable<Void>
@@ -31,6 +31,7 @@ final class SearchViewModel: ViewModelType {
         let result = input.searchKeyword
             .do { [weak self] keyword in
                 self?.currentKeyword = keyword
+                self?.ebookItems.removeAll()
             }
             .flatMapLatest { [weak self] keyword -> Observable<EBooksContainer> in
                 guard let self = self else { return .empty()}
@@ -39,11 +40,25 @@ final class SearchViewModel: ViewModelType {
             .do { [weak self] result in
                 self?.totalItems = result.totalItems
                 self?.ebookItems = result.items
-            }.map { container in
-                SearchResult.success(container)
+            }.map { [weak self] _ in
+                SearchResult.success((self?.ebookItems ?? [], (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
             }
+        
+        let loadMoreResult = input.loadMoreAction
+            .flatMapLatest { [weak self] _ -> Observable<EBooksContainer>  in
+                guard let self = self else { return .empty()}
+                return self.searchRequest(keyword: self.currentKeyword)
+            }
+            .do { [weak self] result in
+                self?.totalItems = result.totalItems
+                self?.ebookItems.append(contentsOf: result.items)
+            }
+            .map { [weak self] _ in
+                SearchResult.success((self?.ebookItems ?? [], (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
+            }
+        
         let total = Observable<SearchResult>
-            .merge(result)
+            .merge(result,loadMoreResult)
             .asDriver { error in
                     .just(.failure(error))
             }
@@ -57,7 +72,7 @@ final class SearchViewModel: ViewModelType {
                 observer.onCompleted()
                 return Disposables.create()
             }
-            let query = SearchQuery(q: keyword)
+            let query = SearchQuery(q: keyword, maxResults: 20, startIndex: self.ebookItems.count)
             let cancelable = self.useCase.requestItems(query: query) { result in
                 switch result {
                 case .success(let container):

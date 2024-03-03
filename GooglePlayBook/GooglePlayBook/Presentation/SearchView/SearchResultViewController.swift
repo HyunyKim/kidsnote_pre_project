@@ -41,7 +41,6 @@ final class SearchResultViewController: UIViewController {
             let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             section.interGroupSpacing = 2
-            
             switch sectionIndex {
             case 0,1:
                 let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
@@ -71,8 +70,13 @@ final class SearchResultViewController: UIViewController {
     
     private func setCollectionView() {
         collectionView.register(EBookInfoCell.self, forCellWithReuseIdentifier: EBookInfoCell.identifier)
+        collectionView.register(LoadMoreCell.self, forCellWithReuseIdentifier: LoadMoreCell.identifier)
         collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
         collectionView.register(TopSegmentReuseableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TopSegmentReuseableView.identifier)
+        
+        collectionView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
         
         sectionModelSubject
             .bind(to: collectionView.rx.items(dataSource: sectionReloadDataSource()))
@@ -85,8 +89,8 @@ final class SearchResultViewController: UIViewController {
         output.searchResult
             .drive(onNext: { [weak self] result in
                 switch result {
-                case .success(let container):
-                    self?.emitDataSource(data: container.items)
+                case .success(let result):
+                    self?.emitDataSource(items: result.items, hasMore: result.hasMore)
                 case .failure(let error):
                     Log.error("Error", error)
                 }
@@ -94,11 +98,11 @@ final class SearchResultViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func emitDataSource(data: [EBook]) {
+    private func emitDataSource(items: [EBook], hasMore: Bool) {
         let segmentSection = SearchResultSectionModel.segmentSection
-        let ebookItemSection = SearchResultSectionModel.eBookItemSection(items: data.map {
+        let ebookItemSection = SearchResultSectionModel.eBookItemSection(items: items.map {
             SearchResultSectionItem.eBookItem(item: $0) })
-        let loadMoreSection = SearchResultSectionModel.loadMoreSection(item: [])
+        let loadMoreSection = SearchResultSectionModel.loadMoreSection(item: hasMore ? [SearchResultSectionItem.loadMore] : [])
         sectionModelSubject.onNext([segmentSection,ebookItemSection,loadMoreSection])
     }
     
@@ -114,7 +118,9 @@ final class SearchResultViewController: UIViewController {
                     
                     return cell
                 case .loadMore:
-                    return UICollectionViewCell()
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoadMoreCell.identifier, for: indexPath) as! LoadMoreCell
+                    
+                    return cell
                 }
             },
             configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
@@ -130,5 +136,12 @@ final class SearchResultViewController: UIViewController {
                     return UICollectionReusableView()
                 }
             })
+    }
+}
+extension SearchResultViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.section == 2 , indexPath.row == 0 {
+            loadMoreSubject.onNext(())
+        }
     }
 }
