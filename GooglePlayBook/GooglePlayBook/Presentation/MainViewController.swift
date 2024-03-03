@@ -16,6 +16,7 @@ final class MainViewController: UIViewController {
         let searchController = UISearchController(searchResultsController: searchResultController)
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.searchBar.autocapitalizationType = .none
+        searchController.view.backgroundColor = UIColor(resource: .background)
         return searchController
     }()
     
@@ -32,10 +33,14 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
-        self.navigationItem.title = "Google Play Book Search"
+        layoutUI()
         configureSearchBar()
         bindingUI()
+    }
+    
+    private func layoutUI() {
+        self.view.backgroundColor = UIColor(resource: .background)
+        self.navigationItem.title = "Google Play Book Search"
     }
     
     private func configureSearchBar() {

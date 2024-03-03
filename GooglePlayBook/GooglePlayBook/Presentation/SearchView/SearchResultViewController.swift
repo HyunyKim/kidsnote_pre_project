@@ -36,11 +36,11 @@ final class SearchResultViewController: UIViewController {
     
     private func createBasicLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(80))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = 2
+            section.interGroupSpacing = 0
             switch sectionIndex {
             case 0,1:
                 let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
@@ -56,7 +56,7 @@ final class SearchResultViewController: UIViewController {
     }
     
     private func layoutUI() {
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = UIColor(resource: .background)
         
         
         self.view.addSubview(collectionView)
@@ -74,6 +74,7 @@ final class SearchResultViewController: UIViewController {
         collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
         collectionView.register(TopSegmentReuseableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TopSegmentReuseableView.identifier)
         
+        collectionView.backgroundColor = UIColor(resource: .background)
         collectionView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
