@@ -65,7 +65,10 @@ final class SearchResultResuableView: UICollectionReusableView {
         backgroundColor = UIColor(resource: .background)
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(16.0)
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(44)
         }
     }
     

@@ -118,6 +118,8 @@ class EBookInfoCell: UICollectionViewCell {
         typeLabel.text = "별"
         if let urlString = ebook.thumbNail {
             thumbNailImageView.setImage(urlString: urlString)
+        } else {
+            thumbNailImageView.image = UIImage(resource: .emptyBook)
         }
     }
 }

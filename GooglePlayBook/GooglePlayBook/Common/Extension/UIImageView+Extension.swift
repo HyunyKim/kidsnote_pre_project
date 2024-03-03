@@ -49,12 +49,14 @@ extension UIImageView {
                 UIImageMemoryCache.shared.add(with: imagekey, content: image)
             }
         } else {
-            Log.debug("downloadImageURL", urlString)
             let canceallable = downloader.downloadImage(urlString: urlString, etag: nil) { [weak self] result in
                 switch result {
                 case .success(let imageData):
                     guard let data = imageData, let downImage = UIImage(data: data) else {
                         Log.error("Image download error - Invalid Data")
+                        DispatchQueue.main.async {
+                            self?.image = UIImage(resource: .emptyBook)
+                        }
                         return
                     }
                     DispatchQueue.main.async {
@@ -64,6 +66,9 @@ extension UIImageView {
                     UIImageDiskCache.shared.add(with: imagekey, content: data)
                     self?.downloadCancellable = nil
                 case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.image = UIImage(resource: .emptyBook)
+                    }
                     Log.error("Image download error", error.localizedDescription)
                 }
             }

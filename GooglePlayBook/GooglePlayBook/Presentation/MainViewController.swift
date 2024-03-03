@@ -27,8 +27,8 @@ final class MainViewController: UIViewController {
     
     //Variables
     
-    private var searchText: String = ""
-    private var inputKeyword = PublishSubject<String>()
+    private var typeingKeyword: String = ""
+    private var typingSubject = PublishSubject<String>()
     private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -47,6 +47,7 @@ final class MainViewController: UIViewController {
         definesPresentationContext = true
         navigationItem.searchController = self.searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        
     }
     
     private func bindingUI() {
@@ -56,12 +57,19 @@ final class MainViewController: UIViewController {
             }.share()
         searchKeyword.bind(to: searchResultController.searchKeywordSubject)
             .disposed(by: disposeBag)
+        
+        typingSubject.bind(to: searchResultController.typingSubject)
+            .disposed(by: disposeBag)
     }
 }
 
 extension MainViewController: UISearchControllerDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        searchText = searchController.searchBar.text ?? ""
+        let searchBarText = searchController.searchBar.text ?? ""
+        if searchBarText != typeingKeyword {
+            typingSubject.onNext(searchBarText)
+        }
+        typeingKeyword = searchBarText
     }
     
     

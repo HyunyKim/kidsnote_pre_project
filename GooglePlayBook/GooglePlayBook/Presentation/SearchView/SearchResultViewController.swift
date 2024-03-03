@@ -17,7 +17,15 @@ final class SearchResultViewController: UIViewController {
     // UIComponents
     private lazy var collectionView: UICollectionView = {
         let collectionview = UICollectionView(frame: .zero, collectionViewLayout: createBasicLayout())
+        collectionview.backgroundColor = UIColor(resource: .background)
+        collectionview.showsVerticalScrollIndicator = false
         return collectionview
+    }()
+    
+    private var loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.hidesWhenStopped = true
+        return indicator
     }()
     
     
@@ -27,10 +35,11 @@ final class SearchResultViewController: UIViewController {
     private let loadMoreSubject = PublishSubject<Void>()
     private let sectionModelSubject = BehaviorSubject<[SearchResultSectionModel]>(value: [])
     let searchKeywordSubject = PublishSubject<String>()
+    let typingSubject = PublishSubject<String>()
     
     override func viewDidLoad() {
         layoutUI()
-        setCollectionView()
+        bindingUI()
         bindViewModel()
     }
     
@@ -58,6 +67,10 @@ final class SearchResultViewController: UIViewController {
     private func layoutUI() {
         self.view.backgroundColor = UIColor(resource: .background)
         
+        self.view.addSubview(loadingIndicator)
+        loadingIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
         
         self.view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
@@ -66,15 +79,16 @@ final class SearchResultViewController: UIViewController {
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-    }
-    
-    private func setCollectionView() {
+        
         collectionView.register(EBookInfoCell.self, forCellWithReuseIdentifier: EBookInfoCell.identifier)
         collectionView.register(LoadMoreCell.self, forCellWithReuseIdentifier: LoadMoreCell.identifier)
         collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
         collectionView.register(TopSegmentReuseableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TopSegmentReuseableView.identifier)
+        collectionView.isHidden = true
+    }
+    
+    private func bindingUI() {
         
-        collectionView.backgroundColor = UIColor(resource: .background)
         collectionView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
@@ -82,19 +96,39 @@ final class SearchResultViewController: UIViewController {
         sectionModelSubject
             .bind(to: collectionView.rx.items(dataSource: sectionReloadDataSource()))
             .disposed(by: disposeBag)
+        
+        searchKeywordSubject
+            .subscribe(onNext: { [weak self] _ in
+                self?.loadingIndicator.isHidden = false
+                self?.loadingIndicator.startAnimating()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindViewModel() {
-        let output = viewModel.transform(input: .init(searchKeyword: searchKeywordSubject, loadMoreAction: loadMoreSubject))
+        let output = viewModel.transform(input: .init(searchKeyword: searchKeywordSubject, typingAction: typingSubject, loadMoreAction: loadMoreSubject))
         
         output.searchResult
             .drive(onNext: { [weak self] result in
+                self?.loadingIndicator.isHidden = true
+                self?.collectionView.isHidden = false
                 switch result {
                 case .success(let result):
                     self?.emitDataSource(items: result.items, hasMore: result.hasMore)
                 case .failure(let error):
                     Log.error("Error", error)
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        output.restValues
+            .map { _ in
+                self.collectionView.isHidden
+            }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] value in
+                Log.debug("오지마",value)
+                self?.collectionView.isHidden = true
             })
             .disposed(by: disposeBag)
     }
