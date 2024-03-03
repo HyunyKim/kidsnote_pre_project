@@ -43,7 +43,7 @@ struct DefaultNetworkService: NetworkService {
                 }
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
-                    completion(.failure(.unKownError(description: "No valid HTTP response")))
+                    completion(.failure(.unKownError(description: "Invalid HTTP response")))
                     return
                 }
                 switch httpResponse.statusCode {

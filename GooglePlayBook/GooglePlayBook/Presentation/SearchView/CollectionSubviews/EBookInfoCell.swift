@@ -98,6 +98,7 @@ class EBookInfoCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        thumbNailImageView.cancelImageDownload()
         thumbNailImageView.image = nil
         titleLabel.text = ""
         authorInfoLabel.text = ""
@@ -110,5 +111,8 @@ class EBookInfoCell: UICollectionViewCell {
         authorInfoLabel.text = ebook.authors?.reduce("",+)
         typeLabel.text = (ebook.isEBook ?? false) ? "eBook" : ""
         typeLabel.text = "별"
+        if let urlString = ebook.thumbNail {
+            thumbNailImageView.setImage(urlString: urlString)
+        }
     }
 }
