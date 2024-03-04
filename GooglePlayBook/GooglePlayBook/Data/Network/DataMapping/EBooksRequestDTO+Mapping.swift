@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EbookRequestDTO: ParameterEncodable {
+struct EbookItemsRequestDTO: ParameterEncodable {
     var q: String
 
     var filter: String?

@@ -26,12 +26,12 @@ extension URLSessionTask: Cancellable { }
 
 protocol NetworkService {
     typealias CompleteHandler<T:Decodable> = (Swift.Result<T,NetworkError>) -> Void
+    @discardableResult
     func request<T>(endpoint: API, completion: @escaping(CompleteHandler<T>)) -> Cancellable?
 }
 
 
 struct DefaultNetworkService: NetworkService {
-    @discardableResult
     func request<T>(endpoint: API, completion: @escaping(CompleteHandler<T>)) -> Cancellable? {
         do {
             let request = try endpoint.request()

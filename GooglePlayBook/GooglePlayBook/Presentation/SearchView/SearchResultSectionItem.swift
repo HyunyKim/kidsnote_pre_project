@@ -35,8 +35,8 @@ extension SearchResultSectionModel: SectionModelType {
         }
     }
     
-    init(original orignal: SearchResultSectionModel, items:[SearchResultSectionItem]) {
-        switch orignal {
+    init(original: SearchResultSectionModel, items:[SearchResultSectionItem]) {
+        switch original {
         case .segmentSection:
             self = .segmentSection
         case .eBookItemSection(items: let items):

@@ -7,8 +7,9 @@
 
 ## Libraries
 - SnapKit
-- RXSwift
-- RXCocoa
+- RxSwift
+- RxCocoa
+- Swinject
 
 ## 의존성관리
 - Swift Package Manager
@@ -40,6 +41,13 @@ GET https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=yourAPIKey
 
 ## 3/3
 - UI 작업 시작 스냅킷 적응
-- ReactorKit 도입 여부
+- Search UI Detail
+- ImageDownloader
+- ImageCache
+- 버그수정
 
+ ## 3/4 
+ - 상세화면 연결
+ - UI 버그 수정
+- ReactorKit 도입 여부
 ###

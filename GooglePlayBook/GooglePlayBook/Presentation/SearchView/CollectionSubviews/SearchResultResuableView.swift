@@ -27,7 +27,7 @@ final class TopSegmentReuseableView: UICollectionReusableView {
     }
     
     private func layoutUI() {
-        backgroundColor = UIColor(resource: .background)
+        backgroundColor = .background
         addSubview(segmentControll)
         segmentControll.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -44,7 +44,7 @@ final class SearchResultResuableView: UICollectionReusableView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18.0, weight: .semibold)
         label.textAlignment = .left
-        label.textColor = UIColor(resource: .textColor1)
+        label.textColor = .textColor1
         return label
     }()
     
@@ -62,7 +62,7 @@ final class SearchResultResuableView: UICollectionReusableView {
     }
     
     private func layoutUI() {
-        backgroundColor = UIColor(resource: .background)
+        backgroundColor = .background
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()

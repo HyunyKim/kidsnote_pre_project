@@ -16,12 +16,12 @@ final class MainViewController: UIViewController {
         let searchController = UISearchController(searchResultsController: searchResultController)
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.searchBar.autocapitalizationType = .none
-        searchController.view.backgroundColor = UIColor(resource: .background)
+        searchController.view.backgroundColor = .background
         return searchController
     }()
     
     private lazy var searchResultController: SearchResultViewController = {
-        let controller = SearchResultViewController()
+        let controller = SearchResultViewController(delegate: self)
         return controller
     }()
     
@@ -39,7 +39,7 @@ final class MainViewController: UIViewController {
     }
     
     private func layoutUI() {
-        self.view.backgroundColor = UIColor(resource: .background)
+        self.view.backgroundColor = .background
         self.navigationItem.title = "Google Play Book Search"
     }
     
@@ -71,6 +71,11 @@ extension MainViewController: UISearchControllerDelegate, UISearchResultsUpdatin
         }
         typeingKeyword = searchBarText
     }
-    
-    
+}
+
+extension MainViewController: SearchResultVCDelegate {
+    func didSelectedItem(itemId: String) {
+        let detaiVC = BookDetailViewController(bookId: itemId)
+        self.navigationController?.pushViewController(detaiVC, animated: true)
+    }
 }

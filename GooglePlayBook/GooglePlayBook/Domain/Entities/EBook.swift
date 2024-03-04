@@ -14,7 +14,6 @@ struct EBook: Equatable,Identifiable {
     let title: String?
     let authors: [String]?
     let thumbNail: String?
-    let selfLink: String?
     let isEBook: Bool?
 }
 

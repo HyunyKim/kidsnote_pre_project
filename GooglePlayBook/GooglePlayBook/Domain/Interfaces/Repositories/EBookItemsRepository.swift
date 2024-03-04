@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol EBookRepository {
+protocol EBookItemsRepository {
     func fetchEBookItems(
         parameter: SearchQuery,
         completion: @escaping(Swift.Result<EBooksContainer, Error>) -> Void

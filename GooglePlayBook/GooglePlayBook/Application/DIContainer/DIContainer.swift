@@ -21,16 +21,28 @@ final class DIContainer {
             DefaultNetworkService()
         }
         
-        self.container.register(EBookRepository.self) { resolver in
-            DefaultEBookRepository(networkService: resolver.resolve(NetworkService.self)!)
+        self.container.register(EBookItemsRepository.self) { resolver in
+            DefaultEBookItemsRepository(networkService: resolver.resolve(NetworkService.self)!)
         }
         
-        self.container.register(SearchEBookUseCase.self) { resolver in
-            DefaultSearchEBookUseCase(ebookRepository: resolver.resolve(EBookRepository.self)!)
+        self.container.register(SearchEBooksUseCase.self) { resolver in
+            DefaultSearchEBooksUseCase(ebookRepository: resolver.resolve(EBookItemsRepository.self)!)
         }
         
         self.container.register(SearchViewModel.self) { resolver in
             SearchViewModel()
+        }
+        
+        self.container.register(BookInfoRepository.self) { resolver in
+            DefaultBookInfoRepository(networkService: resolver.resolve(NetworkService.self)!)
+        }
+        
+        self.container.register(BookInfoUseCase.self) { resolver in
+            DefaultBookInfoUseCase(eBookRepository: resolver.resolve(BookInfoRepository.self)!)
+        }
+        
+        self.container.register(BookViewModel.self) { resolver in
+            BookViewModel()
         }
     }
     
