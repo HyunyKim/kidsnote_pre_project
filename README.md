@@ -7,8 +7,8 @@
 
 ## Libraries
 - SnapKit
-- RXSwift
-- RXCocoa
+- RxSwift
+- RxCocoa
 - Swinject
 
 ## 의존성관리

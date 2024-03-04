@@ -20,7 +20,7 @@ protocol SearchResultVCDelegate: AnyObject {
 final class SearchResultViewController: UIViewController {
     // UIComponents
     private lazy var collectionView: UICollectionView = {
-        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: createBasicLayout())
+        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: createListLayout())
         collectionview.backgroundColor = .background
         collectionview.showsVerticalScrollIndicator = false
         return collectionview
@@ -55,11 +55,12 @@ final class SearchResultViewController: UIViewController {
     
     override func viewDidLoad() {
         layoutUI()
+        registerCell()
         bindingUI()
         bindingViewModel()
     }
     
-    private func createBasicLayout() -> UICollectionViewLayout {
+    private func createListLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(80))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -77,6 +78,13 @@ final class SearchResultViewController: UIViewController {
             return section
         }
         return layout
+    }
+    
+    private func registerCell() {
+        collectionView.register(EBookInfoCell.self, forCellWithReuseIdentifier: EBookInfoCell.identifier)
+        collectionView.register(LoadMoreCell.self, forCellWithReuseIdentifier: LoadMoreCell.identifier)
+        collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
+        collectionView.register(TopSegmentReuseableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TopSegmentReuseableView.identifier)
     }
     
     override func viewSafeAreaInsetsDidChange() {
@@ -105,13 +113,7 @@ final class SearchResultViewController: UIViewController {
             make.bottom.equalToSuperview()
         }
         
-        
-        collectionView.register(EBookInfoCell.self, forCellWithReuseIdentifier: EBookInfoCell.identifier)
-        collectionView.register(LoadMoreCell.self, forCellWithReuseIdentifier: LoadMoreCell.identifier)
-        collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
-        collectionView.register(TopSegmentReuseableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TopSegmentReuseableView.identifier)
         collectionView.refreshControl = refreshControl
-        
         collectionView.isHidden = true
     }
     

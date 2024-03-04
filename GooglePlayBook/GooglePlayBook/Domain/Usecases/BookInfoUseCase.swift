@@ -9,6 +9,7 @@ import Foundation
 
 protocol BookInfoUseCase {
     typealias GetBookInfoCompleteHandler = (Swift.Result<BookDetailInfo,Error>) -> Void
+    @discardableResult
     func requestBookInfo(
         bookId: String,
         query: SearchQuery,
@@ -25,6 +26,7 @@ struct DefaultBookInfoUseCase {
 }
 
 extension DefaultBookInfoUseCase: BookInfoUseCase {
+    @discardableResult
     func requestBookInfo(
         bookId: String,
         query: SearchQuery,

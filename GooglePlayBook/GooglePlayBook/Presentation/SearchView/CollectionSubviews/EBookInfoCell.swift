@@ -11,18 +11,23 @@ import SnapKit
 class EBookInfoCell: UICollectionViewCell {
     
     private var thumbNailImageView: UIImageView = {
-       let imgViw = UIImageView()
-        imgViw.contentMode = .scaleAspectFill
-        imgViw.layer.cornerRadius = 4
-        imgViw.layer.masksToBounds = true
-        return imgViw
+       let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 4
+//        imageView.layer.shadowColor = UIColor.eGray.cgColor
+//        imageView.layer.shadowOpacity = 0.3
+//        imageView.layer.shadowOffset = CGSize(width: 2, height: 2)
+//        imageView.layer.shadowRadius = 5
+//      TODO: - 쉐도우를 위해서 컨테이너뷰 필요
+        imageView.layer.masksToBounds = true
+        return imageView
     }()
 
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12,weight: .medium)
-        label.lineBreakMode = .byTruncatingTail
         label.textColor = .textColor1
+        label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 2
         return label
     }()
