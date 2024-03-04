@@ -60,6 +60,10 @@ extension EBooksResponseDTO.EBookDTO.VolumeInfo {
     struct ImageLinks: Decodable {
         let smallThumbnail: String?
         let thumbnail: String?
+        let small: String?
+        let medium: String?
+        let large: String?
+        let extraLarge: String?
     }
 }
 
@@ -128,7 +132,20 @@ extension EBooksResponseDTO.EBookDTO {
                      title: volumeInfo?.title,
                      authors: volumeInfo?.authors,
                      thumbNail: volumeInfo?.imageLinks?.smallThumbnail,
-                     selfLink: selfLink,
                      isEBook: saleInfo?.isEbook)
+    }
+    func toDomain() -> BookDetailInfo {
+        return .init(id: BookDetailInfo.Identifier(id),
+                     thumbNail: volumeInfo?.imageLinks?.medium,
+                     title: volumeInfo?.title,
+                     authors: volumeInfo?.authors,
+                     isEBook: saleInfo?.isEbook,
+                     pageCount: volumeInfo?.pageCount,
+                     pdfURL: accessInfo?.pdf?.acsTokenLink,
+                     webReaerLink: accessInfo?.webReaderLink,
+                     description: volumeInfo?.description,
+                     publisher: volumeInfo?.publisher,
+                     publishedDate: volumeInfo?.publishedDate,
+                     selfLink: selfLink)
     }
 }

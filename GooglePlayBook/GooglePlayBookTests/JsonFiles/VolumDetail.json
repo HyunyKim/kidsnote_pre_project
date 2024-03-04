@@ -1,0 +1,84 @@
+{
+    "kind": "books#volume",
+    "id": "pNzSBQAAQBAJ",
+    "etag": "Zdpyim393OE",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/pNzSBQAAQBAJ",
+    "volumeInfo": {
+        "title": "Swift Development with Cocoa",
+        "subtitle": "Developing for the Mac and IOS App Stores",
+        "authors": [
+            "Jonathon Manning",
+            "Paris Buttfield-Addison",
+            "Tim Nugent"
+        ],
+        "publisher": "\"O'Reilly Media, Inc.\"",
+        "publishedDate": "2014-12-10",
+        "description": "<p>Ready to build apps for iPhone, iPad, and Mac now that Swift has landed? If you’re an experienced programmer who’s never touched Apple developer tools, this hands-on book shows you how to use the Swift language to make incredible iOS and OS X apps, using Cocoa and Cocoa Touch.</p><p>Learn how to use Swift in a wide range of real-world situations, with Cocoa features such as Event Kit and Core Animation. You’ll pick up Swift language features and syntax along the way, and understand why using Swift (instead of Objective-C) makes iOS and Mac app development easier, faster, and safer. You’ll also work with several exercises to help you practice as you learn.</p><ul><li>Learn the OS X and iOS application lifecycle</li><li>Use storyboards to design adaptive interfaces</li><li>Explore graphics systems, including the built-in 2D and 3D game frameworks</li><li>Display video and audio with AVFoundation</li><li>Store data locally with the file system, or on the network with iCloud</li><li>Display lists or collections of data with table views and collection views</li><li>Build apps that let users create, edit, and work with documents</li><li>Use MapKit, Core Location, and Core Motion to interact with the world</li></ul>",
+        "industryIdentifiers": [
+            {
+                "type": "ISBN_10",
+                "identifier": "1491909706"
+            },
+            {
+                "type": "ISBN_13",
+                "identifier": "9781491909706"
+            }
+        ],
+        "readingModes": {
+            "text": false,
+            "image": true
+        },
+        "pageCount": 474,
+        "printedPageCount": 472,
+        "printType": "BOOK",
+        "categories": [
+            "Computers / Programming / Games",
+            "Computers / Operating Systems / Mac OS",
+            "Computers / Programming / Object Oriented",
+            "Computers / Programming / Macintosh",
+            "Computers / Programming / Mobile Devices"
+        ],
+        "averageRating": 4,
+        "ratingsCount": 1,
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.1.2.0.preview.1",
+        "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+        },
+        "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/publisher/content?id=pNzSBQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE73rwGUjRw-ctll4SoTj6tP_EcZ_980t0YJoN4IUwbCGfUpjAU_YehHD6G-oRoaXmfBskSzklNxl2-EG0_AFIDvVUYK2YHG9jwTQgEKTOWmXxm44uH7ElD0KU0oReNYpQBDq5nAp&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/publisher/content?id=pNzSBQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE70QMyupOwS9iRMBd0obxlO9U__yxLbz1L11vCXvphEOZROE1ljj6QnW22dwicriQ7i2iRNEKEtAjVKiX9ejVYHU3qIaysk9cvUVcPSgPIoqfIa1JJnQ3HRap9c8INsh7YdTzR5J&source=gbs_api",
+            "small": "http://books.google.com/books/publisher/content?id=pNzSBQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE71Nl-mR-qoetjQw4l92ciQ1PTR-6radmnJdC6i8mqwDUh8rijiSN71xfog_HATSsujnZmweCqOg8cC7YJ9KlU3_wScjd6h06yEbtN4sULsGROXrJbQW16rlWTrDf4HYTQzVo2OC&source=gbs_api",
+            "medium": "http://books.google.com/books/publisher/content?id=pNzSBQAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE71xnzl-NGISqYOyy2QE_6i1V5jj9t_ljPgUTY-3u7z2IhxpH1DsSotmJGcMIT4i4vhNSAB5KwoxBUOr260x0kP9TV50qjPzdisAB3tEc-qvIRBnccy-AQ4OANzrjpzLU0Z5fgCL&source=gbs_api",
+            "large": "http://books.google.com/books/publisher/content?id=pNzSBQAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE71dPTMyYZQxe9CiQERdxdCMxktiq6E2uUwadzt0N_ZQzTJFpsVAy1uQAxdXBDcqVV7f_E88jk6x2EpJ_4EnLkymOg_S41U3ZQRiWK98HqDUaLGEksJ__3aocvB9wCYTZ20o5gl7&source=gbs_api",
+            "extraLarge": "http://books.google.com/books/publisher/content?id=pNzSBQAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE71C3j9mZyHIUqu6qudMikF65GtQHhO-skIvs94NDcVYTTypxi0o8a2G3WIkdxhljuxi_XP1gE9dB4Y-UZJWO3Jih1Y5CnEyG1EjhxO_TSm6a2TicuBTek-9w-D6lhfTSGYe8fZ3&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.co.kr/books?id=pNzSBQAAQBAJ&hl=&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=pNzSBQAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=pNzSBQAAQBAJ"
+    },
+    "saleInfo": {
+        "country": "KR",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+    },
+    "accessInfo": {
+        "country": "KR",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+            "isAvailable": false
+        },
+        "pdf": {
+            "isAvailable": true
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=pNzSBQAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+    }
+}
