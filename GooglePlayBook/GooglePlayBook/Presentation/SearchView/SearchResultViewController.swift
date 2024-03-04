@@ -28,6 +28,7 @@ final class SearchResultViewController: UIViewController {
         return indicator
     }()
     
+    private lazy var refreshControl: UIRefreshControl = UIRefreshControl()
     
     // Variable
     @Inject private var viewModel: SearchViewModel
@@ -36,6 +37,7 @@ final class SearchResultViewController: UIViewController {
     private let sectionModelSubject = BehaviorSubject<[SearchResultSectionModel]>(value: [])
     let searchKeywordSubject = PublishSubject<String>()
     let typingSubject = PublishSubject<String>()
+    
     
     override func viewDidLoad() {
         layoutUI()
@@ -61,7 +63,17 @@ final class SearchResultViewController: UIViewController {
             return section
         }
         return layout
-        
+    }
+    
+    override func viewSafeAreaInsetsDidChange() {
+        collectionView.snp.removeConstraints()
+        collectionView.snp.makeConstraints { make in
+            Log.debug("safearear", self.view.safeAreaInsets.top)
+            make.top.equalTo(view.snp.top).inset(self.view.safeAreaInsets.top)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
     }
     
     private func layoutUI() {
@@ -74,16 +86,19 @@ final class SearchResultViewController: UIViewController {
         
         self.view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(self.view.safeAreaInsets.top)
+            make.top.equalTo(view.snp.top).inset(self.view.safeAreaInsets.top)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
         
+        
         collectionView.register(EBookInfoCell.self, forCellWithReuseIdentifier: EBookInfoCell.identifier)
         collectionView.register(LoadMoreCell.self, forCellWithReuseIdentifier: LoadMoreCell.identifier)
         collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
         collectionView.register(TopSegmentReuseableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TopSegmentReuseableView.identifier)
+        collectionView.refreshControl = refreshControl
+        
         collectionView.isHidden = true
     }
     
@@ -106,12 +121,23 @@ final class SearchResultViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        let output = viewModel.transform(input: .init(searchKeyword: searchKeywordSubject, typingAction: typingSubject, loadMoreAction: loadMoreSubject))
+        
+        let controlChange = refreshControl.rx.controlEvent(.valueChanged)
+            .map({[weak self] in
+                return self?.viewModel.searchedKeyword ?? ""
+            })
+        
+        let merged = Observable<String>
+            .merge(searchKeywordSubject,controlChange)
+        let output = viewModel.transform(input: .init(searchAction: merged,
+                                                      typingAction: typingSubject,
+                                                      loadMoreAction: loadMoreSubject))
         
         output.searchResult
             .drive(onNext: { [weak self] result in
                 self?.loadingIndicator.isHidden = true
                 self?.collectionView.isHidden = false
+                self?.refreshControl.endRefreshing()
                 switch result {
                 case .success(let result):
                     self?.emitDataSource(items: result.items, hasMore: result.hasMore)
@@ -127,8 +153,10 @@ final class SearchResultViewController: UIViewController {
             }
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] value in
-                Log.debug("오지마",value)
-                self?.collectionView.isHidden = true
+                DispatchQueue.main.async {
+                    self?.emitDataSource(items: [], hasMore: false)
+                    self?.collectionView.isHidden = true
+                }
             })
             .disposed(by: disposeBag)
     }

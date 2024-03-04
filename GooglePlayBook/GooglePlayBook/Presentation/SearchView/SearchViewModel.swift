@@ -14,7 +14,7 @@ import RxCocoa
 final class SearchViewModel: ViewModelType {
     typealias SearchResult = Swift.Result<(items:[EBook],hasMore: Bool),Error>
     struct Input {
-        var searchKeyword: Observable<String>
+        var searchAction: Observable<String>
         var typingAction: Observable<String>
         var loadMoreAction: Observable<Void>
     }
@@ -28,6 +28,10 @@ final class SearchViewModel: ViewModelType {
     private var totalItems: Int = 0
     private var ebookItems: [EBook] = []
     
+    var searchedKeyword: String {
+        currentKeyword
+    }
+    
     func transform(input: Input) -> Output {
         
         let reset = input.typingAction
@@ -38,7 +42,7 @@ final class SearchViewModel: ViewModelType {
                 return .just(())
             }
         
-        let result = input.searchKeyword
+        let result = input.searchAction
             .do { [weak self] keyword in
                 self?.currentKeyword = keyword
                 self?.ebookItems.removeAll()
