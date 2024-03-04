@@ -18,7 +18,7 @@ struct BookDetailInfo: Equatable, Identifier {
     let pageCount      :Int?
     
     let pdfURL         :String?
-    let webReaerLink   :String?
+    let webReaderLink   :String?
     
     let description    :String?
     let publisher      :String?

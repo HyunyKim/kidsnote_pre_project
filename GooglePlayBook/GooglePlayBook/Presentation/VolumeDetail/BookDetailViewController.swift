@@ -50,26 +50,6 @@ class BookDetailViewController: UIViewController {
         loadInfoSubject.onNext(bookId)
     }
     
-    private func createListLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(80))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
-            let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = 0
-            switch sectionIndex {
-            case 0,1:
-                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
-                let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-                section.boundarySupplementaryItems = [header]
-            default:
-                break
-            }
-            return section
-        }
-        return layout
-    }
-    
     private func registerCell() {
         tableView.register(BookUserActionCell.self, forCellReuseIdentifier: BookUserActionCell.identifier)
         tableView.register(BookDescriptionCell.self, forCellReuseIdentifier: BookDescriptionCell.identifier)
@@ -98,6 +78,9 @@ class BookDetailViewController: UIViewController {
         }
         tableView.backgroundColor = .background
         tableView.tableHeaderView = self.tableHeaderView
+        tableView.separatorInset = .zero
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 60
         
 //        tableHeaderView.snp.makeConstraints { make in
 //            make.height.greaterThanOrEqualTo(150)
@@ -116,9 +99,8 @@ class BookDetailViewController: UIViewController {
             .modelSelected(BookDetailSectionItem.self)
             .subscribe(onNext: {[weak self] item in
                 switch item {
-                    
-                case .userAction(link: let link):
-                    Log.debug("Link", link)
+                case .userAction(webreaderLink: let link):
+                    return
                 case .bookDescription(description: let description):
                     Log.debug("description", description)
                 case .ratingInfo(item: let item):
@@ -152,7 +134,7 @@ class BookDetailViewController: UIViewController {
     
     private func emitDataSource(data: BookDetailInfo) {
         let tableItems: [BookDetailSectionItem] = [
-            .userAction(link: ""),
+            .userAction(webreaderLink: data.webReaderLink),
             .bookDescription(description: ""),
             .ratingInfo(item: data),
             .publishInfo(publishing: "")
@@ -165,8 +147,9 @@ class BookDetailViewController: UIViewController {
         return RxTableViewSectionedReloadDataSource { dataSource, tableView, indexPath, item in
             switch item {
             
-            case .userAction(link: let link):
+            case .userAction(webreaderLink: let link):
                  let cell = tableView.dequeueReusableCell(withIdentifier: BookUserActionCell.identifier) as! BookUserActionCell
+                cell.sampleURLString = link
                 return cell
             case .bookDescription(description: let description):
                 let cell = tableView.dequeueReusableCell(withIdentifier: BookDescriptionCell.identifier) as! BookDescriptionCell
