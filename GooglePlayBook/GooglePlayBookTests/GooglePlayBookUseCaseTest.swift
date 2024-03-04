@@ -9,12 +9,12 @@ import XCTest
 @testable import GooglePlayBook
 
 final class GooglePlayBookUseCaseTest: XCTestCase {
-    var useCase: SearchEBookUseCase!
+    var useCase: SearchEBooksUseCase!
     var query: SearchQuery!
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         DIContainer.shared.defaultContainer()
-        DIContainer.shared.regitst(MockEbookREpository() as EBookRepository)
+        DIContainer.shared.regitst(MockEbookREpository() as EBookItemsRepository)
         self.useCase = DIContainer.shared.resolve()
         self.query = SearchQuery(q: "Swift",maxResults: 2)
     }

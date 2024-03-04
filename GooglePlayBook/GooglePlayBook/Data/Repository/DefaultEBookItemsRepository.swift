@@ -8,7 +8,7 @@
 import Foundation
 import LevelOSLog
 
-struct DefaultEBookRepository {
+struct DefaultEBookItemsRepository {
     private let networkService: NetworkService
     
     init(networkService: NetworkService = DefaultNetworkService()) {
@@ -16,11 +16,11 @@ struct DefaultEBookRepository {
     }
 }
 
-extension DefaultEBookRepository: EBookRepository {
+extension DefaultEBookItemsRepository: EBookItemsRepository {
     func fetchEBookItems(
         parameter: SearchQuery,
         completion: @escaping (Swift.Result<EBooksContainer, Error>) -> Void) -> Cancellable? {
-            let ebookRequestDTO = EbookRequestDTO(q: parameter.q,
+            let itemsRequestDTO = EbookItemsRequestDTO(q: parameter.q,
                                                   filter: parameter.filter?.rawValue,
                                                   langRestrict: parameter.langRestrict,
                                                   maxResults: parameter.maxResults,
@@ -30,7 +30,7 @@ extension DefaultEBookRepository: EBookRepository {
                                                   startIndex: parameter.startIndex,
                                                   specialKeyword: parameter.specialKeyword?.rawValue
                                                     )
-            return networkService.request(endpoint: SearchAPI.getItems(with: ebookRequestDTO)) { (result: Swift.Result<EBooksResponseDTO,NetworkError>) in
+            return networkService.request(endpoint: SearchAPI.getItems(with: itemsRequestDTO)) { (result: Swift.Result<EBooksResponseDTO, NetworkError>) in
                 switch result {
                 case .success(let responseDTO):
                     completion(.success(responseDTO.toDomain()))

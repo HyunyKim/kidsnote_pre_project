@@ -22,7 +22,7 @@ class EBookInfoCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12,weight: .medium)
         label.lineBreakMode = .byTruncatingTail
-        label.textColor = UIColor(resource: .textColor1)
+        label.textColor = .textColor1
         label.numberOfLines = 2
         return label
     }()
@@ -53,7 +53,7 @@ class EBookInfoCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor(resource: .background)
+        self.backgroundColor = .background
         layoutUI()
     }
     
@@ -119,7 +119,7 @@ class EBookInfoCell: UICollectionViewCell {
         if let urlString = ebook.thumbNail {
             thumbNailImageView.setImage(urlString: urlString)
         } else {
-            thumbNailImageView.image = UIImage(resource: .emptyBook)
+            thumbNailImageView.image = .emptyBook
         }
     }
 }

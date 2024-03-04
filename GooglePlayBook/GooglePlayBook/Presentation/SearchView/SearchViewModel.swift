@@ -23,7 +23,7 @@ final class SearchViewModel: ViewModelType {
         var restValues: Observable<Void>
     }
     
-    @Inject private var useCase: SearchEBookUseCase
+    @Inject private var useCase: SearchEBooksUseCase
     private var currentKeyword: String = ""
     private var totalItems: Int = 0
     private var ebookItems: [EBook] = []

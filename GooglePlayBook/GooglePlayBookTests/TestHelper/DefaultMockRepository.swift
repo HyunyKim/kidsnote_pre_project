@@ -8,7 +8,7 @@
 import Foundation
 @testable import GooglePlayBook
 
-struct MockEbookREpository: EBookRepository,ReadJsonParsing {
+struct MockEbookREpository: EBookItemsRepository,ReadJsonParsing {
     func fetchEBookItems(parameter: GooglePlayBook.SearchQuery, completion: @escaping (Result<GooglePlayBook.EBooksContainer, Error>) -> Void) -> GooglePlayBook.Cancellable? {
         readJsonNCompletion(fileName: "Searchvolumes") { (result: (Swift.Result<EBooksResponseDTO,Error>)) in
             switch result {

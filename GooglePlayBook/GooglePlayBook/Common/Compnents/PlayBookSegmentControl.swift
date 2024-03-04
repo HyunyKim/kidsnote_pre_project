@@ -39,7 +39,7 @@ class PlayBookSegmentControl: UISegmentedControl {
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
         }
-        underLineView.backgroundColor = UIColor(resource: .eLightGray)
+        underLineView.backgroundColor = .eLightGray
     }
     
     private func getSelectedTitleXPostion(titleWidth: CGFloat? = nil) -> CGFloat {
@@ -56,7 +56,7 @@ class PlayBookSegmentControl: UISegmentedControl {
         let yPosition: CGFloat = self.bounds.size.height - 3.0
         let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
         let view = UIView(frame: frame)
-        view .backgroundColor = UIColor(resource: .eBlue)
+        view .backgroundColor = .eBlue
         self.addSubview(view)
         view.layer.cornerRadius = 3
         view.layer.masksToBounds = true

@@ -13,11 +13,15 @@ import RxCocoa
 import RxDataSources
 import LevelOSLog
 
+protocol SearchResultVCDelegate: AnyObject {
+    func didSelectedItem(itemId: String)
+}
+
 final class SearchResultViewController: UIViewController {
     // UIComponents
     private lazy var collectionView: UICollectionView = {
         let collectionview = UICollectionView(frame: .zero, collectionViewLayout: createBasicLayout())
-        collectionview.backgroundColor = UIColor(resource: .background)
+        collectionview.backgroundColor = .background
         collectionview.showsVerticalScrollIndicator = false
         return collectionview
     }()
@@ -37,12 +41,22 @@ final class SearchResultViewController: UIViewController {
     private let sectionModelSubject = BehaviorSubject<[SearchResultSectionModel]>(value: [])
     let searchKeywordSubject = PublishSubject<String>()
     let typingSubject = PublishSubject<String>()
+    weak var delegate: SearchResultVCDelegate?
+    
+    init(delegate: SearchResultVCDelegate?) {
+        super.init(nibName: nil, bundle: nil)
+        self.delegate = delegate
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     override func viewDidLoad() {
         layoutUI()
         bindingUI()
-        bindViewModel()
+        bindingViewModel()
     }
     
     private func createBasicLayout() -> UICollectionViewLayout {
@@ -68,7 +82,6 @@ final class SearchResultViewController: UIViewController {
     override func viewSafeAreaInsetsDidChange() {
         collectionView.snp.removeConstraints()
         collectionView.snp.makeConstraints { make in
-            Log.debug("safearear", self.view.safeAreaInsets.top)
             make.top.equalTo(view.snp.top).inset(self.view.safeAreaInsets.top)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
@@ -77,7 +90,7 @@ final class SearchResultViewController: UIViewController {
     }
     
     private func layoutUI() {
-        self.view.backgroundColor = UIColor(resource: .background)
+        self.view.backgroundColor = .background
         
         self.view.addSubview(loadingIndicator)
         loadingIndicator.snp.makeConstraints { make in
@@ -118,17 +131,34 @@ final class SearchResultViewController: UIViewController {
                 self?.loadingIndicator.startAnimating()
             })
             .disposed(by: disposeBag)
+        
+        collectionView.rx
+            .modelSelected(SearchResultSectionItem.self)
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] sectionItem in
+                switch sectionItem {
+                case .eBookItem(let item):
+                    guard let delegate = self?.delegate else { return }
+                    delegate.didSelectedItem(itemId: item.id)
+                default:
+                    break
+                }
+            }
+            .disposed(by: disposeBag)
+        
     }
     
-    private func bindViewModel() {
+    private func bindingViewModel() {
         
-        let controlChange = refreshControl.rx.controlEvent(.valueChanged)
+        let controlChange = refreshControl.rx
+            .controlEvent(.valueChanged)
             .map({[weak self] in
                 return self?.viewModel.searchedKeyword ?? ""
             })
         
         let merged = Observable<String>
             .merge(searchKeywordSubject,controlChange)
+        
         let output = viewModel.transform(input: .init(searchAction: merged,
                                                       typingAction: typingSubject,
                                                       loadMoreAction: loadMoreSubject))
