@@ -18,11 +18,15 @@ struct BookDetailInfo: Equatable, Identifier {
     let pageCount      :Int?
     
     let pdfURL         :String?
-    let webReaerLink   :String?
+    let webReaderLink   :String?
     
     let description    :String?
     let publisher      :String?
     let publishedDate  :String?
     
     let selfLink       :String?
+    
+    func publisherInfo() -> String {
+        return "\(self.publishedDate ?? "") . \(self.publisher ?? "")"
+    }
 }

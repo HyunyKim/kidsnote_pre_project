@@ -142,7 +142,7 @@ extension EBooksResponseDTO.EBookDTO {
                      isEBook: saleInfo?.isEbook,
                      pageCount: volumeInfo?.pageCount,
                      pdfURL: accessInfo?.pdf?.acsTokenLink,
-                     webReaerLink: accessInfo?.webReaderLink,
+                     webReaderLink: accessInfo?.webReaderLink,
                      description: volumeInfo?.description,
                      publisher: volumeInfo?.publisher,
                      publishedDate: volumeInfo?.publishedDate,

@@ -53,8 +53,8 @@ final class DIContainer {
     }
     
     func resolve<T>() -> T {
-        let resolbed = container.resolve(T.self)
-        precondition(resolbed != nil,"No defendency For\(T.self)")
-        return resolbed!
+        let resolved = container.resolve(T.self)
+        precondition( resolved != nil,"No defendency For\(T.self)")
+        return resolved!
     }
 }

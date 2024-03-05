@@ -9,8 +9,9 @@ import Foundation
 import RxDataSources
 
 enum BookDetailSectionItem {
-    case userAction(link: String)
-    case bookDescription(description: String)
+    case bookMainInfo(item: BookDetailInfo)
+    case userAction(webreaderLink: String?)
+    case bookDescription(description: String, title: String)
     case ratingInfo(item: BookDetailInfo)
     case publishInfo(publishing: String)
 }
