@@ -14,7 +14,7 @@ extension UILabel {
                 textColor: UIColor = .textColor1,
                 breakMode: NSLineBreakMode = .byWordWrapping,
                 lineNumber: Int = 1
-                ) {
+    ) {
         self.font = font
         self.textColor = textColor
         self.lineBreakMode = breakMode
@@ -25,7 +25,7 @@ extension UILabel {
                        textColor: UIColor = .eGray,
                        breakMode: NSLineBreakMode = .byWordWrapping,
                        lineNumber: Int = 1
-                       ) {
+    ) {
         self.font = font
         self.textColor = textColor
         self.lineBreakMode = breakMode
@@ -35,7 +35,11 @@ extension UILabel {
     func htmlStringSet(text: String) {
         if let htmlData = text.data(using: .unicode) {
             do {
-                let attributedString = try NSAttributedString(data: htmlData, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                let attributedString = try NSMutableAttributedString(data: htmlData, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                let range = NSRange(location: 0, length: attributedString.length)
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.lineSpacing = 5
+                attributedString.addAttributes([.paragraphStyle: paragraphStyle, .foregroundColor: UIColor.textColor1], range: range)
                 self.attributedText = attributedString
             } catch {
                 self.text = text

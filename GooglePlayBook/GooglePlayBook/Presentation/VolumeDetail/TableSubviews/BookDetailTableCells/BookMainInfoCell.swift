@@ -48,38 +48,55 @@ final class BookMainInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView?.image = nil
+        titleLabel.text = ""
+        authorInfoLabel.text = ""
+        addionalInfo.text = ""
+    }
+    
     private func layoutUI() {
         selectionStyle = .none
         backgroundColor = .background
-        addSubview(coverImageView)
+        contentView.addSubview(coverImageView)
         coverImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(16.0)
             make.leading.equalToSuperview().inset(20.0)
             make.width.equalTo(80.0)
             make.height.equalTo(120.0)
+            make.bottomMargin.lessThanOrEqualToSuperview().inset(16.0)
         }
         
-        addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.coverImageView.snp.top)
+            make.top.equalTo(self.coverImageView.snp.top).priority(.high)
             make.leading.equalTo(self.coverImageView.snp.trailing).offset(16.0)
             make.trailing.equalToSuperview().inset(20.0)
             make.height.greaterThanOrEqualTo(21.0)
         }
         
-        addSubview(authorInfoLabel)
+        contentView.addSubview(authorInfoLabel)
         authorInfoLabel.snp.makeConstraints { make in
             make.top.equalTo(self.titleLabel.snp.bottom).offset(4.0)
             make.leading.equalTo(self.titleLabel.snp.leading)
             make.trailing.equalTo(self.titleLabel.snp.trailing)
         }
         
-        addSubview(addionalInfo)
+        contentView.addSubview(addionalInfo)
         addionalInfo.snp.makeConstraints { make in
-            make.top.equalTo(self.authorInfoLabel.snp.bottom).offset(4.0)
+            make.top.equalTo(self.authorInfoLabel.snp.bottom).offset(4.0).priority(.high)
             make.leading.equalTo(self.titleLabel.snp.leading)
             make.trailing.equalTo(self.titleLabel.snp.trailing)
-            make.bottom.equalToSuperview().inset(8.0)
+            make.bottom.lessThanOrEqualToSuperview().inset(16.0)
+        }
+        
+        let line = UIView()
+        line.backgroundColor = .line
+        contentView.addSubview(line)
+        line.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(0.3)
         }
     }
     

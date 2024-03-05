@@ -39,12 +39,18 @@ final class BookRatingInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.ratingScoreLabel.text = ""
+        self.descriptionLabel.text = ""
+    }
+    
     private func layoutUI() {
         backgroundColor = .background
+        selectionStyle = .none
         contentView.addSubview(ratingScoreLabel)
         ratingScoreLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(16.0)
-            make.leading.equalToSuperview().inset(16.0)
+            make.top.leading.equalToSuperview().inset(16.0)
         }
         contentView.addSubview(starView)
         starView.snp.makeConstraints { make in

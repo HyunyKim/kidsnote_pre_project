@@ -22,10 +22,16 @@ final class BookDescriptionCell: UITableViewCell {
         label.descriptionUI(lineNumber: 4)
         return label
     }()
+
+    private var chevronImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage.init(systemName: "chevron.right")?.withTintColor(.eBlue)
+        imageView.contentMode = .scaleAspectFit
+         return imageView
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        selectionStyle = .blue
         layoutUI()
     }
     
@@ -33,18 +39,30 @@ final class BookDescriptionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.descriptionLabel.text = ""
+    }
+    
     private func layoutUI() {
         backgroundColor = .background
+        selectionStyle = .none
+        
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(20.0)
-            make.leading.equalToSuperview().inset(20)
+            make.top.leading.trailing.equalToSuperview().inset(20.0)
+        }
+        
+        contentView.addSubview(chevronImageView)
+        chevronImageView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(20.0)
+            make.size.equalTo(20)
+            make.verticalEdges.equalTo(self.titleLabel)
         }
         
         contentView.addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(6.0)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(10)
             make.leading.equalTo(self.titleLabel.snp.leading)
             make.trailing.equalTo(self.titleLabel.snp.trailing)
             make.bottom.equalToSuperview().inset(16.0)

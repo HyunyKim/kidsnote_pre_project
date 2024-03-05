@@ -31,6 +31,11 @@ final class BookPublishInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.publishInfoLabel.text = ""
+    }
+    
     private func layoutUI() {
         selectionStyle = .none
         backgroundColor = .background
@@ -38,8 +43,7 @@ final class BookPublishInfoCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(10.0)
-            make.leading.equalToSuperview().inset(16.0)
-            make.trailing.equalToSuperview().inset(16.0)
+            make.leading.trailing.equalToSuperview().inset(16.0)
         }
         contentView.addSubview(publishInfoLabel)
         publishInfoLabel.snp.makeConstraints { make in

@@ -10,6 +10,7 @@
 		5305A1CD2B91AC0900455B11 /* LevelOSLog in Frameworks */ = {isa = PBXBuildFile; productRef = 5305A1CC2B91AC0900455B11 /* LevelOSLog */; };
 		532BEF892B96C84400F7B0B8 /* BookMainInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BEF882B96C84400F7B0B8 /* BookMainInfoCell.swift */; };
 		532BEF8B2B96D06D00F7B0B8 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BEF8A2B96D06D00F7B0B8 /* UILabel+Extension.swift */; };
+		532BEFB62B9730D700F7B0B8 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BEFB52B9730D700F7B0B8 /* DescriptionViewController.swift */; };
 		535770AC2B92F9A3007EBCE4 /* ReadJsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */; };
 		535770AE2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535770AD2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift */; };
 		535770AF2B92FDE6007EBCE4 /* ReadJsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B42B90E6A40026E946 /* ReadJsonParsing.swift */; };
@@ -89,6 +90,7 @@
 /* Begin PBXFileReference section */
 		532BEF882B96C84400F7B0B8 /* BookMainInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMainInfoCell.swift; sourceTree = "<group>"; };
 		532BEF8A2B96D06D00F7B0B8 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		532BEFB52B9730D700F7B0B8 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		535770AB2B92F8D7007EBCE4 /* GooglePlayBookTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GooglePlayBookTestPlan.xctestplan; sourceTree = "<group>"; };
 		535770AD2B92F9BC007EBCE4 /* GooglePlayBookUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBookUseCaseTest.swift; sourceTree = "<group>"; };
 		535770B42B930975007EBCE4 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 		53EC38332B9584EF0049F42A /* VolumeDetail */ = {
 			isa = PBXGroup;
 			children = (
+				532BEFB52B9730D700F7B0B8 /* DescriptionViewController.swift */,
 				53C6F1F02B95D4E000D2C23E /* TableSubviews */,
 				53EC38362B9594910049F42A /* BookViewModel.swift */,
 				53EC38342B95892B0049F42A /* BookDetailViewController.swift */,
@@ -636,6 +639,7 @@
 				53EC38352B95892B0049F42A /* BookDetailViewController.swift in Sources */,
 				53EC383F2B959E010049F42A /* EBookInfoRequestDTO+Mapping.swift in Sources */,
 				53F2800C2B94A6C800E073D4 /* ImageDownloader.swift in Sources */,
+				532BEFB62B9730D700F7B0B8 /* DescriptionViewController.swift in Sources */,
 				532BEF8B2B96D06D00F7B0B8 /* UILabel+Extension.swift in Sources */,
 				535770CF2B9391E8007EBCE4 /* SearchResultSectionItem.swift in Sources */,
 				537AA4372B922A0500D2B860 /* EBooksRequestDTO+Mapping.swift in Sources */,

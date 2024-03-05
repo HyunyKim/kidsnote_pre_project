@@ -76,6 +76,7 @@ class BookDetailViewController: UIViewController {
         tableView.separatorInset = .zero
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
+        tableView.separatorStyle = .none
 
     }
     
@@ -91,8 +92,12 @@ class BookDetailViewController: UIViewController {
             .modelSelected(BookDetailSectionItem.self)
             .subscribe(onNext: {[weak self] item in
                 switch item {
-                case .bookDescription(description: let description):
-                    Log.debug("전달", description)
+                case .bookDescription(description: let description, title: let title):
+//                    Log.debug("전달", description)
+                    DispatchQueue.main.async {
+                        let viewController = DescriptionViewController(description: description, title: title)
+                        self?.navigationController?.pushViewController(viewController, animated: true)
+                    }
                     return
                 case .ratingInfo(item: _):
                     return
@@ -122,13 +127,17 @@ class BookDetailViewController: UIViewController {
     }
     
     private func emitDataSource(data: BookDetailInfo) {
-        let tableItems: [BookDetailSectionItem] = [
+        var tableItems: [BookDetailSectionItem] = [
             .bookMainInfo(item: data),
-            .userAction(webreaderLink: data.webReaderLink),
-            .bookDescription(description: data.description ?? ""),
-            .ratingInfo(item: data),
-            .publishInfo(publishing: data.publisherInfo())
-        ]
+            .userAction(webreaderLink: data.webReaderLink)]
+        if data.selfLink != nil {
+            //TODO: - rating 에 대해서
+            tableItems.append(.ratingInfo(item: data))
+        }
+        if let desc = data.description, !desc.isEmpty, let title = data.title {
+            tableItems.append(.bookDescription(description: desc,title: title))
+        }
+        tableItems.append(.publishInfo(publishing: data.publisherInfo()))
         let bookSectionModel = BookDetailInfoSectionModel.bookInformationSection(items: tableItems)
         sectionModelSubject.onNext([bookSectionModel])
     }
@@ -145,7 +154,7 @@ class BookDetailViewController: UIViewController {
                  let cell = tableView.dequeueReusableCell(withIdentifier: BookUserActionCell.identifier) as! BookUserActionCell
                 cell.sampleURLString = link
                 return cell
-            case .bookDescription(description: let description):
+            case .bookDescription(description: let description, title: let title):
                 let cell = tableView.dequeueReusableCell(withIdentifier: BookDescriptionCell.identifier) as! BookDescriptionCell
                 cell.updateDescription(text: description)
                return cell
