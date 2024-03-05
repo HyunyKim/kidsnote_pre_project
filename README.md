@@ -50,4 +50,11 @@ GET https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=yourAPIKey
  - 상세화면 연결
  - UI 버그 수정
 - ReactorKit 도입 여부
+
+## 3/5 
+- 상세화면 UI맞추기
+- 별점 뷰 만들기
+- 책정보 상세 만들기
+
+
 ###

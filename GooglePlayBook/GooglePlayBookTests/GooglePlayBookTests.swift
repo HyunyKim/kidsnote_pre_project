@@ -18,12 +18,15 @@ final class GooglePlayBookTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testRegularExpression() throws {
+        let text = "세상에서 가장 위험한 </p><p>  </p><p>소설?! 걸리버 여행기(Gul</p><p>  </p><p>liver's Travels into </p><p>  </p><p>Several Remote Nations of the World)(1726)"
+        let pattern = "<[^>]+>"
+        let regex = try? NSRegularExpression(pattern: pattern, options: [])
+        let range = NSRange(location: 0, length: text.utf16.count)
+        let testString = regex?.stringByReplacingMatches(in: text, options: [], range: range, withTemplate: "") ?? ""
+        
+        XCTAssertEqual(testString, "세상에서 가장 위험한   소설?! 걸리버 여행기(Gul  liver's Travels into   Several Remote Nations of the World)(1726)")
+        
     }
 
     func testPerformanceExample() throws {
