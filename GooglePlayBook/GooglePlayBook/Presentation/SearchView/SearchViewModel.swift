@@ -86,7 +86,12 @@ final class SearchViewModel: ViewModelType {
                 observer.onCompleted()
                 return Disposables.create()
             }
-            let query = SearchQuery(q: keyword, maxResults: 20, startIndex: self.ebookItems.count)
+            let query = SearchQuery(q: keyword,
+                                    filter: .ebooks,
+                                    langRestrict: (Locale.current.language.languageCode?.identifier ?? "ko"),
+                                    printType: .books,
+                                    maxResults: 20,
+                                    startIndex: self.ebookItems.count)
             let cancelable = self.useCase.requestItems(query: query) { result in
                 switch result {
                 case .success(let container):
