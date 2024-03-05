@@ -56,10 +56,10 @@ struct SearchQuery {
     var q: String
     var filter: SearchFilter?
     var langRestrict: String? ///지정된 언어로 태그가 지정된 볼륨으로 반환되는 볼륨을 제한합니다.
-    var maxResults: Int?      ///이 요청으로 반환할 최대 요소 수입니다.
     var orderBy: OrderBy?
     var printType: PrintType?
     var projection: projection?
+    var maxResults: Int?      ///이 요청으로 반환할 최대 요소 수입니다.
     var startIndex: Int?      ///컬렉션에서 결과 목록을 시작할 위치입니다.
     var specialKeyword: SpecialKeyword?
 }
