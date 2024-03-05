@@ -25,4 +25,8 @@ struct BookDetailInfo: Equatable, Identifier {
     let publishedDate  :String?
     
     let selfLink       :String?
+    
+    func publisherInfo() -> String {
+        return "\(self.publishedDate ?? "") . \(self.publisher ?? "")"
+    }
 }

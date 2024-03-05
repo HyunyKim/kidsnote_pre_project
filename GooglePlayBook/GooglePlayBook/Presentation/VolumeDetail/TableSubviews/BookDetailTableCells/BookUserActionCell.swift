@@ -50,12 +50,13 @@ final class BookUserActionCell: UITableViewCell {
     
     
     private func layoutUI() {
+        backgroundColor = .background
         stackView.insertArrangedSubview(sampleButton, at: 0)
         stackView.insertArrangedSubview(buyButton, at: 1)
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.height.equalTo(40).priority(.medium)
-            make.edges.equalToSuperview().inset(16)
+            make.height.equalTo(38).priority(.medium)
+            make.edges.equalToSuperview().inset(20)
         }
         
         

@@ -20,11 +20,6 @@ class BookDetailViewController: UIViewController {
         return table
     }()
     
-    private lazy var tableHeaderView: BookDisplayInfoView = {
-        let view = BookDisplayInfoView(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
-        return view
-    }()
-    
     // Variable
     private var disposeBag = DisposeBag()
     @Inject private var viewModel: BookViewModel
@@ -51,6 +46,7 @@ class BookDetailViewController: UIViewController {
     }
     
     private func registerCell() {
+        tableView.register(BookMainInfoCell.self, forCellReuseIdentifier: BookMainInfoCell.identifier)
         tableView.register(BookUserActionCell.self, forCellReuseIdentifier: BookUserActionCell.identifier)
         tableView.register(BookDescriptionCell.self, forCellReuseIdentifier: BookDescriptionCell.identifier)
         tableView.register(BookRatingInfoCell.self, forCellReuseIdentifier: BookRatingInfoCell.identifier)
@@ -77,14 +73,10 @@ class BookDetailViewController: UIViewController {
             make.edges.equalToSuperview()
         }
         tableView.backgroundColor = .background
-        tableView.tableHeaderView = self.tableHeaderView
         tableView.separatorInset = .zero
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
-        
-//        tableHeaderView.snp.makeConstraints { make in
-//            make.height.greaterThanOrEqualTo(150)
-//        }
+
     }
     
     private func bindingUI() {
@@ -99,14 +91,14 @@ class BookDetailViewController: UIViewController {
             .modelSelected(BookDetailSectionItem.self)
             .subscribe(onNext: {[weak self] item in
                 switch item {
-                case .userAction(webreaderLink: let link):
-                    return
                 case .bookDescription(description: let description):
-                    Log.debug("description", description)
-                case .ratingInfo(item: let item):
-                    Log.debug("rating", item)
-                case .publishInfo(publishing: let publishing):
-                    Log.debug("publishing", publishing)
+                    Log.debug("전달", description)
+                    return
+                case .ratingInfo(item: _):
+                    return
+                default:
+                    return
+                    
                 }
             })
             .disposed(by: disposeBag)
@@ -121,9 +113,6 @@ class BookDetailViewController: UIViewController {
             .subscribe { [weak self] (result: Swift.Result<BookDetailInfo,Error>) in
                 switch result {
                 case .success(let bookInfo):
-                    Log.debug(bookInfo)
-                    self?.tableHeaderView.updateUI(bookInfo: bookInfo)
-                    self?.tableView.tableHeaderView = self?.tableHeaderView
                     self?.emitDataSource(data: bookInfo)
                 case .failure(let error):
                     Log.error(error.localizedDescription)
@@ -134,10 +123,11 @@ class BookDetailViewController: UIViewController {
     
     private func emitDataSource(data: BookDetailInfo) {
         let tableItems: [BookDetailSectionItem] = [
+            .bookMainInfo(item: data),
             .userAction(webreaderLink: data.webReaderLink),
-            .bookDescription(description: ""),
+            .bookDescription(description: data.description ?? ""),
             .ratingInfo(item: data),
-            .publishInfo(publishing: "")
+            .publishInfo(publishing: data.publisherInfo())
         ]
         let bookSectionModel = BookDetailInfoSectionModel.bookInformationSection(items: tableItems)
         sectionModelSubject.onNext([bookSectionModel])
@@ -146,19 +136,27 @@ class BookDetailViewController: UIViewController {
     private func sectionReloadDataSource() -> RxTableViewSectionedReloadDataSource<BookDetailInfoSectionModel> {
         return RxTableViewSectionedReloadDataSource { dataSource, tableView, indexPath, item in
             switch item {
-            
+                
+            case .bookMainInfo(item: let item):
+                let cell = tableView.dequeueReusableCell(withIdentifier: BookMainInfoCell.identifier) as! BookMainInfoCell
+                cell.updateUI(bookInfo: item)
+                return cell
             case .userAction(webreaderLink: let link):
                  let cell = tableView.dequeueReusableCell(withIdentifier: BookUserActionCell.identifier) as! BookUserActionCell
                 cell.sampleURLString = link
                 return cell
             case .bookDescription(description: let description):
                 let cell = tableView.dequeueReusableCell(withIdentifier: BookDescriptionCell.identifier) as! BookDescriptionCell
+                cell.updateDescription(text: description)
                return cell
             case .ratingInfo(item: let item):
                 let cell = tableView.dequeueReusableCell(withIdentifier: BookRatingInfoCell.identifier) as! BookRatingInfoCell
+                cell.updateRatingInfo(info: item)
+                
                return cell
             case .publishInfo(publishing: let publishing):
                 let cell = tableView.dequeueReusableCell(withIdentifier: BookPublishInfoCell.identifier) as! BookPublishInfoCell
+                cell.updatePublishInfo(info: publishing)
                return cell
             }
         }
