@@ -118,12 +118,13 @@ final class MainViewController: UIViewController {
                 guard let user = user else { return }
                 let accessToken = user.accessToken.tokenString
                 let authorizer = googleInstance.user.fetcherAuthorizer
-                print("check ",googleInstance.user.accessToken.tokenString, accessToken)
+                print("check ",googleInstance.user.accessToken.tokenString, accessToken,authorizer)
             }
         }
     }
-    
 }
+
+
 
 extension MainViewController: UISearchControllerDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -136,9 +137,18 @@ extension MainViewController: UISearchControllerDelegate, UISearchResultsUpdatin
 }
 
 extension MainViewController: SearchResultVCDelegate {
-    func didSelectedItem(itemId: String) {
+    func dideBookSelectedItem(itemId: String) {
         let detaiVC = BookDetailViewController(bookId: itemId)
         self.navigationController?.pushViewController(detaiVC, animated: true)
+    }
+    
+    func didBookshelfSelectedItem(itemId: Int) {
+        guard let instance = self.googleResult else {
+            self.showAlert(message: "Google Login이 필요합니다")
+            return
+        }
+        let shelfVC = BookshelfViewController(shelfId: itemId, googleResult: instance)
+        self.navigationController?.pushViewController(shelfVC, animated: true)
     }
     
     func getGoogleInstance() -> GIDSignInResult? {

@@ -104,7 +104,6 @@ final class SearchViewModel: ViewModelType {
     private func searchRequest(keyword: String) -> Observable<EBooksContainer> {
         return Observable<EBooksContainer>.create { [weak self] observer in
             guard let self = self else {
-                //TODO: - 컴플리트 할지 말지 고민
                 observer.onCompleted()
                 return Disposables.create()
             }

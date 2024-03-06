@@ -52,4 +52,15 @@ extension DefaultEBookItemsRepository: EBookItemsRepository {
             }
         }
     }
+    
+    func fetchShelfList(key: String, shelfId:Int, completion: @escaping DefaultCompleteHandler<EBooksContainer>) -> Cancellable? {
+        return networkService.request(endpoint: SearchAPI.getShelfList(key: key, shelfId: shelfId)) { (result: Swift.Result<EBooksResponseDTO, NetworkError>) in
+            switch result {
+            case .success(let responseDTO):
+                completion(.success(responseDTO.toDomain()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

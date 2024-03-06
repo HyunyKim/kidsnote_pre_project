@@ -13,6 +13,9 @@
 		530420B92B986AB6000D31CD /* MyLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530420B82B986AB6000D31CD /* MyLibrary.swift */; };
 		530420BB2B986B61000D31CD /* MyLibraryResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530420BA2B986B61000D31CD /* MyLibraryResponseDTO+Mapping.swift */; };
 		530420BD2B98753F000D31CD /* MyLibrarayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530420BC2B98753F000D31CD /* MyLibrarayCell.swift */; };
+		530420C02B9881D2000D31CD /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530420BF2B9881D2000D31CD /* BookshelfViewController.swift */; };
+		530420C22B988258000D31CD /* BookshelfViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530420C12B988258000D31CD /* BookshelfViewModel.swift */; };
+		530420C42B9885A0000D31CD /* BookCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530420C32B9885A0000D31CD /* BookCollectionViewLayout.swift */; };
 		5305A1CD2B91AC0900455B11 /* LevelOSLog in Frameworks */ = {isa = PBXBuildFile; productRef = 5305A1CC2B91AC0900455B11 /* LevelOSLog */; };
 		532BEF892B96C84400F7B0B8 /* BookMainInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BEF882B96C84400F7B0B8 /* BookMainInfoCell.swift */; };
 		532BEF8B2B96D06D00F7B0B8 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BEF8A2B96D06D00F7B0B8 /* UILabel+Extension.swift */; };
@@ -99,6 +102,9 @@
 		530420B82B986AB6000D31CD /* MyLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibrary.swift; sourceTree = "<group>"; };
 		530420BA2B986B61000D31CD /* MyLibraryResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyLibraryResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		530420BC2B98753F000D31CD /* MyLibrarayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibrarayCell.swift; sourceTree = "<group>"; };
+		530420BF2B9881D2000D31CD /* BookshelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
+		530420C12B988258000D31CD /* BookshelfViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfViewModel.swift; sourceTree = "<group>"; };
+		530420C32B9885A0000D31CD /* BookCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewLayout.swift; sourceTree = "<group>"; };
 		530B0BAA2B976A0300690BAA /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		532BEF882B96C84400F7B0B8 /* BookMainInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMainInfoCell.swift; sourceTree = "<group>"; };
 		532BEF8A2B96D06D00F7B0B8 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -193,6 +199,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		530420BE2B9881AF000D31CD /* Bookshelf */ = {
+			isa = PBXGroup;
+			children = (
+				530420C12B988258000D31CD /* BookshelfViewModel.swift */,
+				530420BF2B9881D2000D31CD /* BookshelfViewController.swift */,
+			);
+			path = Bookshelf;
+			sourceTree = "<group>";
+		};
 		535770B32B930963007EBCE4 /* DIContainer */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +231,7 @@
 				535770CE2B9391E8007EBCE4 /* SearchResultSectionItem.swift */,
 				535770C52B937A00007EBCE4 /* SearchViewModel.swift */,
 				535770BB2B931B78007EBCE4 /* SearchResultViewController.swift */,
+				530420C32B9885A0000D31CD /* BookCollectionViewLayout.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -323,6 +339,7 @@
 		53653F1C2B908AEE005454C1 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				530420BE2B9881AF000D31CD /* Bookshelf */,
 				53EC38332B9584EF0049F42A /* VolumeDetail */,
 				535770BD2B931B7D007EBCE4 /* SearchView */,
 				535770C02B932983007EBCE4 /* MainViewController.swift */,
@@ -656,6 +673,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				530420C02B9881D2000D31CD /* BookshelfViewController.swift in Sources */,
 				53EC38422B959EE80049F42A /* VolumeInfo.swift in Sources */,
 				53D7B5012B95EC80000895C1 /* BookUserActionCell.swift in Sources */,
 				536C6F9D2B94861D00089CDA /* ImageCache.swift in Sources */,
@@ -683,6 +701,7 @@
 				53FF93AB2B90CDBA0026E946 /* EBook.swift in Sources */,
 				535770AC2B92F9A3007EBCE4 /* ReadJsonParsing.swift in Sources */,
 				53EC38372B9594910049F42A /* BookViewModel.swift in Sources */,
+				530420C22B988258000D31CD /* BookshelfViewModel.swift in Sources */,
 				53F2800E2B94BC0700E073D4 /* URL+Extension.swift in Sources */,
 				53EC38392B9598A00049F42A /* BookInfoUseCase.swift in Sources */,
 				53D7B5062B95ECB3000895C1 /* BookRatingInfoCell.swift in Sources */,
@@ -695,6 +714,7 @@
 				53EC383D2B959BB60049F42A /* DefaultBookInfoRepository.swift in Sources */,
 				535770CB2B938932007EBCE4 /* EBookInfoCell.swift in Sources */,
 				530420BB2B986B61000D31CD /* MyLibraryResponseDTO+Mapping.swift in Sources */,
+				530420C42B9885A0000D31CD /* BookCollectionViewLayout.swift in Sources */,
 				535770B52B930975007EBCE4 /* DIContainer.swift in Sources */,
 				53EC383B2B959B240049F42A /* BookInfoRepository.swift in Sources */,
 				53FEB16F2B98308000663C69 /* UIViewController+Extension.swift in Sources */,
