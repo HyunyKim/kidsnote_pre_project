@@ -13,16 +13,15 @@ final class BookRatingInfoCell: UITableViewCell {
     private var ratingScoreLabel: UILabel = {
         let label = UILabel()
         label.titleU()
-        label.text = "4.7"
         return label
     }()
     
-    private var starView: UIView = {
-       let view = UIView()
-        view.backgroundColor = .eRed
-        return view
+    private var ratingLabel: UILabel = {
+       let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20)
+        return label
     }()
-    
+
     private var descriptionLabel: UILabel = {
         let label = UILabel()
         label.descriptionUI()
@@ -41,8 +40,9 @@ final class BookRatingInfoCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.ratingScoreLabel.text = ""
-        self.descriptionLabel.text = ""
+        ratingScoreLabel.text = ""
+        descriptionLabel.text = ""
+        ratingLabel.text = ""
     }
     
     private func layoutUI() {
@@ -52,13 +52,14 @@ final class BookRatingInfoCell: UITableViewCell {
         ratingScoreLabel.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(16.0)
         }
-        contentView.addSubview(starView)
-        starView.snp.makeConstraints { make in
-            make.leading.equalTo(self.ratingScoreLabel.snp.trailing).offset(5.0)
+        contentView.addSubview(ratingLabel)
+        ratingLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.ratingScoreLabel.snp.trailing).offset(8.0)
             make.centerY.equalTo(self.ratingScoreLabel)
             make.width.equalTo(150.0)
             make.height.equalTo(24.0)
         }
+        
         contentView.addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(self.ratingScoreLabel.snp.bottom).offset(2.0)
@@ -69,7 +70,8 @@ final class BookRatingInfoCell: UITableViewCell {
     }
     
     func updateRatingInfo(info: BookDetailInfo) {
-        
+        ratingScoreLabel.text = String(format: "%0.1f", info.bookRating ?? 0.0)
+        ratingLabel.text = String.ratingValue(rating: info.bookRating ?? 0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

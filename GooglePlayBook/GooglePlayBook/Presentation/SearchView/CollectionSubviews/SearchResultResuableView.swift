@@ -13,10 +13,27 @@ enum HeaderType {
     case myLibrarySearchResult
 }
 
+protocol TopSegmentSegmentDelegate: AnyObject {
+    var segmentSelectedIndex: Int { get }
+    func stateChange(index: Int)
+}
+
 final class TopSegmentReuseableView: UICollectionReusableView {
-    
-    private let segmentControll: UISegmentedControl = PlayBookSegmentControl(items: ["eBook","AudioBookabc"])
-    
+    enum SegmentIndex: Int {
+        case eBook = 0
+        case myLibrary
+        
+        var title: String {
+            switch self {
+            case .eBook:
+                return "eBook"
+            case .myLibrary:
+                return "MyLibrary"
+            }
+        }
+    }
+    private let segmentControll: UISegmentedControl = PlayBookSegmentControl(items: [SegmentIndex.eBook.title,SegmentIndex.myLibrary.title])
+    weak var delegate: TopSegmentSegmentDelegate?
     override init(frame: CGRect) {
         super.init(frame: frame)
         layoutUI()
@@ -24,6 +41,11 @@ final class TopSegmentReuseableView: UICollectionReusableView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        delegate = nil
     }
     
     private func layoutUI() {
@@ -35,6 +57,16 @@ final class TopSegmentReuseableView: UICollectionReusableView {
         segmentControll.setTitleTextAttributes([.foregroundColor: UIColor(resource: .eLightGray)], for: .normal)
         segmentControll.setTitleTextAttributes([.foregroundColor: UIColor(resource: .eBlue), .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
         segmentControll.selectedSegmentIndex = 0
+        segmentControll.addTarget(self, action: #selector(segmentDidChange), for: .valueChanged)
+    }
+    
+    @objc func segmentDidChange(_ sender: UISegmentedControl) {
+        guard let delegate = delegate else { return }
+        delegate.stateChange(index: sender.selectedSegmentIndex)
+    }
+    
+    func segmentChangeAction(index: Int) {
+        segmentControll.selectedSegmentIndex = (SegmentIndex(rawValue: index) ?? .eBook).rawValue
     }
 }
 

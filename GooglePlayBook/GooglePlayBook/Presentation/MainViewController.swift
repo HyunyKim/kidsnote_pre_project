@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 import RxSwift
 import SnapKit
+import GoogleSignIn
+
+//protocol GoogleLoginDelegate: AnyObject {
+//    func getGoogleInstance() -> GIDSignInResult?
+//}
 
 final class MainViewController: UIViewController {
     //UIComponents
@@ -25,11 +30,17 @@ final class MainViewController: UIViewController {
         return controller
     }()
     
-    //Variables
+    private lazy var googleButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("SignIn", for: .normal)
+        return button
+    }()
     
+    //Variables
     private var typeingKeyword: String = ""
     private var typingSubject = PublishSubject<String>()
     private var disposeBag = DisposeBag()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +52,14 @@ final class MainViewController: UIViewController {
     private func layoutUI() {
         self.view.backgroundColor = .background
         self.navigationItem.title = "Google Play Book Search"
+        
+        view.addSubview(googleButton)
+        googleButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.width.equalTo(200)
+            make.center.equalToSuperview()
+        }
+        googleButton.addTarget(self, action: #selector(googleLoginAction), for: .touchUpInside)
     }
     
     private func configureSearchBar() {
@@ -61,7 +80,13 @@ final class MainViewController: UIViewController {
         typingSubject.bind(to: searchResultController.typingSubject)
             .disposed(by: disposeBag)
     }
+    
+    @objc private func googleLoginAction(_ sender: UIControl) {
+        GoogleManager.share.googleLogin()
+    }
 }
+
+
 
 extension MainViewController: UISearchControllerDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -74,8 +99,18 @@ extension MainViewController: UISearchControllerDelegate, UISearchResultsUpdatin
 }
 
 extension MainViewController: SearchResultVCDelegate {
-    func didSelectedItem(itemId: String) {
+    func dideBookSelectedItem(itemId: String) {
         let detaiVC = BookDetailViewController(bookId: itemId)
         self.navigationController?.pushViewController(detaiVC, animated: true)
     }
+    
+    func didBookshelfSelectedItem(itemId: Int) {
+        guard let instance = GoogleManager.share.getGoogleInstance() else {
+            return
+        }
+        let shelfVC = BookshelfViewController(shelfId: itemId, googleResult: instance)
+        self.navigationController?.pushViewController(shelfVC, animated: true)
+    }
+    
+
 }

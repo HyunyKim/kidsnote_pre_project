@@ -14,4 +14,21 @@ extension String {
         
         return sizeInPixels
     }
+    
+    static func ratingValue(rating: Double) -> String {
+        switch rating {
+        case 0..<1:
+            return "☆☆☆☆☆"
+        case 1..<2:
+            return "★☆☆☆☆"
+        case 2..<3:
+            return "★★☆☆☆"
+        case 3..<4:
+            return "★★★☆☆"
+        case 4..<5:
+            return "★★★★☆"
+        default:
+            return "★★★★★"
+        }
+    }
 }

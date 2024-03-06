@@ -7,14 +7,18 @@
 
 import Foundation
 
+typealias DefaultCompleteHandler<T> = (Swift.Result<T,Error>) -> Void
+
 protocol SearchEBooksUseCase {
-//TODO: - Error로 전달하는 값들이 제대로 나오는지 NetworkError와 확인해 봐야 한다.
-    typealias SearchEBooksComplteHandler = (Swift.Result<EBooksContainer, Error>) -> Void
     @discardableResult
     func requestItems(
         query: SearchQuery,
-        completion: @escaping SearchEBooksComplteHandler
+        completion: @escaping DefaultCompleteHandler<EBooksContainer>
     ) -> Cancellable?
+    
+    func requestMylibrary(key: String,  completion: @escaping DefaultCompleteHandler<MyLibrary> ) -> Cancellable?
+    
+    func requestShelfList(key: String, shelfId: Int, completion: @escaping DefaultCompleteHandler<EBooksContainer>) -> Cancellable?
 }
 
 struct DefaultSearchEBooksUseCase {
@@ -30,9 +34,16 @@ extension DefaultSearchEBooksUseCase: SearchEBooksUseCase {
     @discardableResult
     func requestItems(
         query: SearchQuery,
-        completion: @escaping SearchEBooksComplteHandler) -> Cancellable? {
+        completion: @escaping DefaultCompleteHandler<EBooksContainer>) -> Cancellable? {
         eBookItemsRepository.fetchEBookItems(parameter:query, completion: completion)
     }
     
+    func requestMylibrary(key: String, completion: @escaping DefaultCompleteHandler<MyLibrary>) -> Cancellable? {
+        eBookItemsRepository.fetchMylibrary(key: key, completion: completion)
+    }
+    
+    func requestShelfList(key: String, shelfId: Int, completion: @escaping DefaultCompleteHandler<EBooksContainer>) -> Cancellable?{
+        eBookItemsRepository.fetchShelfList(key: key, shelfId: shelfId, completion: completion)
+    }
     
 }

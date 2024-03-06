@@ -12,7 +12,7 @@ import RxCocoa
 import RxDataSources
 import LevelOSLog
 
-class BookDetailViewController: UIViewController {
+final class BookDetailViewController: UIViewController {
 
     // UIComponents
     private lazy var tableView: UITableView = {
@@ -131,7 +131,6 @@ class BookDetailViewController: UIViewController {
             .bookMainInfo(item: data),
             .userAction(webreaderLink: data.webReaderLink)]
         if data.selfLink != nil {
-            //TODO: - rating 에 대해서
             tableItems.append(.ratingInfo(item: data))
         }
         if let desc = data.description, !desc.isEmpty, let title = data.title {
@@ -153,8 +152,9 @@ class BookDetailViewController: UIViewController {
             case .userAction(webreaderLink: let link):
                  let cell = tableView.dequeueReusableCell(withIdentifier: BookUserActionCell.identifier) as! BookUserActionCell
                 cell.sampleURLString = link
+                cell.delegate = self
                 return cell
-            case .bookDescription(description: let description, title: let title):
+            case .bookDescription(description: let description, title: _):
                 let cell = tableView.dequeueReusableCell(withIdentifier: BookDescriptionCell.identifier) as! BookDescriptionCell
                 cell.updateDescription(text: description)
                return cell
@@ -170,4 +170,22 @@ class BookDetailViewController: UIViewController {
             }
         }
     }
+}
+
+extension BookDetailViewController: BookActiondelegate {
+    func emptySampleURL() {
+        self.showAlert(message: "샘플이 없습니다")
+    }
+    
+    func addMylibrary() {
+        guard let googleInstance = GoogleManager.share.getGoogleInstance() else {
+            return
+        }
+    }
+    
+    func removeMyLibrary() {
+        
+    }
+    
+    
 }
