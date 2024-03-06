@@ -13,13 +13,13 @@ final class MyLibrarayCell: UICollectionViewCell {
     
     private var titleLabel: UILabel = {
        let label = UILabel()
-        label.listTitleUI()
+        label.titleUI()
         return label
     }()
     
     private var infoLabel: UILabel = {
        let label = UILabel()
-        label.listDesrciptionUI()
+        label.descriptionUI(font: UIFont.systemFont(ofSize: 18))
         return label
     }()
     
@@ -35,20 +35,27 @@ final class MyLibrarayCell: UICollectionViewCell {
     private func layoutUI() {
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview().inset(10.0)
+            make.top.leading.equalToSuperview().inset(10.0)
+            make.height.equalTo(50.0)
+            make.bottom.equalToSuperview().inset(5.0)
         }
         
         contentView.addSubview(infoLabel)
         infoLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(8.0)
-            make.leading.trailing.equalTo(10.0)
-            make.bottom.equalTo(8)
+            make.leading.equalTo(self.titleLabel.snp.trailing).offset(20.0)
+            make.top.equalTo(self.titleLabel.snp.top)
+            make.bottom.equalTo(self.titleLabel.snp.bottom)
+            
         }
     }
     
     func updateUI(libraryInfo: Bookshelf) {
         self.titleLabel.text = libraryInfo.title ?? "UnKnown"
-        self.infoLabel.text = "\(libraryInfo.volumeCount ?? 0)"
+        if libraryInfo.title == "Have read" || libraryInfo.title == "To read" || libraryInfo.id > 1000 {
+            self.infoLabel.text = "\(libraryInfo.volumeCount ?? 0)"
+        } else {
+            self.infoLabel.text = ""
+        }
     }
     
     override func prepareForReuse() {

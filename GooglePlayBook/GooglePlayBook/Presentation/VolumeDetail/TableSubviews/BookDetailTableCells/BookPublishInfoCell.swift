@@ -11,7 +11,7 @@ final class BookPublishInfoCell: UITableViewCell {
     
     private var titleLabel = {
         let label = UILabel()
-        label.titleU()
+        label.titleUI()
         label.text = "게시일"
         return label
     }()

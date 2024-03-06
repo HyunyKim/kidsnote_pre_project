@@ -98,9 +98,9 @@ final class SearchResultResuableView: UICollectionReusableView {
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().inset(16)
-            make.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(44)
+            make.leading.equalToSuperview().inset(16.0)
+            make.trailing.equalToSuperview().inset(16.0)
+            make.height.equalTo(44.0)
         }
     }
     

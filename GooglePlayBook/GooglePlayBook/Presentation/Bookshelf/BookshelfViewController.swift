@@ -41,6 +41,7 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutUI()
+        registerCell()
         bindingUI()
         bindingViewModel()
     }
@@ -53,6 +54,13 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     @objc private func backAction(sender: UIControl) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    private func registerCell() {
+        collectionView.register(EBookInfoCell.self, forCellWithReuseIdentifier: EBookInfoCell.identifier)
+        collectionView.register(LoadMoreCell.self, forCellWithReuseIdentifier: LoadMoreCell.identifier)
+        collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
+    }
+
     
     override func viewSafeAreaInsetsDidChange() {
         collectionView.snp.removeConstraints()
@@ -110,7 +118,13 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
                 default:
                     return UICollectionViewCell()
                 }
-            })
+            },
+            configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchResultResuableView.identifier, for: indexPath) as! SearchResultResuableView
+                header.updateUI(type: .myLibrarySearchResult)
+                return header
+            }
+        )
     }
     
 }
