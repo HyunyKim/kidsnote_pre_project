@@ -23,7 +23,7 @@ final class BookMainInfoCell: UITableViewCell {
     
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.titleU(lineNumber: 0)
+        label.titleUI(lineNumber: 0)
         return label
     }()
     

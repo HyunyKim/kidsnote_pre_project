@@ -38,7 +38,7 @@ extension API {
         guard self.headerParamerter == nil else {
             return self.headerParamerter!
         }
-        //TODO: - 이고셍서 토큰을 넣는것을 생각해 보자.
+        
         var header = ["Content-Type" : "application/json"]
         header["Accept"] = "application/json"
         

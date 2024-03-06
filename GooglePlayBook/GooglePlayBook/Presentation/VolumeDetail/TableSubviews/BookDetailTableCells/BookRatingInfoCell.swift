@@ -12,7 +12,7 @@ final class BookRatingInfoCell: UITableViewCell {
 
     private var ratingScoreLabel: UILabel = {
         let label = UILabel()
-        label.titleU()
+        label.titleUI()
         return label
     }()
     
