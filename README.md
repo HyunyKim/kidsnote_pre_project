@@ -56,5 +56,15 @@ GET https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=yourAPIKey
 - 별점 뷰 만들기
 - 책정보 상세 만들기
 
+## 3/6 
+- Google Login 연동
+- MyLibrary List 연동
+- 기타 UI 수정
+- TestPlan수정
+
+## 3/7
+- 내 라이브러리에 추가하기 : 2 - To Read에 추가
+- 내 서가 리스트에서 더 보기 구현
+
 
 ###

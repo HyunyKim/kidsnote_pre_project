@@ -38,7 +38,7 @@ final class GooglePlayBookNetworkTest: XCTestCase {
         var _ = networkService.request(endpoint: testObject) {  (result : Result<EBooksResponseDTO,NetworkError>) in
             switch result {
             case .success(let success):
-                XCTAssertEqual(success.items.isEmpty, false,"통신에 성공시 값이 있어야 한다.")
+                XCTAssertEqual(success.items?.isEmpty, false,"통신에 성공시 값이 있어야 한다.")
                 responseObject = success.toDomain()
                 print(success)
             case .failure(let error):
@@ -63,7 +63,7 @@ final class GooglePlayBookNetworkTest: XCTestCase {
         let _ = networkService.request(endpoint: endPoint) {  (result : Result<EBooksResponseDTO,NetworkError>) in
             switch result {
             case .success(let success):
-                XCTAssertEqual(success.items.isEmpty, false,"통신에 성공시 값이 있어야 한다.")
+                XCTAssertEqual(success.items?.isEmpty, false,"통신에 성공시 값이 있어야 한다.")
                 responseObject = success.toDomain()
                 print(responseObject?.items.first ?? "")
             case .failure(let error):
@@ -76,7 +76,7 @@ final class GooglePlayBookNetworkTest: XCTestCase {
             XCTAssertFalse(true,"Transform Model이 생성되어야 한다.")
             return
         }
-        XCTAssertEqual(first.title, "Mastering iOS 14 Programming","바뀔수도 있기 때문에 PostMan등으로 테스트가 필요합니다. 지금은 바로 테스트 진행시 해당 타이틀입니다.")
+        XCTAssertEqual(first.title, "iOS 15 Programming for Beginners","바뀔수도 있기 때문에 PostMan등으로 테스트가 필요합니다. 지금은 바로 테스트 진행시 해당 타이틀입니다.\(first.title ?? "")")
     }
     
     func testEndpoint_Info() throws {

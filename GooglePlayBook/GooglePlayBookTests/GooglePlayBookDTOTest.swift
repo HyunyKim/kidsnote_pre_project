@@ -29,7 +29,7 @@ final class GooglePlayBookDTOTest: XCTestCase {
             XCTFail("파일로부터 디코딩이 실패해서는 안된다")
             return
         }
-        XCTAssertEqual(object.items.count, 2,"JsonFile에 결과는 2개여야한다")
+        XCTAssertEqual(object.items?.count ?? 0, 2,"JsonFile에 결과는 2개여야한다")
         let ebookContainer = object.toDomain()
         XCTAssertEqual(ebookContainer.items.count, 2,"Transform된 결과도 2개여야한다")
         guard let ebook = ebookContainer.items.first else {
