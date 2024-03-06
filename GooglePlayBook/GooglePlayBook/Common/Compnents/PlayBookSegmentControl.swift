@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class PlayBookSegmentControl: UISegmentedControl {
+final class PlayBookSegmentControl: UISegmentedControl {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

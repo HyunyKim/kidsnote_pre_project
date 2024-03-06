@@ -15,6 +15,8 @@ protocol SearchEBooksUseCase {
         query: SearchQuery,
         completion: @escaping SearchEBooksComplteHandler
     ) -> Cancellable?
+    
+    func requestMylibrary(key: String,  completion: @escaping (Swift.Result<MyLibrary,Error>) -> Void ) -> Cancellable?
 }
 
 struct DefaultSearchEBooksUseCase {
@@ -34,5 +36,8 @@ extension DefaultSearchEBooksUseCase: SearchEBooksUseCase {
         eBookItemsRepository.fetchEBookItems(parameter:query, completion: completion)
     }
     
+    func requestMylibrary(key: String, completion: @escaping (Result<MyLibrary, Error>) -> Void) -> Cancellable? {
+        eBookItemsRepository.fetchMylibrary(key: key, completion: completion)
+    }
     
 }

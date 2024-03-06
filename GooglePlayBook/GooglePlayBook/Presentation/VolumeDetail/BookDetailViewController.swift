@@ -154,7 +154,7 @@ class BookDetailViewController: UIViewController {
                  let cell = tableView.dequeueReusableCell(withIdentifier: BookUserActionCell.identifier) as! BookUserActionCell
                 cell.sampleURLString = link
                 return cell
-            case .bookDescription(description: let description, title: let title):
+            case .bookDescription(description: let description, title: _):
                 let cell = tableView.dequeueReusableCell(withIdentifier: BookDescriptionCell.identifier) as! BookDescriptionCell
                 cell.updateDescription(text: description)
                return cell

@@ -12,4 +12,6 @@ protocol EBookItemsRepository {
         parameter: SearchQuery,
         completion: @escaping(Swift.Result<EBooksContainer, Error>) -> Void
     ) -> Cancellable?
+    
+    func fetchMylibrary(key: String, completion: @escaping (Result<MyLibrary, Error>) -> Void) -> Cancellable?
 }

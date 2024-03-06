@@ -12,9 +12,11 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import LevelOSLog
+import GoogleSignIn
 
 protocol SearchResultVCDelegate: AnyObject {
     func didSelectedItem(itemId: String)
+    func getGoogleInstance() -> GIDSignInResult?
 }
 
 final class SearchResultViewController: UIViewController {
@@ -39,9 +41,11 @@ final class SearchResultViewController: UIViewController {
     private var disposeBag = DisposeBag()
     private let loadMoreSubject = PublishSubject<Void>()
     private let sectionModelSubject = BehaviorSubject<[SearchResultSectionModel]>(value: [])
+    private let myLibraryAction = PublishSubject<String>()
     let searchKeywordSubject = PublishSubject<String>()
     let typingSubject = PublishSubject<String>()
     weak var delegate: SearchResultVCDelegate?
+    var selectedIndex: Int = 0
     
     init(delegate: SearchResultVCDelegate?) {
         super.init(nibName: nil, bundle: nil)
@@ -163,7 +167,8 @@ final class SearchResultViewController: UIViewController {
         
         let output = viewModel.transform(input: .init(searchAction: merged,
                                                       typingAction: typingSubject,
-                                                      loadMoreAction: loadMoreSubject))
+                                                      loadMoreAction: loadMoreSubject,
+                                                      searchMylibraryAction: myLibraryAction))
         
         output.searchResult
             .drive(onNext: { [weak self] result in
@@ -190,6 +195,19 @@ final class SearchResultViewController: UIViewController {
                     self?.collectionView.isHidden = true
                 }
             })
+            .disposed(by: disposeBag)
+        
+        output.mylibraryResult
+            .asObservable()
+            .subscribe { (result: Swift.Result<MyLibrary,Error>) in
+                switch result {
+                    
+                case .success((let items)):
+                    print("제발",items)
+                case .failure(let error):
+                    print("error",error)
+                }
+            }
             .disposed(by: disposeBag)
     }
     
@@ -222,6 +240,7 @@ final class SearchResultViewController: UIViewController {
                 switch indexPath.section {
                 case 0:
                     let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TopSegmentReuseableView.identifier, for: indexPath) as! TopSegmentReuseableView
+                    header.delegate = self
                     return header
                 case 1:
                     let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchResultResuableView.identifier, for: indexPath) as! SearchResultResuableView
@@ -237,6 +256,24 @@ extension SearchResultViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.section == 2 , indexPath.row == 0 {
             loadMoreSubject.onNext(())
+        }
+    }
+}
+
+extension SearchResultViewController: TopSegmentSegmentDelegate {
+
+    func stateChange(index: Int) {
+        Log.debug("segmentselected", index)
+        switch TopSegmentReuseableView.SegmentIndex(rawValue: index) {
+        case .eBook:
+            self.collectionView.isHidden = false
+        case .myLibrary:
+            if let googleInstance = self.delegate?.getGoogleInstance() {
+                let key = googleInstance.user.accessToken.tokenString
+                self.myLibraryAction.onNext(key)
+            }
+        case .none:
+            break
         }
     }
 }

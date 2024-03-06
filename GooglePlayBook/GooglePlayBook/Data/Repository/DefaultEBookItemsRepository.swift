@@ -17,6 +17,7 @@ struct DefaultEBookItemsRepository {
 }
 
 extension DefaultEBookItemsRepository: EBookItemsRepository {
+    
     func fetchEBookItems(
         parameter: SearchQuery,
         completion: @escaping (Swift.Result<EBooksContainer, Error>) -> Void) -> Cancellable? {
@@ -40,5 +41,15 @@ extension DefaultEBookItemsRepository: EBookItemsRepository {
             }
     }
     
-    
+    func fetchMylibrary(key: String, completion: @escaping (Result<MyLibrary, Error>) -> Void) -> Cancellable? {
+        return networkService.request(endpoint: SearchAPI.getMylibraryList(key: key)) { (result: Swift.Result<MyLibraryResponseDTO, NetworkError>) in
+            switch result {
+            case .success(let responseDTO):
+                completion(.success(responseDTO.toDomain()))
+                
+            case .failure(let error):
+                print("error",error)
+            }
+        }
+    }
 }
