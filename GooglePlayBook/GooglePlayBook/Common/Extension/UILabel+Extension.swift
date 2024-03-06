@@ -13,19 +13,36 @@ extension UILabel {
     func titleU(font: UIFont = UIFont.systemFont(ofSize: 20, weight: .medium),
                 textColor: UIColor = .textColor1,
                 breakMode: NSLineBreakMode = .byWordWrapping,
-                lineNumber: Int = 1
-    ) {
-        self.font = font
-        self.textColor = textColor
-        self.lineBreakMode = breakMode
-        self.numberOfLines = lineNumber
+                lineNumber: Int = 1) {
+        
+        make(font: font, textColor: textColor, breakMode: breakMode, lineNumber: lineNumber)
     }
     
     func descriptionUI(font: UIFont = UIFont.systemFont(ofSize: 12, weight: .regular),
                        textColor: UIColor = .eGray,
                        breakMode: NSLineBreakMode = .byWordWrapping,
-                       lineNumber: Int = 1
-    ) {
+                       lineNumber: Int = 1) {
+        
+        make(font: font, textColor: textColor, breakMode: breakMode, lineNumber: lineNumber)
+    }
+    
+    func listTitleUI(font: UIFont = UIFont.systemFont(ofSize: 13,weight: .regular),
+                     textColor: UIColor = .textColor1,
+                     breakMode: NSLineBreakMode = .byTruncatingTail,
+                     lineNumber: Int = 2) {
+        
+        make(font: font, textColor: textColor, breakMode: breakMode, lineNumber: lineNumber)
+    }
+    
+    func listDesrciptionUI(font: UIFont = UIFont.systemFont(ofSize: 11,weight: .light),
+                           textColor: UIColor = .gray,
+                           breakMode: NSLineBreakMode = .byTruncatingTail,
+                           lineNumber: Int = 1) {
+        
+        make(font: font, textColor: textColor, breakMode: breakMode, lineNumber: lineNumber)
+    }
+    
+    private func make(font: UIFont, textColor: UIColor, breakMode: NSLineBreakMode, lineNumber: Int) {
         self.font = font
         self.textColor = textColor
         self.lineBreakMode = breakMode

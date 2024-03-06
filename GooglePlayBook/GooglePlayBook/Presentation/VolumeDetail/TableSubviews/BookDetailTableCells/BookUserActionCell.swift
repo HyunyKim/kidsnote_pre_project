@@ -8,6 +8,12 @@
 import UIKit
 import SnapKit
 
+protocol BookActiondelegate: AnyObject {
+    func sampleBookOpen(urlString: String)
+    func addWishList()
+    func removeWishList()
+}
+
 final class BookUserActionCell: UITableViewCell {
 
     private var stackView: UIStackView = {

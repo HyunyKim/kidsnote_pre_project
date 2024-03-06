@@ -71,6 +71,7 @@
 		53F2800C2B94A6C800E073D4 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F2800B2B94A6C800E073D4 /* ImageDownloader.swift */; };
 		53F2800E2B94BC0700E073D4 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F2800D2B94BC0700E073D4 /* URL+Extension.swift */; };
 		53F280102B94C27B00E073D4 /* GooglePlayBookImageDownloaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F2800F2B94C27B00E073D4 /* GooglePlayBookImageDownloaderTest.swift */; };
+		53FEB16F2B98308000663C69 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FEB16E2B98308000663C69 /* UIViewController+Extension.swift */; };
 		53FF93AB2B90CDBA0026E946 /* EBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AA2B90CDBA0026E946 /* EBook.swift */; };
 		53FF93AE2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */; };
 		53FF93B72B90E7CE0026E946 /* GooglePlayBookDTOTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B62B90E7CE0026E946 /* GooglePlayBookDTOTest.swift */; };
@@ -148,6 +149,7 @@
 		53F2800B2B94A6C800E073D4 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		53F2800D2B94BC0700E073D4 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		53F2800F2B94C27B00E073D4 /* GooglePlayBookImageDownloaderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBookImageDownloaderTest.swift; sourceTree = "<group>"; };
+		53FEB16E2B98308000663C69 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		53FF93AA2B90CDBA0026E946 /* EBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBook.swift; sourceTree = "<group>"; };
 		53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EBooksResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		53FF93B22B90E5500026E946 /* Searchvolumes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Searchvolumes.json; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				536C6F942B945CC900089CDA /* String+Extension.swift */,
 				536C6F9E2B948A6100089CDA /* UIImageView+Extension.swift */,
 				53F2800D2B94BC0700E073D4 /* URL+Extension.swift */,
+				53FEB16E2B98308000663C69 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -671,6 +674,7 @@
 				535770CB2B938932007EBCE4 /* EBookInfoCell.swift in Sources */,
 				535770B52B930975007EBCE4 /* DIContainer.swift in Sources */,
 				53EC383B2B959B240049F42A /* BookInfoRepository.swift in Sources */,
+				53FEB16F2B98308000663C69 /* UIViewController+Extension.swift in Sources */,
 				537AA43E2B92360A00D2B860 /* EBookItemsRepository.swift in Sources */,
 				536C6F952B945CC900089CDA /* String+Extension.swift in Sources */,
 				536C6F9F2B948A6100089CDA /* UIImageView+Extension.swift in Sources */,
