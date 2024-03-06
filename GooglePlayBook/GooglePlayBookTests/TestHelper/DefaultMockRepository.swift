@@ -9,7 +9,15 @@ import Foundation
 @testable import GooglePlayBook
 
 struct MockEbookItemsRepository: EBookItemsRepository,ReadJsonParsing {
-    func fetchEBookItems(parameter: GooglePlayBook.SearchQuery, completion: @escaping (Result<GooglePlayBook.EBooksContainer, Error>) -> Void) -> GooglePlayBook.Cancellable? {
+    func fetchMylibrary(key: String, completion: @escaping GooglePlayBook.DefaultCompleteHandler<GooglePlayBook.MyLibrary>) -> GooglePlayBook.Cancellable? {
+        return nil
+    }
+    
+    func fetchShelfList(key: String, shelfId: Int, completion: @escaping GooglePlayBook.DefaultCompleteHandler<GooglePlayBook.EBooksContainer>) -> GooglePlayBook.Cancellable? {
+        return nil
+    }
+    
+    func fetchEBookItems(parameter: GooglePlayBook.SearchQuery, completion: @escaping GooglePlayBook.DefaultCompleteHandler<GooglePlayBook.EBooksContainer>) -> GooglePlayBook.Cancellable? {
         readJsonNCompletion(fileName: "Searchvolumes") { (result: (Swift.Result<EBooksResponseDTO,Error>)) in
             switch result {
             case .success(let responseDTO):
