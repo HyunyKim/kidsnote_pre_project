@@ -13,14 +13,20 @@ import RxCocoa
 
 final class SearchViewModel: ViewModelType {
     typealias SearchResult = Swift.Result<(items:[EBook],hasMore: Bool),Error>
+    typealias MyLibraryResult = Swift.Result<MyLibrary,Error>
+    
     struct Input {
         var searchAction: Observable<String>
         var typingAction: Observable<String>
         var loadMoreAction: Observable<Void>
+        var searchMylibraryAction: Observable<String>
+        var segmentAction: Observable<Int>
     }
+    
     struct Output {
         var searchResult: Driver<SearchResult>
-        var restValues: Observable<Void>
+        var resetValue: Observable<Void>
+        var mylibraryResult: Driver<MyLibraryResult>
     }
     
     @Inject private var useCase: SearchEBooksUseCase
@@ -33,6 +39,16 @@ final class SearchViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
+        
+        let myLibrary = input.searchMylibraryAction
+            .flatMapLatest { [weak self] key -> Observable<MyLibrary> in
+                guard let self = self else {
+                    return .empty()
+                }
+                return self.searchMyLibrary(oauthKey: key)
+            }.map { library in
+                MyLibraryResult.success(library)
+            }
         
         let reset = input.typingAction
             .do { [weak self] _ in
@@ -70,19 +86,24 @@ final class SearchViewModel: ViewModelType {
             .map { [weak self] _ in
                 SearchResult.success((self?.ebookItems ?? [], (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
             }
+        let showEbook = input.segmentAction
+            .map { [weak self] _ in
+                SearchResult.success((self?.ebookItems ?? [], (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
+            }
         
         let total = Observable<SearchResult>
-            .merge(result,loadMoreResult)
+            .merge(result,loadMoreResult,showEbook)
             .asDriver { error in
                     .just(.failure(error))
             }
-        return Output(searchResult: total,restValues: reset)
+        return Output(searchResult: total,resetValue: reset, mylibraryResult: myLibrary.asDriver(onErrorRecover: { error in
+                .just(.failure(error))
+        }))
     }
     
     private func searchRequest(keyword: String) -> Observable<EBooksContainer> {
         return Observable<EBooksContainer>.create { [weak self] observer in
             guard let self = self else {
-                //TODO: - 컴플리트 할지 말지 고민
                 observer.onCompleted()
                 return Disposables.create()
             }
@@ -93,6 +114,28 @@ final class SearchViewModel: ViewModelType {
                                     maxResults: 20,
                                     startIndex: self.ebookItems.count)
             let cancelable = self.useCase.requestItems(query: query) { result in
+                switch result {
+                case .success(let container):
+                    observer.onNext(container)
+                case .failure(let error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            return Disposables.create {
+                cancelable?.cancel()
+            }
+        }
+    }
+    
+    private func searchMyLibrary(oauthKey: String) -> Observable<MyLibrary> {
+        return Observable<MyLibrary>.create { [weak self] observer in
+            guard let self = self else {
+                //TODO: - 컴플리트 할지 말지 고민
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            let cancelable = self.useCase.requestMylibrary(key: oauthKey) { result in
                 switch result {
                 case .success(let container):
                     observer.onNext(container)

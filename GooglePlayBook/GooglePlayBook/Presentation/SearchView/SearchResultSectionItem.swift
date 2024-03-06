@@ -12,12 +12,14 @@ enum SearchResultSectionItem {
     case segment
     case eBookItem(item: EBook)
     case loadMore
+    case bookshelf(item: Bookshelf)
 }
 
 enum SearchResultSectionModel {
     case segmentSection
     case eBookItemSection(items: [SearchResultSectionItem])
     case loadMoreSection(item: [SearchResultSectionItem])
+    case myLibrarySection(item:[SearchResultSectionItem])
 }
 
 extension SearchResultSectionModel: SectionModelType {
@@ -31,6 +33,8 @@ extension SearchResultSectionModel: SectionModelType {
             return items.map({$0})
         case .loadMoreSection(item: let items):
             return items.map({$0})
+        case .myLibrarySection(item: let items):
+            return items.map({$0})
 
         }
     }
@@ -43,6 +47,8 @@ extension SearchResultSectionModel: SectionModelType {
             self = .eBookItemSection(items: items)
         case .loadMoreSection(item: let items):
             self = .loadMoreSection(item: items)
+        case .myLibrarySection(item: let items):
+            self = .myLibrarySection(item: items)
         }
     }
 }

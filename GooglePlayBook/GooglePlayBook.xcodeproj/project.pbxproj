@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		530420B22B984525000D31CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 530420B12B984525000D31CD /* GoogleService-Info.plist */; };
+		530420B52B9846B2000D31CD /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 530420B42B9846B2000D31CD /* GoogleSignIn */; };
+		530420B72B9846B2000D31CD /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 530420B62B9846B2000D31CD /* GoogleSignInSwift */; };
+		530420B92B986AB6000D31CD /* MyLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530420B82B986AB6000D31CD /* MyLibrary.swift */; };
+		530420BB2B986B61000D31CD /* MyLibraryResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530420BA2B986B61000D31CD /* MyLibraryResponseDTO+Mapping.swift */; };
+		530420BD2B98753F000D31CD /* MyLibrarayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530420BC2B98753F000D31CD /* MyLibrarayCell.swift */; };
+		530420C02B9881D2000D31CD /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530420BF2B9881D2000D31CD /* BookshelfViewController.swift */; };
+		530420C22B988258000D31CD /* BookshelfViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530420C12B988258000D31CD /* BookshelfViewModel.swift */; };
+		530420C42B9885A0000D31CD /* BookCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530420C32B9885A0000D31CD /* BookCollectionViewLayout.swift */; };
 		5305A1CD2B91AC0900455B11 /* LevelOSLog in Frameworks */ = {isa = PBXBuildFile; productRef = 5305A1CC2B91AC0900455B11 /* LevelOSLog */; };
 		532BEF892B96C84400F7B0B8 /* BookMainInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BEF882B96C84400F7B0B8 /* BookMainInfoCell.swift */; };
 		532BEF8B2B96D06D00F7B0B8 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BEF8A2B96D06D00F7B0B8 /* UILabel+Extension.swift */; };
@@ -71,6 +80,8 @@
 		53F2800C2B94A6C800E073D4 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F2800B2B94A6C800E073D4 /* ImageDownloader.swift */; };
 		53F2800E2B94BC0700E073D4 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F2800D2B94BC0700E073D4 /* URL+Extension.swift */; };
 		53F280102B94C27B00E073D4 /* GooglePlayBookImageDownloaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F2800F2B94C27B00E073D4 /* GooglePlayBookImageDownloaderTest.swift */; };
+		53FC090A2B98D09200E577E0 /* GoogleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC09092B98D09200E577E0 /* GoogleManager.swift */; };
+		53FEB16F2B98308000663C69 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FEB16E2B98308000663C69 /* UIViewController+Extension.swift */; };
 		53FF93AB2B90CDBA0026E946 /* EBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AA2B90CDBA0026E946 /* EBook.swift */; };
 		53FF93AE2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */; };
 		53FF93B72B90E7CE0026E946 /* GooglePlayBookDTOTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93B62B90E7CE0026E946 /* GooglePlayBookDTOTest.swift */; };
@@ -88,6 +99,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		530420B12B984525000D31CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		530420B82B986AB6000D31CD /* MyLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibrary.swift; sourceTree = "<group>"; };
+		530420BA2B986B61000D31CD /* MyLibraryResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyLibraryResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
+		530420BC2B98753F000D31CD /* MyLibrarayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibrarayCell.swift; sourceTree = "<group>"; };
+		530420BF2B9881D2000D31CD /* BookshelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
+		530420C12B988258000D31CD /* BookshelfViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfViewModel.swift; sourceTree = "<group>"; };
+		530420C32B9885A0000D31CD /* BookCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewLayout.swift; sourceTree = "<group>"; };
 		530B0BAA2B976A0300690BAA /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		532BEF882B96C84400F7B0B8 /* BookMainInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMainInfoCell.swift; sourceTree = "<group>"; };
 		532BEF8A2B96D06D00F7B0B8 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -148,6 +166,8 @@
 		53F2800B2B94A6C800E073D4 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		53F2800D2B94BC0700E073D4 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		53F2800F2B94C27B00E073D4 /* GooglePlayBookImageDownloaderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBookImageDownloaderTest.swift; sourceTree = "<group>"; };
+		53FC09092B98D09200E577E0 /* GoogleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleManager.swift; sourceTree = "<group>"; };
+		53FEB16E2B98308000663C69 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		53FF93AA2B90CDBA0026E946 /* EBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBook.swift; sourceTree = "<group>"; };
 		53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EBooksResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		53FF93B22B90E5500026E946 /* Searchvolumes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Searchvolumes.json; sourceTree = "<group>"; };
@@ -165,7 +185,9 @@
 				53653F302B9093B4005454C1 /* RxSwift in Frameworks */,
 				53653F2E2B9093B4005454C1 /* RxCocoa in Frameworks */,
 				5305A1CD2B91AC0900455B11 /* LevelOSLog in Frameworks */,
+				530420B72B9846B2000D31CD /* GoogleSignInSwift in Frameworks */,
 				535770B22B930956007EBCE4 /* Swinject in Frameworks */,
+				530420B52B9846B2000D31CD /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +201,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		530420BE2B9881AF000D31CD /* Bookshelf */ = {
+			isa = PBXGroup;
+			children = (
+				530420C12B988258000D31CD /* BookshelfViewModel.swift */,
+				530420BF2B9881D2000D31CD /* BookshelfViewController.swift */,
+			);
+			path = Bookshelf;
+			sourceTree = "<group>";
+		};
 		535770B32B930963007EBCE4 /* DIContainer */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +229,7 @@
 		535770BD2B931B7D007EBCE4 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
+				530420C32B9885A0000D31CD /* BookCollectionViewLayout.swift */,
 				535770C92B9388D1007EBCE4 /* CollectionSubviews */,
 				535770CE2B9391E8007EBCE4 /* SearchResultSectionItem.swift */,
 				535770C52B937A00007EBCE4 /* SearchViewModel.swift */,
@@ -221,6 +253,7 @@
 				536C6F8F2B94403900089CDA /* SearchResultResuableView.swift */,
 				535770CA2B938932007EBCE4 /* EBookInfoCell.swift */,
 				536C6F962B946D1C00089CDA /* LoadMoreCell.swift */,
+				530420BC2B98753F000D31CD /* MyLibrarayCell.swift */,
 			);
 			path = CollectionSubviews;
 			sourceTree = "<group>";
@@ -281,6 +314,7 @@
 				535770B32B930963007EBCE4 /* DIContainer */,
 				53653EE92B9087F9005454C1 /* AppDelegate.swift */,
 				53653EEB2B9087F9005454C1 /* SceneDelegate.swift */,
+				53FC09092B98D09200E577E0 /* GoogleManager.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -288,6 +322,7 @@
 		53653F1A2B908ACF005454C1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				530420B12B984525000D31CD /* GoogleService-Info.plist */,
 				53653EF22B9087FA005454C1 /* Assets.xcassets */,
 				53653EF42B9087FA005454C1 /* LaunchScreen.storyboard */,
 			);
@@ -307,6 +342,7 @@
 		53653F1C2B908AEE005454C1 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				530420BE2B9881AF000D31CD /* Bookshelf */,
 				53EC38332B9584EF0049F42A /* VolumeDetail */,
 				535770BD2B931B7D007EBCE4 /* SearchView */,
 				535770C02B932983007EBCE4 /* MainViewController.swift */,
@@ -357,6 +393,7 @@
 				536C6F942B945CC900089CDA /* String+Extension.swift */,
 				536C6F9E2B948A6100089CDA /* UIImageView+Extension.swift */,
 				53F2800D2B94BC0700E073D4 /* URL+Extension.swift */,
+				53FEB16E2B98308000663C69 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -480,6 +517,7 @@
 				53FF93AA2B90CDBA0026E946 /* EBook.swift */,
 				537AA4342B9220C700D2B860 /* SearchQuery.swift */,
 				53C6F1EE2B95BF7D00D2C23E /* BookDetailInfo.swift */,
+				530420B82B986AB6000D31CD /* MyLibrary.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -490,6 +528,7 @@
 				537AA4362B922A0500D2B860 /* EBooksRequestDTO+Mapping.swift */,
 				53EC383E2B959E010049F42A /* EBookInfoRequestDTO+Mapping.swift */,
 				53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */,
+				530420BA2B986B61000D31CD /* MyLibraryResponseDTO+Mapping.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -536,6 +575,8 @@
 				53653F332B9093B4005454C1 /* SnapKit */,
 				5305A1CC2B91AC0900455B11 /* LevelOSLog */,
 				535770B12B930956007EBCE4 /* Swinject */,
+				530420B42B9846B2000D31CD /* GoogleSignIn */,
+				530420B62B9846B2000D31CD /* GoogleSignInSwift */,
 			);
 			productName = GooglePlayBook;
 			productReference = 53653EE62B9087F9005454C1 /* GooglePlayBook.app */;
@@ -594,6 +635,7 @@
 				53653F2B2B9093A0005454C1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				5305A1CB2B91AC0900455B11 /* XCRemoteSwiftPackageReference "LevelOSLog" */,
 				535770B02B930956007EBCE4 /* XCRemoteSwiftPackageReference "Swinject" */,
+				530420B32B9846B2000D31CD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 53653EE72B9087F9005454C1 /* Products */;
 			projectDirPath = "";
@@ -615,6 +657,7 @@
 				53653EF62B9087FA005454C1 /* LaunchScreen.storyboard in Resources */,
 				53653EF32B9087FA005454C1 /* Assets.xcassets in Resources */,
 				53FF93B82B90EDF20026E946 /* Searchvolumes.json in Resources */,
+				530420B22B984525000D31CD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +676,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				530420C02B9881D2000D31CD /* BookshelfViewController.swift in Sources */,
 				53EC38422B959EE80049F42A /* VolumeInfo.swift in Sources */,
 				53D7B5012B95EC80000895C1 /* BookUserActionCell.swift in Sources */,
 				536C6F9D2B94861D00089CDA /* ImageCache.swift in Sources */,
@@ -652,14 +696,18 @@
 				537AA43A2B9234A600D2B860 /* SearchEBooksUseCase.swift in Sources */,
 				537AA4352B9220C700D2B860 /* SearchQuery.swift in Sources */,
 				53D7B5082B95ECC3000895C1 /* BookPublishInfoCell.swift in Sources */,
+				530420BD2B98753F000D31CD /* MyLibrarayCell.swift in Sources */,
 				537AA42B2B91C56000D2B860 /* ParameterEncodable.swift in Sources */,
+				530420B92B986AB6000D31CD /* MyLibrary.swift in Sources */,
 				536C6F972B946D1C00089CDA /* LoadMoreCell.swift in Sources */,
 				53653EEA2B9087F9005454C1 /* AppDelegate.swift in Sources */,
 				53FF93AB2B90CDBA0026E946 /* EBook.swift in Sources */,
 				535770AC2B92F9A3007EBCE4 /* ReadJsonParsing.swift in Sources */,
 				53EC38372B9594910049F42A /* BookViewModel.swift in Sources */,
+				530420C22B988258000D31CD /* BookshelfViewModel.swift in Sources */,
 				53F2800E2B94BC0700E073D4 /* URL+Extension.swift in Sources */,
 				53EC38392B9598A00049F42A /* BookInfoUseCase.swift in Sources */,
+				53FC090A2B98D09200E577E0 /* GoogleManager.swift in Sources */,
 				53D7B5062B95ECB3000895C1 /* BookRatingInfoCell.swift in Sources */,
 				53653EEC2B9087F9005454C1 /* SceneDelegate.swift in Sources */,
 				535770BC2B931B78007EBCE4 /* SearchResultViewController.swift in Sources */,
@@ -669,8 +717,11 @@
 				536C6F9A2B94853800089CDA /* Cacheable.swift in Sources */,
 				53EC383D2B959BB60049F42A /* DefaultBookInfoRepository.swift in Sources */,
 				535770CB2B938932007EBCE4 /* EBookInfoCell.swift in Sources */,
+				530420BB2B986B61000D31CD /* MyLibraryResponseDTO+Mapping.swift in Sources */,
+				530420C42B9885A0000D31CD /* BookCollectionViewLayout.swift in Sources */,
 				535770B52B930975007EBCE4 /* DIContainer.swift in Sources */,
 				53EC383B2B959B240049F42A /* BookInfoRepository.swift in Sources */,
+				53FEB16F2B98308000663C69 /* UIViewController+Extension.swift in Sources */,
 				537AA43E2B92360A00D2B860 /* EBookItemsRepository.swift in Sources */,
 				536C6F952B945CC900089CDA /* String+Extension.swift in Sources */,
 				536C6F9F2B948A6100089CDA /* UIImageView+Extension.swift in Sources */,
@@ -850,6 +901,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZP2DUBL9ML;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GooglePlayBook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -880,6 +932,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZP2DUBL9ML;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GooglePlayBook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -974,6 +1027,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		530420B32B9846B2000D31CD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		5305A1CB2B91AC0900455B11 /* XCRemoteSwiftPackageReference "LevelOSLog" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/HyunyKim/LevelOSLog.git";
@@ -1017,6 +1078,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		530420B42B9846B2000D31CD /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 530420B32B9846B2000D31CD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		530420B62B9846B2000D31CD /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 530420B32B9846B2000D31CD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		5305A1CC2B91AC0900455B11 /* LevelOSLog */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5305A1CB2B91AC0900455B11 /* XCRemoteSwiftPackageReference "LevelOSLog" */;

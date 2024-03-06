@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class EBookInfoCell: UICollectionViewCell {
+final class EBookInfoCell: UICollectionViewCell {
     
     private var thumbNailImageView: UIImageView = {
        let imageView = UIImageView()
@@ -25,34 +25,23 @@ class EBookInfoCell: UICollectionViewCell {
 
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12,weight: .medium)
-        label.textColor = .textColor1
-        label.lineBreakMode = .byTruncatingTail
-        label.numberOfLines = 2
+        label.listTitleUI()
         return label
     }()
     
     private var authorInfoLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 11,weight: .light)
-        label.textColor = .gray
-        label.lineBreakMode = .byTruncatingTail
-        label.numberOfLines = 1
+        label.listDesrciptionUI()
         return label
     }()
     private var typeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 11,weight: .light)
-        label.textColor = .gray
-        label.lineBreakMode = .byTruncatingTail
-        label.numberOfLines = 1
+        label.listDesrciptionUI()
         return label
     }()
     private var starRatingLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12,weight: .medium)
-        label.textColor = .gray
-        label.numberOfLines = 1
+        label.listDesrciptionUI(font: UIFont.systemFont(ofSize: 12,weight: .medium))
         return label
     }()
     
@@ -69,40 +58,40 @@ class EBookInfoCell: UICollectionViewCell {
     private func layoutUI() {
         contentView.addSubview(thumbNailImageView)
         thumbNailImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.height.equalTo(60)
-            make.leading.equalToSuperview().offset(16)
-            make.width.equalTo(50)
+            make.top.equalToSuperview().offset(10.0)
+            make.height.equalTo(70.0)
+            make.leading.equalToSuperview().inset(16.0)
+            make.width.equalTo(50.0)
             
         }
         
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(thumbNailImageView.snp.trailing).offset(16)
+            make.leading.equalTo(thumbNailImageView.snp.trailing).offset(16.0)
             make.top.equalTo(thumbNailImageView.snp.top)
-            make.trailing.equalToSuperview().offset(16)
-            make.height.greaterThanOrEqualTo(20)
+            make.trailing.equalToSuperview().inset(16.0)
+            make.height.greaterThanOrEqualTo(20.0)
         }
         contentView.addSubview(authorInfoLabel)
         authorInfoLabel.snp.makeConstraints { make in
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalToSuperview().inset(16)
-            make.top.equalTo(titleLabel.snp.bottom).offset(2)
-            make.height.equalTo(13)
+            make.trailing.equalToSuperview().inset(16.0)
+            make.top.equalTo(titleLabel.snp.bottom).offset(2.0)
+            make.height.equalTo(13.0)
         }
         contentView.addSubview(typeLabel)
         typeLabel.snp.makeConstraints { make in
             make.leading.equalTo(titleLabel.snp.leading)
-            make.width.greaterThanOrEqualTo(40)
-            make.top.equalTo(authorInfoLabel.snp.bottom).offset(2)
-            make.height.equalTo(13)
+            make.width.greaterThanOrEqualTo(40.0)
+            make.top.equalTo(authorInfoLabel.snp.bottom).offset(2.0)
+            make.height.equalTo(13.0)
         }
         contentView.addSubview(starRatingLabel)
         starRatingLabel.snp.makeConstraints { make in
-            make.leading.equalTo(typeLabel.snp.trailing).offset(2)
+            make.leading.equalTo(typeLabel.snp.trailing).offset(2.0)
             make.top.equalTo(typeLabel.snp.top)
-            make.height.equalTo(13)
-            make.width.greaterThanOrEqualTo(20)
+            make.height.equalTo(13.0)
+            make.width.greaterThanOrEqualTo(20.0)
             
         }
     }
@@ -120,7 +109,8 @@ class EBookInfoCell: UICollectionViewCell {
         titleLabel.text = ebook.title
         authorInfoLabel.text = ebook.authors?.reduce("",+)
         typeLabel.text = (ebook.isEBook ?? false) ? "eBook" : ""
-        typeLabel.text = "별"
+        let value = ebook.bookRating ?? 0
+        starRatingLabel.text = String(format: "%0.1f \(String.ratingValue(rating: value))", value)
         if let urlString = ebook.thumbNail {
             thumbNailImageView.setImage(urlString: urlString)
         } else {

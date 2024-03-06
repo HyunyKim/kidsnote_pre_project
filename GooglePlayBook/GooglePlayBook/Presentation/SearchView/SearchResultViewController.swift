@@ -12,12 +12,14 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import LevelOSLog
+import GoogleSignIn
 
 protocol SearchResultVCDelegate: AnyObject {
-    func didSelectedItem(itemId: String)
+    func dideBookSelectedItem(itemId: String)
+    func didBookshelfSelectedItem(itemId: Int)
 }
 
-final class SearchResultViewController: UIViewController {
+final class SearchResultViewController: UIViewController, BookCollectionViewLayout {
     // UIComponents
     private lazy var collectionView: UICollectionView = {
         let collectionview = UICollectionView(frame: .zero, collectionViewLayout: createListLayout())
@@ -38,12 +40,15 @@ final class SearchResultViewController: UIViewController {
     @Inject private var viewModel: SearchViewModel
     private var disposeBag = DisposeBag()
     private let loadMoreSubject = PublishSubject<Void>()
+    private let myLibraryAction = PublishSubject<String>()
+    private let segmentAction = PublishSubject<Int>()
     private let sectionModelSubject = BehaviorSubject<[SearchResultSectionModel]>(value: [])
     let searchKeywordSubject = PublishSubject<String>()
     let typingSubject = PublishSubject<String>()
     weak var delegate: SearchResultVCDelegate?
+    var segmentSelectedIndex: Int = 0
     
-    init(delegate: SearchResultVCDelegate?) {
+    init(delegate: SearchResultVCDelegate) {
         super.init(nibName: nil, bundle: nil)
         self.delegate = delegate
     }
@@ -60,29 +65,10 @@ final class SearchResultViewController: UIViewController {
         bindingViewModel()
     }
     
-    private func createListLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(80))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
-            let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = 0
-            switch sectionIndex {
-            case 0,1:
-                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
-                let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-                section.boundarySupplementaryItems = [header]
-            default:
-                break
-            }
-            return section
-        }
-        return layout
-    }
-    
     private func registerCell() {
         collectionView.register(EBookInfoCell.self, forCellWithReuseIdentifier: EBookInfoCell.identifier)
         collectionView.register(LoadMoreCell.self, forCellWithReuseIdentifier: LoadMoreCell.identifier)
+        collectionView.register(MyLibrarayCell.self, forCellWithReuseIdentifier: MyLibrarayCell.identifier)
         collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
         collectionView.register(TopSegmentReuseableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TopSegmentReuseableView.identifier)
     }
@@ -98,14 +84,14 @@ final class SearchResultViewController: UIViewController {
     }
     
     private func layoutUI() {
-        self.view.backgroundColor = .background
+        view.backgroundColor = .background
         
-        self.view.addSubview(loadingIndicator)
+        view.addSubview(loadingIndicator)
         loadingIndicator.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
         
-        self.view.addSubview(collectionView)
+        view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top).inset(self.view.safeAreaInsets.top)
             make.leading.equalToSuperview()
@@ -138,10 +124,12 @@ final class SearchResultViewController: UIViewController {
             .modelSelected(SearchResultSectionItem.self)
             .observe(on: MainScheduler.instance)
             .subscribe { [weak self] sectionItem in
+                guard let delegate = self?.delegate else { return }
                 switch sectionItem {
                 case .eBookItem(let item):
-                    guard let delegate = self?.delegate else { return }
-                    delegate.didSelectedItem(itemId: item.id)
+                    delegate.dideBookSelectedItem(itemId: item.id)
+                case .bookshelf(let item):
+                    delegate.didBookshelfSelectedItem(itemId: item.id)
                 default:
                     break
                 }
@@ -163,7 +151,9 @@ final class SearchResultViewController: UIViewController {
         
         let output = viewModel.transform(input: .init(searchAction: merged,
                                                       typingAction: typingSubject,
-                                                      loadMoreAction: loadMoreSubject))
+                                                      loadMoreAction: loadMoreSubject,
+                                                      searchMylibraryAction: myLibraryAction,
+                                                      segmentAction: segmentAction))
         
         output.searchResult
             .drive(onNext: { [weak self] result in
@@ -172,34 +162,44 @@ final class SearchResultViewController: UIViewController {
                 self?.refreshControl.endRefreshing()
                 switch result {
                 case .success(let result):
-                    self?.emitDataSource(items: result.items, hasMore: result.hasMore)
+                    self?.segmentSelectedIndex = 0
+                    self?.sectionModelSubject.onNext(self?.emitDataEBookSource(items: result.items, hasMore: result.hasMore) ?? [])
+                    
                 case .failure(let error):
-                    Log.error("Error", error)
+                    self?.showAlert(message: error.localizedDescription)
                 }
             })
             .disposed(by: disposeBag)
         
-        output.restValues
+        output.resetValue
             .map { _ in
                 self.collectionView.isHidden
             }
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] value in
                 DispatchQueue.main.async {
-                    self?.emitDataSource(items: [], hasMore: false)
+                    self?.sectionModelSubject.onNext(self?.emitDataEBookSource(items: [], hasMore: false) ?? [])
                     self?.collectionView.isHidden = true
                 }
             })
             .disposed(by: disposeBag)
+        
+        output.mylibraryResult
+            .drive { [weak self]  (result: Swift.Result<MyLibrary,Error>) in
+                switch result {
+                case .success((let myLibrary)):
+                    self?.sectionModelSubject.onNext(self?.emitDataMylibrary(items: myLibrary.items) ?? [] )
+
+                case .failure(let error):
+                    self?.showAlert(message: error.localizedDescription)
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
-    private func emitDataSource(items: [EBook], hasMore: Bool) {
-        let segmentSection = SearchResultSectionModel.segmentSection
-        let ebookItemSection = SearchResultSectionModel.eBookItemSection(items: items.map {
-            SearchResultSectionItem.eBookItem(item: $0) })
-        let loadMoreSection = SearchResultSectionModel.loadMoreSection(item: hasMore ? [SearchResultSectionItem.loadMore] : [])
-        sectionModelSubject.onNext([segmentSection,ebookItemSection,loadMoreSection])
-    }
+
+    
+
     
     private func sectionReloadDataSource() -> RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel> {
         return RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel>(
@@ -216,16 +216,23 @@ final class SearchResultViewController: UIViewController {
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoadMoreCell.identifier, for: indexPath) as! LoadMoreCell
                     
                     return cell
+                    
+                case .bookshelf(item: let item):
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyLibrarayCell.identifier, for: indexPath) as! MyLibrarayCell
+                    cell.updateUI(libraryInfo: item)
+                    return cell
                 }
             },
             configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
                 switch indexPath.section {
                 case 0:
                     let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TopSegmentReuseableView.identifier, for: indexPath) as! TopSegmentReuseableView
+                    header.delegate = self
+                    header.segmentChangeAction(index: self.segmentSelectedIndex)
                     return header
                 case 1:
                     let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchResultResuableView.identifier, for: indexPath) as! SearchResultResuableView
-                    header.updateUI(type: .googlePlaySearchResult )
+                    header.updateUI(type: self.segmentSelectedIndex == 0 ? .googlePlaySearchResult : .myLibrarySearchResult )
                     return header
                 default:
                     return UICollectionReusableView()
@@ -237,6 +244,30 @@ extension SearchResultViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.section == 2 , indexPath.row == 0 {
             loadMoreSubject.onNext(())
+        }
+    }
+}
+
+extension SearchResultViewController: TopSegmentSegmentDelegate {
+
+    func stateChange(index: Int) {
+        self.segmentSelectedIndex = index
+        switch TopSegmentReuseableView.SegmentIndex(rawValue: index) {
+        case .eBook:
+            self.segmentAction.onNext(index)
+        case .myLibrary:
+            
+            if let googleInstance = GoogleManager.share.getGoogleInstance() {
+                let key = googleInstance.user.accessToken.tokenString
+                self.myLibraryAction.onNext(key)
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.segmentSelectedIndex = 0
+                    self.collectionView.reloadData()
+                }
+            }
+        case .none:
+            break
         }
     }
 }

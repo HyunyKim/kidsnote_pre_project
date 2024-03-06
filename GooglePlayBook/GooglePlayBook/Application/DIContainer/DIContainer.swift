@@ -44,6 +44,10 @@ final class DIContainer {
         self.container.register(BookViewModel.self) { resolver in
             BookViewModel()
         }
+        
+        self.container.register(BookshelfViewModel.self) { resolber in
+            BookshelfViewModel(useCase: resolber.resolve(SearchEBooksUseCase.self)!)
+        }
     }
     
     func regitst<T>(_ dependency: T) {
