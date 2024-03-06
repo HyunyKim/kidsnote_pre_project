@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class EBookInfoCell: UICollectionViewCell {
+final class EBookInfoCell: UICollectionViewCell {
     
     private var thumbNailImageView: UIImageView = {
        let imageView = UIImageView()

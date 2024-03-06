@@ -14,7 +14,7 @@ enum HeaderType {
 }
 
 protocol TopSegmentSegmentDelegate: AnyObject {
-    var selectedIndex: Int { get }
+    var segmentSelectedIndex: Int { get }
     func stateChange(index: Int)
 }
 
@@ -57,12 +57,16 @@ final class TopSegmentReuseableView: UICollectionReusableView {
         segmentControll.setTitleTextAttributes([.foregroundColor: UIColor(resource: .eLightGray)], for: .normal)
         segmentControll.setTitleTextAttributes([.foregroundColor: UIColor(resource: .eBlue), .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
         segmentControll.selectedSegmentIndex = 0
-        segmentControll.addTarget(self, action: #selector(semenetDidChange), for: .valueChanged)
+        segmentControll.addTarget(self, action: #selector(segmentDidChange), for: .valueChanged)
     }
     
-    @objc func semenetDidChange(_ sender: UISegmentedControl) {
+    @objc func segmentDidChange(_ sender: UISegmentedControl) {
         guard let delegate = delegate else { return }
         delegate.stateChange(index: sender.selectedSegmentIndex)
+    }
+    
+    func segmentChangeAction(index: Int) {
+        segmentControll.selectedSegmentIndex = (SegmentIndex(rawValue: index) ?? .eBook).rawValue
     }
 }
 

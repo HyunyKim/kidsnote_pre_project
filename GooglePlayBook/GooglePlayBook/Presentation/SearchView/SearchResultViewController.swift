@@ -40,12 +40,13 @@ final class SearchResultViewController: UIViewController {
     @Inject private var viewModel: SearchViewModel
     private var disposeBag = DisposeBag()
     private let loadMoreSubject = PublishSubject<Void>()
-    private let sectionModelSubject = BehaviorSubject<[SearchResultSectionModel]>(value: [])
     private let myLibraryAction = PublishSubject<String>()
+    private let segmentAction = PublishSubject<Int>()
+    private let sectionModelSubject = BehaviorSubject<[SearchResultSectionModel]>(value: [])
     let searchKeywordSubject = PublishSubject<String>()
     let typingSubject = PublishSubject<String>()
     weak var delegate: SearchResultVCDelegate?
-    var selectedIndex: Int = 0
+    var segmentSelectedIndex: Int = 0
     
     init(delegate: SearchResultVCDelegate?) {
         super.init(nibName: nil, bundle: nil)
@@ -87,6 +88,7 @@ final class SearchResultViewController: UIViewController {
     private func registerCell() {
         collectionView.register(EBookInfoCell.self, forCellWithReuseIdentifier: EBookInfoCell.identifier)
         collectionView.register(LoadMoreCell.self, forCellWithReuseIdentifier: LoadMoreCell.identifier)
+        collectionView.register(MyLibrarayCell.self, forCellWithReuseIdentifier: MyLibrarayCell.identifier)
         collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
         collectionView.register(TopSegmentReuseableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TopSegmentReuseableView.identifier)
     }
@@ -168,7 +170,8 @@ final class SearchResultViewController: UIViewController {
         let output = viewModel.transform(input: .init(searchAction: merged,
                                                       typingAction: typingSubject,
                                                       loadMoreAction: loadMoreSubject,
-                                                      searchMylibraryAction: myLibraryAction))
+                                                      searchMylibraryAction: myLibraryAction,
+                                                      segmentAction: segmentAction))
         
         output.searchResult
             .drive(onNext: { [weak self] result in
@@ -177,46 +180,52 @@ final class SearchResultViewController: UIViewController {
                 self?.refreshControl.endRefreshing()
                 switch result {
                 case .success(let result):
-                    self?.emitDataSource(items: result.items, hasMore: result.hasMore)
+                    self?.segmentSelectedIndex = 0
+                    self?.emitDataEBookSource(items: result.items, hasMore: result.hasMore)
                 case .failure(let error):
-                    Log.error("Error", error)
+                    self?.showAlert(message: error.localizedDescription)
                 }
             })
             .disposed(by: disposeBag)
         
-        output.restValues
+        output.resetValue
             .map { _ in
                 self.collectionView.isHidden
             }
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] value in
                 DispatchQueue.main.async {
-                    self?.emitDataSource(items: [], hasMore: false)
+                    self?.emitDataEBookSource(items: [], hasMore: false)
                     self?.collectionView.isHidden = true
                 }
             })
             .disposed(by: disposeBag)
         
         output.mylibraryResult
-            .asObservable()
-            .subscribe { (result: Swift.Result<MyLibrary,Error>) in
+            .drive { [weak self]  (result: Swift.Result<MyLibrary,Error>) in
                 switch result {
-                    
-                case .success((let items)):
-                    print("제발",items)
+                case .success((let myLibrary)):
+                    self?.emitDataMylibrary(items: myLibrary.items)
                 case .failure(let error):
-                    print("error",error)
+                    self?.showAlert(message: error.localizedDescription)
                 }
             }
             .disposed(by: disposeBag)
     }
     
-    private func emitDataSource(items: [EBook], hasMore: Bool) {
+    private func emitDataEBookSource(items: [EBook], hasMore: Bool) {
         let segmentSection = SearchResultSectionModel.segmentSection
         let ebookItemSection = SearchResultSectionModel.eBookItemSection(items: items.map {
             SearchResultSectionItem.eBookItem(item: $0) })
         let loadMoreSection = SearchResultSectionModel.loadMoreSection(item: hasMore ? [SearchResultSectionItem.loadMore] : [])
         sectionModelSubject.onNext([segmentSection,ebookItemSection,loadMoreSection])
+    }
+    
+    private func emitDataMylibrary(items:[Bookshelf]) {
+        let segmentSection = SearchResultSectionModel.segmentSection
+        let myLibrarySection = SearchResultSectionModel.myLibrarySection(item: items.map {
+            SearchResultSectionItem.bookshelf(item: $0) })
+        sectionModelSubject.onNext([segmentSection,myLibrarySection])
     }
     
     private func sectionReloadDataSource() -> RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel> {
@@ -234,6 +243,11 @@ final class SearchResultViewController: UIViewController {
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoadMoreCell.identifier, for: indexPath) as! LoadMoreCell
                     
                     return cell
+                    
+                case .bookshelf(item: let item):
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyLibrarayCell.identifier, for: indexPath) as! MyLibrarayCell
+                    cell.updateUI(libraryInfo: item)
+                    return cell
                 }
             },
             configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
@@ -241,10 +255,11 @@ final class SearchResultViewController: UIViewController {
                 case 0:
                     let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TopSegmentReuseableView.identifier, for: indexPath) as! TopSegmentReuseableView
                     header.delegate = self
+                    header.segmentChangeAction(index: self.segmentSelectedIndex)
                     return header
                 case 1:
                     let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchResultResuableView.identifier, for: indexPath) as! SearchResultResuableView
-                    header.updateUI(type: .googlePlaySearchResult )
+                    header.updateUI(type: self.segmentSelectedIndex == 0 ? .googlePlaySearchResult : .myLibrarySearchResult )
                     return header
                 default:
                     return UICollectionReusableView()
@@ -263,11 +278,12 @@ extension SearchResultViewController: UICollectionViewDelegate {
 extension SearchResultViewController: TopSegmentSegmentDelegate {
 
     func stateChange(index: Int) {
-        Log.debug("segmentselected", index)
+        self.segmentSelectedIndex = index
         switch TopSegmentReuseableView.SegmentIndex(rawValue: index) {
         case .eBook:
-            self.collectionView.isHidden = false
+            self.segmentAction.onNext(index)
         case .myLibrary:
+            
             if let googleInstance = self.delegate?.getGoogleInstance() {
                 let key = googleInstance.user.accessToken.tokenString
                 self.myLibraryAction.onNext(key)

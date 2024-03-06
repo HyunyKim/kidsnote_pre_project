@@ -14,15 +14,18 @@ import RxCocoa
 final class SearchViewModel: ViewModelType {
     typealias SearchResult = Swift.Result<(items:[EBook],hasMore: Bool),Error>
     typealias MyLibraryResult = Swift.Result<MyLibrary,Error>
+    
     struct Input {
         var searchAction: Observable<String>
         var typingAction: Observable<String>
         var loadMoreAction: Observable<Void>
         var searchMylibraryAction: Observable<String>
+        var segmentAction: Observable<Int>
     }
+    
     struct Output {
         var searchResult: Driver<SearchResult>
-        var restValues: Observable<Void>
+        var resetValue: Observable<Void>
         var mylibraryResult: Driver<MyLibraryResult>
     }
     
@@ -83,13 +86,17 @@ final class SearchViewModel: ViewModelType {
             .map { [weak self] _ in
                 SearchResult.success((self?.ebookItems ?? [], (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
             }
+        let showEbook = input.segmentAction
+            .map { [weak self] _ in
+                SearchResult.success((self?.ebookItems ?? [], (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
+            }
         
         let total = Observable<SearchResult>
-            .merge(result,loadMoreResult)
+            .merge(result,loadMoreResult,showEbook)
             .asDriver { error in
                     .just(.failure(error))
             }
-        return Output(searchResult: total,restValues: reset, mylibraryResult: myLibrary.asDriver(onErrorRecover: { error in
+        return Output(searchResult: total,resetValue: reset, mylibraryResult: myLibrary.asDriver(onErrorRecover: { error in
                 .just(.failure(error))
         }))
     }

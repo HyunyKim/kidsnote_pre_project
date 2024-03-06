@@ -13,9 +13,9 @@ extension UIViewController {
                     message: String,
                     buttonTitle: String = "확인",
                     button2Title: String? = nil,
-                    completion: (() -> Void)?,
-                    button1Completion:((UIAlertAction) -> Void)?,
-                    button2Completion:((UIAlertAction) -> Void)?) {
+                    completion: (() -> Void)? = nil,
+                    button1Completion:((UIAlertAction) -> Void)? = nil,
+                    button2Completion:((UIAlertAction) -> Void)? = nil ) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let button1 = UIAlertAction(title: buttonTitle, style: .default,handler: button1Completion)
