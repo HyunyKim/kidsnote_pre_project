@@ -10,7 +10,7 @@ import Foundation
 struct EBooksResponseDTO: Decodable {
     let kind: String
     let totalItems: Int
-    let items: [EBookDTO]
+    let items: [EBookDTO]?
 }
 
 extension EBooksResponseDTO {
@@ -44,10 +44,10 @@ extension EBooksResponseDTO.EBookDTO {
         let categories: [String]?
         let maturityRating: String?
         let imageLinks: ImageLinks?
-        let language: String
-        let previewLink: String
-        let infoLink: String
-        let canonicalVolumeLink: String
+        let language: String?
+        let previewLink: String?
+        let infoLink: String?
+        let canonicalVolumeLink: String?
         }
 }
 
@@ -122,7 +122,10 @@ extension EBooksResponseDTO.EBookDTO.AccessInfo {
 
 extension EBooksResponseDTO {
     func toDomain() -> EBooksContainer {
-        return .init(totalItems: totalItems, kind: kind, items: items.map({$0.toDomain()}))
+        guard let dtoBooks = items else {
+            return .init(totalItems: totalItems, kind: kind, items: [])
+        }
+        return .init(totalItems: totalItems, kind: kind, items: dtoBooks.map({$0.toDomain()}))
     }
 }
 

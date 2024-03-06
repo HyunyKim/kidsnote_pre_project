@@ -15,20 +15,12 @@ protocol BookCollectionViewLayout {
 }
 
 extension BookCollectionViewLayout {
+    
     func createListLayout() -> UICollectionViewLayout {
        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
                                                            layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
            
-           var itemHeight: CGFloat = 0.0
-           switch SearchResultSectionModel.sectionItem(index: sectionIndex) {
-           case .eBookItemSection(items: _):
-               itemHeight = 90.0
-           case .loadMoreSection(item: _):
-               itemHeight = 44.0
-           default:
-               break
-           }
-           let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(itemHeight))
+           let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(90))
            let item = NSCollectionLayoutItem(layoutSize: itemSize)
            let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
            let section = NSCollectionLayoutSection(group: group)
@@ -66,5 +58,4 @@ extension BookCollectionViewLayout {
             SearchResultSectionItem.eBookItem(item: $0) })
         return [ebookItemSection]
     }
-
 }

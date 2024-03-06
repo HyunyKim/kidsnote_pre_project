@@ -51,7 +51,11 @@ final class MyLibrarayCell: UICollectionViewCell {
     
     func updateUI(libraryInfo: Bookshelf) {
         self.titleLabel.text = libraryInfo.title ?? "UnKnown"
-        self.infoLabel.text = "\(libraryInfo.volumeCount ?? 0)"
+        if libraryInfo.title == "Have read" || libraryInfo.title == "To read" || libraryInfo.id > 1000 {
+            self.infoLabel.text = "\(libraryInfo.volumeCount ?? 0)"
+        } else {
+            self.infoLabel.text = ""
+        }
     }
     
     override func prepareForReuse() {
