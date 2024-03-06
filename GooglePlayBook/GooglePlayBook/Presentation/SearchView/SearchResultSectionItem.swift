@@ -20,6 +20,21 @@ enum SearchResultSectionModel {
     case eBookItemSection(items: [SearchResultSectionItem])
     case loadMoreSection(item: [SearchResultSectionItem])
     case myLibrarySection(item:[SearchResultSectionItem])
+    
+    static func sectionItem(index: Int) -> SearchResultSectionModel {
+        switch index {
+        case 0:
+            return SearchResultSectionModel.segmentSection
+        case 1:
+            return SearchResultSectionModel.eBookItemSection(items: [])
+        case 2:
+            return SearchResultSectionModel.loadMoreSection(item: [])
+        case 3:
+            return SearchResultSectionModel.myLibrarySection(item: [])
+        default:
+            return SearchResultSectionModel.segmentSection
+        }
+    }
 }
 
 extension SearchResultSectionModel: SectionModelType {

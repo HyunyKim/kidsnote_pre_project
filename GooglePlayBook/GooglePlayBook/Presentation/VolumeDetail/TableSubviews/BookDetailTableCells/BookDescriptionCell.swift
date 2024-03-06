@@ -12,7 +12,7 @@ final class BookDescriptionCell: UITableViewCell {
 
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.titleU()
+        label.titleUI()
         label.text = "책 정보"
         return label
     }()
