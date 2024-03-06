@@ -15,6 +15,7 @@ struct EBook: Equatable,Identifiable {
     let authors: [String]?
     let thumbNail: String?
     let isEBook: Bool?
+    let bookRating: Double?
 }
 
 struct EBooksContainer: Equatable {

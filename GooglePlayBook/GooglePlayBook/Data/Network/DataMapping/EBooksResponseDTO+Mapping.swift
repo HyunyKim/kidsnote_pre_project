@@ -132,7 +132,8 @@ extension EBooksResponseDTO.EBookDTO {
                      title: volumeInfo?.title,
                      authors: volumeInfo?.authors,
                      thumbNail: volumeInfo?.imageLinks?.smallThumbnail,
-                     isEBook: saleInfo?.isEbook)
+                     isEBook: saleInfo?.isEbook,
+                     bookRating: Double.random(in: 0...5))
     }
     func toDomain() -> BookDetailInfo {
         return .init(id: BookDetailInfo.Identifier(id),
@@ -146,6 +147,7 @@ extension EBooksResponseDTO.EBookDTO {
                      description: volumeInfo?.description,
                      publisher: volumeInfo?.publisher,
                      publishedDate: volumeInfo?.publishedDate,
-                     selfLink: selfLink)
+                     selfLink: selfLink,
+                     bookRating: Double.random(in: 0...5))
     }
 }

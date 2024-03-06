@@ -17,7 +17,6 @@ import GoogleSignIn
 protocol SearchResultVCDelegate: AnyObject {
     func dideBookSelectedItem(itemId: String)
     func didBookshelfSelectedItem(itemId: Int)
-    func getGoogleInstance() -> GIDSignInResult?
 }
 
 final class SearchResultViewController: UIViewController, BookCollectionViewLayout {
@@ -49,7 +48,7 @@ final class SearchResultViewController: UIViewController, BookCollectionViewLayo
     weak var delegate: SearchResultVCDelegate?
     var segmentSelectedIndex: Int = 0
     
-    init(delegate: SearchResultVCDelegate?) {
+    init(delegate: SearchResultVCDelegate) {
         super.init(nibName: nil, bundle: nil)
         self.delegate = delegate
     }
@@ -258,13 +257,13 @@ extension SearchResultViewController: TopSegmentSegmentDelegate {
             self.segmentAction.onNext(index)
         case .myLibrary:
             
-            if let googleInstance = self.delegate?.getGoogleInstance() {
+            if let googleInstance = GoogleManager.share.getGoogleInstance() {
                 let key = googleInstance.user.accessToken.tokenString
                 self.myLibraryAction.onNext(key)
             } else {
-                self.showAlert(message: "Google Login이 필요합니다") {[weak self] in
-                    self?.segmentSelectedIndex = 0
-                    self?.collectionView.reloadData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.segmentSelectedIndex = 0
+                    self.collectionView.reloadData()
                 }
             }
         case .none:

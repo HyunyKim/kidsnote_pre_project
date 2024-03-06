@@ -11,6 +11,10 @@ import RxSwift
 import SnapKit
 import GoogleSignIn
 
+//protocol GoogleLoginDelegate: AnyObject {
+//    func getGoogleInstance() -> GIDSignInResult?
+//}
+
 final class MainViewController: UIViewController {
     //UIComponents
     private lazy var searchController: UISearchController = {
@@ -33,11 +37,10 @@ final class MainViewController: UIViewController {
     }()
     
     //Variables
-    private var googleResult: GIDSignInResult? = nil
     private var typeingKeyword: String = ""
     private var typingSubject = PublishSubject<String>()
     private var disposeBag = DisposeBag()
-    private let scopeURLString = "https://www.googleapis.com/auth/books"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +59,7 @@ final class MainViewController: UIViewController {
             make.width.equalTo(200)
             make.center.equalToSuperview()
         }
-        googleButton.addTarget(self, action: #selector(googleLogin), for: .touchUpInside)
+        googleButton.addTarget(self, action: #selector(googleLoginAction), for: .touchUpInside)
     }
     
     private func configureSearchBar() {
@@ -78,49 +81,8 @@ final class MainViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    @objc private func googleLogin(sender: UIControl) {
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) {[weak self] result, error in
-            guard error == nil else {
-                print("error",error ?? "")
-                return
-            }
-            self?.googleResult = result
-            self?.additionalScope()
-        }
-    }
-    
-    private func additionalScope() {
-        if let googleInstance = googleResult {
-            let driveScope = scopeURLString
-            let grantedScopes = googleInstance.user.grantedScopes
-            if grantedScopes == nil || !grantedScopes!.contains(driveScope) {
-                self.refreshCheck()
-            }
-            let additionalScopes = [scopeURLString]
-
-            googleInstance.user.addScopes(additionalScopes, presenting: self) {[weak self] signInResult, error in
-                guard error == nil else {
-                    return
-                }
-                guard let signInResult = signInResult else { return }
-                self?.googleResult = signInResult
-
-                // Check if the user granted access to the scopes you requested.
-                
-            }
-        }
-    }
-    
-    func refreshCheck() {
-        if let googleInstance = self.googleResult {
-            googleInstance.user.refreshTokensIfNeeded { user, error in
-                guard error == nil else { return }
-                guard let user = user else { return }
-                let accessToken = user.accessToken.tokenString
-                let authorizer = googleInstance.user.fetcherAuthorizer
-                print("check ",googleInstance.user.accessToken.tokenString, accessToken,authorizer)
-            }
-        }
+    @objc private func googleLoginAction(_ sender: UIControl) {
+        GoogleManager.share.googleLogin()
     }
 }
 
@@ -143,15 +105,12 @@ extension MainViewController: SearchResultVCDelegate {
     }
     
     func didBookshelfSelectedItem(itemId: Int) {
-        guard let instance = self.googleResult else {
-            self.showAlert(message: "Google Login이 필요합니다")
+        guard let instance = GoogleManager.share.getGoogleInstance() else {
             return
         }
         let shelfVC = BookshelfViewController(shelfId: itemId, googleResult: instance)
         self.navigationController?.pushViewController(shelfVC, animated: true)
     }
     
-    func getGoogleInstance() -> GIDSignInResult? {
-        return self.googleResult
-    }
+
 }

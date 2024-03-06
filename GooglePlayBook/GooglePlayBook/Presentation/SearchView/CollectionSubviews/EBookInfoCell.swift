@@ -109,7 +109,8 @@ final class EBookInfoCell: UICollectionViewCell {
         titleLabel.text = ebook.title
         authorInfoLabel.text = ebook.authors?.reduce("",+)
         typeLabel.text = (ebook.isEBook ?? false) ? "eBook" : ""
-        starRatingLabel.text = "별"
+        let value = ebook.bookRating ?? 0
+        starRatingLabel.text = String(format: "%0.1f \(String.ratingValue(rating: value))", value)
         if let urlString = ebook.thumbNail {
             thumbNailImageView.setImage(urlString: urlString)
         } else {

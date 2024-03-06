@@ -80,6 +80,7 @@
 		53F2800C2B94A6C800E073D4 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F2800B2B94A6C800E073D4 /* ImageDownloader.swift */; };
 		53F2800E2B94BC0700E073D4 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F2800D2B94BC0700E073D4 /* URL+Extension.swift */; };
 		53F280102B94C27B00E073D4 /* GooglePlayBookImageDownloaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F2800F2B94C27B00E073D4 /* GooglePlayBookImageDownloaderTest.swift */; };
+		53FC090A2B98D09200E577E0 /* GoogleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC09092B98D09200E577E0 /* GoogleManager.swift */; };
 		53FEB16F2B98308000663C69 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FEB16E2B98308000663C69 /* UIViewController+Extension.swift */; };
 		53FF93AB2B90CDBA0026E946 /* EBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AA2B90CDBA0026E946 /* EBook.swift */; };
 		53FF93AE2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */; };
@@ -165,6 +166,7 @@
 		53F2800B2B94A6C800E073D4 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		53F2800D2B94BC0700E073D4 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		53F2800F2B94C27B00E073D4 /* GooglePlayBookImageDownloaderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBookImageDownloaderTest.swift; sourceTree = "<group>"; };
+		53FC09092B98D09200E577E0 /* GoogleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleManager.swift; sourceTree = "<group>"; };
 		53FEB16E2B98308000663C69 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		53FF93AA2B90CDBA0026E946 /* EBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBook.swift; sourceTree = "<group>"; };
 		53FF93AD2B90D5010026E946 /* EBooksResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EBooksResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
@@ -227,11 +229,11 @@
 		535770BD2B931B7D007EBCE4 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
+				530420C32B9885A0000D31CD /* BookCollectionViewLayout.swift */,
 				535770C92B9388D1007EBCE4 /* CollectionSubviews */,
 				535770CE2B9391E8007EBCE4 /* SearchResultSectionItem.swift */,
 				535770C52B937A00007EBCE4 /* SearchViewModel.swift */,
 				535770BB2B931B78007EBCE4 /* SearchResultViewController.swift */,
-				530420C32B9885A0000D31CD /* BookCollectionViewLayout.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -312,6 +314,7 @@
 				535770B32B930963007EBCE4 /* DIContainer */,
 				53653EE92B9087F9005454C1 /* AppDelegate.swift */,
 				53653EEB2B9087F9005454C1 /* SceneDelegate.swift */,
+				53FC09092B98D09200E577E0 /* GoogleManager.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				530420C22B988258000D31CD /* BookshelfViewModel.swift in Sources */,
 				53F2800E2B94BC0700E073D4 /* URL+Extension.swift in Sources */,
 				53EC38392B9598A00049F42A /* BookInfoUseCase.swift in Sources */,
+				53FC090A2B98D09200E577E0 /* GoogleManager.swift in Sources */,
 				53D7B5062B95ECB3000895C1 /* BookRatingInfoCell.swift in Sources */,
 				53653EEC2B9087F9005454C1 /* SceneDelegate.swift in Sources */,
 				535770BC2B931B78007EBCE4 /* SearchResultViewController.swift in Sources */,
@@ -897,6 +901,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZP2DUBL9ML;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GooglePlayBook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -927,6 +932,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZP2DUBL9ML;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GooglePlayBook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
