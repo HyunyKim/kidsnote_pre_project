@@ -39,7 +39,7 @@ final class SearchResultViewController: UIViewController, BookCollectionViewLayo
     // Variable
     @Inject private var viewModel: SearchViewModel
     private var disposeBag = DisposeBag()
-    private let loadMoreSubject = PublishSubject<Void>()
+    private let loadMoreSubject = PublishSubject<Int>()
     private let myLibraryAction = PublishSubject<String>()
     private let segmentAction = PublishSubject<Int>()
     private let sectionModelSubject = BehaviorSubject<[SearchResultSectionModel]>(value: [])
@@ -162,9 +162,9 @@ final class SearchResultViewController: UIViewController, BookCollectionViewLayo
                 self?.collectionView.isHidden = false
                 self?.refreshControl.endRefreshing()
                 switch result {
-                case .success(let result):
+                case .success(let items):
                     self?.segmentSelectedIndex = 0
-                    self?.sectionModelSubject.onNext(self?.emitDataEBookSource(items: result.items, hasMore: result.hasMore) ?? [])
+                    self?.sectionModelSubject.onNext(self?.emitDataEBookSource(items: items.items, hasMore: items.hasMore) ?? [])
                     
                 case .failure(let error):
                     self?.showAlert(message: error.localizedDescription)
@@ -241,8 +241,8 @@ final class SearchResultViewController: UIViewController, BookCollectionViewLayo
 }
 extension SearchResultViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.section == 2 , indexPath.row == 0 {
-            loadMoreSubject.onNext(())
+        if cell.isKind(of: LoadMoreCell.self) {
+            loadMoreSubject.onNext(indexPath.item)
         }
     }
 }

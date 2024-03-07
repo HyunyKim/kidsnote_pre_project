@@ -53,7 +53,7 @@ extension BookCollectionViewLayout {
         return [segmentSection,myLibrarySection]
     }
     
-    func emitDataBookShelf(items:[EBook]) -> [SearchResultSectionModel] {
+    func emitDataBookShelf(items:[EBook],hasMore: Bool) -> [SearchResultSectionModel] {
         let ebookItemSection = SearchResultSectionModel.eBookItemSection(
             items: items.isEmpty ? [.emptyView] :items.map { SearchResultSectionItem.eBookItem(item: $0) })
         return [ebookItemSection]

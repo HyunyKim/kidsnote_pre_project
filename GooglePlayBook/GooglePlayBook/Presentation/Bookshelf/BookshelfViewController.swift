@@ -25,6 +25,7 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     private var googleInstance: GIDSignInResult
     private var disposeBag = DisposeBag()
     private var requestAction = PublishSubject<(key: String, shelfId: Int)>()
+    private let loadMoreAction = PublishSubject<Int>()
     private let sectionModelSubject = BehaviorSubject<[SearchResultSectionModel]>(value: [])
     private var shelfTitle: String
     @Inject var viewModel: BookshelfViewModel
@@ -101,6 +102,10 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
             .disposed(by: disposeBag)
         
         collectionView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        collectionView.rx
             .modelSelected(SearchResultSectionItem.self)
             .observe(on: MainScheduler.instance)
             .subscribe {[weak self] item in
@@ -115,13 +120,13 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     }
     
     private func bindingViewModel() {
-        let output = viewModel.transform(input: .init(getShelfAction: requestAction))
+        let output = viewModel.transform(input: .init(getShelfAction: requestAction,loadMoreAction: loadMoreAction))
         
         output.volumeList
             .drive { [weak self] result in
                 switch result {
                 case .success(let items):
-                    self?.sectionModelSubject.onNext(self?.emitDataBookShelf(items: items) ?? [])
+                    self?.sectionModelSubject.onNext(self?.emitDataEBookSource(items: items.items, hasMore: items.hasMore) ?? [])
                 case .failure(let error):
                     self?.showAlert(message: error.localizedDescription)
                 }
@@ -142,6 +147,9 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCell.identifier, for: indexPath) as! EmptyCell
                     cell.updateTitle(title: "서가에 책이 없습니다")
                     return cell
+                case .loadMore:
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoadMoreCell.identifier, for: indexPath) as! LoadMoreCell
+                    return cell
                 default:
                     return UICollectionViewCell()
                 }
@@ -157,7 +165,14 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     private func goBookDetail(itemId: String) {
         let detaiVC = BookDetailViewController(bookId: itemId)
         self.navigationController?.pushViewController(detaiVC, animated: true)
-
+        
     }
- 
+}
+
+extension BookshelfViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if cell.isKind(of: LoadMoreCell.self) {
+            self.loadMoreAction.onNext(indexPath.item)
+        }
+    }
 }

@@ -54,6 +54,8 @@ Mylibrary.bookshelves - https://www.googleapis.com/books/v1/mylibrary/bookshelve
  ![image5](GooglePlayBook/GooglePlayBook/Resource/5.png)|![image6](GooglePlayBook/GooglePlayBook/Resource/6.png)|![image7](GooglePlayBook/GooglePlayBook/Resource/7.png)|Web Google Books|
 --- | --- | --- |  -- |
 
+
+
 ### 2/29일
 - 폴더구조/ 프로젝트 생성 / 요구사항정리
 - Entity DTO 정리, Test 추가

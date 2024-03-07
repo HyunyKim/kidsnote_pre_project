@@ -17,7 +17,7 @@ final class SearchViewModel: ViewModelType {
     struct Input {
         var searchAction        : Observable<String>
         var typingAction        : Observable<String>
-        var loadMoreAction      : Observable<Void>
+        var loadMoreAction      : Observable<Int>
         var searchMylibraryAction: Observable<String>
         var segmentAction       : Observable<Int>
     }
@@ -33,7 +33,7 @@ final class SearchViewModel: ViewModelType {
     private var currentKeyword: String
     private var totalItems    : Int
     private var ebookItems    : [EBook]
-    private var endfPage      : Bool = false
+    private var endOfPage      : Bool = false
     
     init(useCase: SearchEBooksUseCase, libraryuseCase: MyLibraryUseCase, currentKeyword: String = "", totalItems: Int = 0, ebookItems: [EBook] = []) {
         self.useCase        = useCase
@@ -62,7 +62,7 @@ final class SearchViewModel: ViewModelType {
         let reset = input.typingAction
             .do { [weak self] _ in
                 self?.currentKeyword = ""
-                self?.endfPage = false
+                self?.endOfPage = false
                 self?.ebookItems.removeAll()
             }.flatMapLatest { _ -> Observable<Void> in
                 return .just(())
@@ -71,7 +71,8 @@ final class SearchViewModel: ViewModelType {
         let result = input.searchAction
             .do { [weak self] keyword in
                 self?.currentKeyword = keyword
-                self?.endfPage = false
+                self?.totalItems = 0
+                self?.endOfPage = false
                 self?.ebookItems.removeAll()
             }
             .flatMapLatest { [weak self] keyword -> Observable<EBooksContainer> in
@@ -82,10 +83,11 @@ final class SearchViewModel: ViewModelType {
                 self?.totalItems = result.totalItems
                 self?.ebookItems = result.items
             }.map { [weak self] _ in
-                SearchResult.success((self?.ebookItems ?? [], (self?.endfPage == true) ? false : (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
+                SearchResult.success((self?.ebookItems ?? [], (self?.endOfPage == true) ? false : (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
             }
         
         let loadMoreResult = input.loadMoreAction
+            .distinctUntilChanged()
             .flatMapLatest { [weak self] _ -> Observable<EBooksContainer>  in
                 guard let self = self else { return .empty()}
                 return self.searchRequest(keyword: self.currentKeyword)
@@ -95,12 +97,12 @@ final class SearchViewModel: ViewModelType {
                 self?.ebookItems.append(contentsOf: result.items)
             }
             .map { [weak self] _ in
-                SearchResult.success((self?.ebookItems ?? [], (self?.endfPage == true) ? false : (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
+                SearchResult.success((self?.ebookItems ?? [], (self?.endOfPage == true) ? false : (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
             }
         
         let showEbook = input.segmentAction
             .map { [weak self] _ in
-                SearchResult.success((self?.ebookItems ?? [], (self?.endfPage == true) ? false : (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
+                SearchResult.success((self?.ebookItems ?? [], (self?.endOfPage == true) ? false : (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
             }
         
         let total = Observable<SearchResult>
@@ -128,7 +130,7 @@ final class SearchViewModel: ViewModelType {
             let cancelable = self.useCase.requestItems(query: query) { result in
                 switch result {
                 case .success(let container):
-                    self.endfPage = !(container.items.count > 0)
+                    self.endOfPage = !(container.items.count > 0)
                     observer.onNext(container)
                     Log.network("totalCount", container.totalItems,container.items.count)
                 case .failure(let error):
