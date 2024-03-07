@@ -14,8 +14,9 @@ final class GooglePlayBookUseCaseTest: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         DIContainer.shared.defaultContainer()
-        DIContainer.shared.regitst(MockEbookItemsRepository() as EBookItemsRepository)
-        DIContainer.shared.regitst(MockBookInfoRepository() as BookInfoRepository)
+        DIContainer.shared.register(MockEbookItemsRepository() as EBookItemsRepository)
+        DIContainer.shared.register(MockBookInfoRepository() as BookInfoRepository)
+        DIContainer.shared.register(MockMyLibraryRepository() as MyLibraryRepository)
         self.useCase = DIContainer.shared.resolve()
         self.query = SearchQuery(q: "Swift",maxResults: 2)
     }
@@ -66,7 +67,26 @@ final class GooglePlayBookUseCaseTest: XCTestCase {
             return
         }
         XCTAssertEqual(info.title, "Swift Development with Cocoa", "Json - Object - Transform에 데이터가 맞아야 한다.")
+    }
+    
+    func testMyLibraryUseCase() throws {
+        @Inject var mLUsecase: MyLibraryUseCase
+        let expectation = XCTestExpectation(description: "mylibraryTestCase")
+        var myLibrary: MyLibrary?
+        let _ = mLUsecase.requestMylibrary(key: "") { result in
+            switch result {
+            case .success(let library):
+                XCTAssertNotNil(library, "Mock데이터")
+                myLibrary = library
+            case .failure(let error):
+                XCTAssertFalse(true, "Mock데이터에서 실패해서는 안된다 \(error.localizedDescription)")
+            }
+            expectation.fulfill()
+        }
         
+        wait(for: [expectation],timeout: 5)
+        XCTAssertNotNil(myLibrary,"Mock데이 읽어온 값이 제대로 전달되어야 한다")
+        XCTAssertEqual(myLibrary?.items.first?.title ?? "", "My Google eBooks","Json - Object - Transform에 데이터가 맞아야 한다.")
     }
 
     func testPerformanceExample() throws {

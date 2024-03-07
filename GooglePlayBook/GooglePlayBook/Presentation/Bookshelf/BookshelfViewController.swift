@@ -82,7 +82,9 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     private func layoutUI() {
         view.backgroundColor = .background
         navigationItem.title = shelfTitle
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backAction))
+        let barbuttonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backAction))
+        barbuttonItem.tintColor = .textColor1
+        navigationItem.leftBarButtonItem = barbuttonItem
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in

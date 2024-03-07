@@ -1,0 +1,969 @@
+{
+  "kind": "books#volumes",
+  "totalItems": 12,
+  "items": [
+    {
+      "kind": "books#volume",
+      "id": "86F2EAAAQBAJ",
+      "etag": "soQIdgLuPoc",
+      "selfLink": "https://content-books.googleapis.com/books/v1/volumes/86F2EAAAQBAJ",
+      "volumeInfo": {
+        "title": "프로그래머를 위한 파이썬",
+        "subtitle": "실전 프로젝트로 배우는 소프트웨어 개발의 원리와 정석",
+        "authors": [
+          "데인 힐라드 (Dane Hillard)"
+        ],
+        "publisher": "제이펍",
+        "publishedDate": "2022-06-22",
+        "description": "자신의 작업을 개선하고자 하는 모든 프로그래머를 위하여! 전문가 수준의 코드는 버그 없이 실행되는 것 이상을 의미한다. 코드가 깔끔해야 하며, 가독성이 좋아야 하고, 유지보수하기 쉬워야 한다. 실력 있는 파이썬 프로그래머에서 전문 개발자로 발돋움하기 위 ...",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9791192469164"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 280,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=86F2EAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=86F2EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "previewLink": "http://books.google.co.kr/books?id=86F2EAAAQBAJ&printsec=frontcover&hl=&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=86F2EAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=86F2EAAAQBAJ"
+      },
+      "userInfo": {
+        "updated": "2024-03-07T08:01:07.924Z"
+      },
+      "saleInfo": {
+        "country": "KR",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 17500,
+          "currencyCode": "KRW"
+        },
+        "retailPrice": {
+          "amount": 15750,
+          "currencyCode": "KRW"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=86F2EAAAQBAJ&rdid=book-86F2EAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 17500000000,
+              "currencyCode": "KRW"
+            },
+            "retailPrice": {
+              "amountInMicros": 15750000000,
+              "currencyCode": "KRW"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "KR",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EB%A5%BC_%EC%9C%84%ED%95%9C_%ED%8C%8C%EC%9D%B4%EC%8D%AC-sample-pdf.acsm?id=86F2EAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=86F2EAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "J1XpEAAAQBAJ",
+      "etag": "KVgSDtYmpzg",
+      "selfLink": "https://content-books.googleapis.com/books/v1/volumes/J1XpEAAAQBAJ",
+      "volumeInfo": {
+        "title": "핵심만 골라 배우는 SwiftUI 기반의 iOS 프로그래밍(개정증보판)",
+        "subtitle": "SwiftUI, Xcode, 스위프트 언어로 iOS 앱 개발하기",
+        "authors": [
+          "닐 스미스 (Neil Smyth)"
+        ],
+        "publisher": "제이펍",
+        "publishedDate": "2023-12-14",
+        "description": "iOS 앱 개발 환경 구축부터 앱 스토어 업로드까지 한 권으로 끝내자 iOS 애플리케이션 개발을 위한 방법으로 SwiftUI만 있는 것은 아니지만, SwiftUI는 가장 최근에 발표된 현대적인 프레임워크로 비교적 단순하고 더욱 진보한 앱 빌더 기술이다. 애플에서도 처음 ...",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9791192987811"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 683,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "0.0.1.0.preview.1",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=J1XpEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=J1XpEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "previewLink": "http://books.google.co.kr/books?id=J1XpEAAAQBAJ&printsec=frontcover&hl=&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=J1XpEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=J1XpEAAAQBAJ"
+      },
+      "userInfo": {
+        "updated": "2024-03-07T05:54:29.440Z"
+      },
+      "saleInfo": {
+        "country": "KR",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 23100,
+          "currencyCode": "KRW"
+        },
+        "retailPrice": {
+          "amount": 20790,
+          "currencyCode": "KRW"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=J1XpEAAAQBAJ&rdid=book-J1XpEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 23100000000,
+              "currencyCode": "KRW"
+            },
+            "retailPrice": {
+              "amountInMicros": 20790000000,
+              "currencyCode": "KRW"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "KR",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%ED%95%B5%EC%8B%AC%EB%A7%8C_%EA%B3%A8%EB%9D%BC_%EB%B0%B0%EC%9A%B0%EB%8A%94_SwiftUI_%EA%B8%B0-sample-pdf.acsm?id=J1XpEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=J1XpEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "fVpZEAAAQBAJ",
+      "etag": "3yqbz6omiqM",
+      "selfLink": "https://content-books.googleapis.com/books/v1/volumes/fVpZEAAAQBAJ",
+      "volumeInfo": {
+        "title": "영어고전389 조너선 스위프트 산문집Ⅶ(English Classics389 The Prose Works of Jonathan Swift, D.D. — Volume 07 by Jonathan Swift)",
+        "authors": [
+          "조너선 스위프트(Jonathan Swift)"
+        ],
+        "publisher": "테마여행신문 TTN Theme Travel News Korea",
+        "publishedDate": "2022-01-15",
+        "description": "Swift took up his permanent residence in the Irish capital in 1714. The Harley Administration had fallen never to rise again. Harley himself was a prisoner in the Tower, and Bolingbroke a voluntary exile in France, and an open adherent of the ...",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9791168052222"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 957,
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=fVpZEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=fVpZEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "previewLink": "http://books.google.co.kr/books?id=fVpZEAAAQBAJ&printsec=frontcover&hl=&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=fVpZEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=fVpZEAAAQBAJ"
+      },
+      "layerInfo": {
+        "layers": [
+          {
+            "layerId": "geo",
+            "volumeAnnotationsVersion": "3"
+          }
+        ]
+      },
+      "userInfo": {
+        "updated": "2024-03-07T02:34:39.786Z"
+      },
+      "saleInfo": {
+        "country": "KR",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 9900,
+          "currencyCode": "KRW"
+        },
+        "retailPrice": {
+          "amount": 8910,
+          "currencyCode": "KRW"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=fVpZEAAAQBAJ&rdid=book-fVpZEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 9900000000,
+              "currencyCode": "KRW"
+            },
+            "retailPrice": {
+              "amountInMicros": 8910000000,
+              "currencyCode": "KRW"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "KR",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%EC%98%81%EC%96%B4%EA%B3%A0%EC%A0%84389_%EC%A1%B0%EB%84%88%EC%84%A0_%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-sample-epub.acsm?id=fVpZEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%EC%98%81%EC%96%B4%EA%B3%A0%EC%A0%84389_%EC%A1%B0%EB%84%88%EC%84%A0_%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-sample-pdf.acsm?id=fVpZEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=fVpZEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "Z1pZEAAAQBAJ",
+      "etag": "gIIQQvT/d8A",
+      "selfLink": "https://content-books.googleapis.com/books/v1/volumes/Z1pZEAAAQBAJ",
+      "volumeInfo": {
+        "title": "영어고전386 조너선 스위프트 산문집Ⅲ(English Classics386 The Prose Works of Jonathan Swift, D.D. — Volume 03 by Jonathan Swift)",
+        "authors": [
+          "조너선 스위프트(Jonathan Swift)"
+        ],
+        "publisher": "테마여행신문 TTN Theme Travel News Korea",
+        "publishedDate": "2022-01-15",
+        "description": "The inquiry into the religious thought of the eighteenth century forms one of the most interesting subjects for speculation in the history of the intellectual development of western nations. It is true, that in that history Swift takes no special ...",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9791168052192"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 970,
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=Z1pZEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=Z1pZEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "previewLink": "http://books.google.co.kr/books?id=Z1pZEAAAQBAJ&printsec=frontcover&hl=&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=Z1pZEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=Z1pZEAAAQBAJ"
+      },
+      "layerInfo": {
+        "layers": [
+          {
+            "layerId": "geo",
+            "volumeAnnotationsVersion": "3"
+          }
+        ]
+      },
+      "userInfo": {
+        "updated": "2024-03-07T02:34:29.223Z"
+      },
+      "saleInfo": {
+        "country": "KR",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 9900,
+          "currencyCode": "KRW"
+        },
+        "retailPrice": {
+          "amount": 8910,
+          "currencyCode": "KRW"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=Z1pZEAAAQBAJ&rdid=book-Z1pZEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 9900000000,
+              "currencyCode": "KRW"
+            },
+            "retailPrice": {
+              "amountInMicros": 8910000000,
+              "currencyCode": "KRW"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "KR",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%EC%98%81%EC%96%B4%EA%B3%A0%EC%A0%84386_%EC%A1%B0%EB%84%88%EC%84%A0_%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-sample-epub.acsm?id=Z1pZEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%EC%98%81%EC%96%B4%EA%B3%A0%EC%A0%84386_%EC%A1%B0%EB%84%88%EC%84%A0_%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-sample-pdf.acsm?id=Z1pZEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=Z1pZEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "1YS5DwAAQBAJ",
+      "etag": "NOf890sSTM0",
+      "selfLink": "https://content-books.googleapis.com/books/v1/volumes/1YS5DwAAQBAJ",
+      "volumeInfo": {
+        "title": "스위프트 프로그래밍(3판)",
+        "subtitle": "객체지향, 함수형, 프로토콜 지향 패러다임까지 한 번에!(Swift 5)",
+        "authors": [
+          "야곰"
+        ],
+        "publisher": "한빛미디어 ",
+        "publishedDate": "2019-10-25",
+        "description": "문법을 넘어 프로그래밍 패러다임도 익히는 스위프트 5 스위프트 5의 핵심 키워드는 ‘안정화’다. ABI 안정화 덕분에 버전과 환경에 크게 영향받지 않고 더 유연하게 스위프트를 사용할 수 있게 되었다. 최신 패러다임과 다양한 언어의 기능을 흡수하여 언어 전반에 ...",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9791162248331"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 578,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "averageRating": 4,
+        "ratingsCount": 1,
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=1YS5DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=1YS5DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "previewLink": "http://books.google.co.kr/books?id=1YS5DwAAQBAJ&printsec=frontcover&hl=&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=1YS5DwAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=1YS5DwAAQBAJ"
+      },
+      "userInfo": {
+        "updated": "2024-03-07T02:34:20.434Z"
+      },
+      "saleInfo": {
+        "country": "KR",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 25600,
+          "currencyCode": "KRW"
+        },
+        "retailPrice": {
+          "amount": 23040,
+          "currencyCode": "KRW"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=1YS5DwAAQBAJ&rdid=book-1YS5DwAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 25600000000,
+              "currencyCode": "KRW"
+            },
+            "retailPrice": {
+              "amountInMicros": 23040000000,
+              "currencyCode": "KRW"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "KR",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_3%ED%8C%90-sample-pdf.acsm?id=1YS5DwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=1YS5DwAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "HDUtEAAAQBAJ",
+      "etag": "AlVLrJjGiF8",
+      "selfLink": "https://content-books.googleapis.com/books/v1/volumes/HDUtEAAAQBAJ",
+      "volumeInfo": {
+        "title": "영어고전092 조너선 스위프트의 걸리버 여행기(English Classics092 Gulliver's Travels into Several Remote Nations of the World by Jonathan Swift)",
+        "authors": [
+          "조너선 스위프트(Jonathan Swift)"
+        ],
+        "publisher": "테마여행신문 TTN Theme Travel News Korea",
+        "publishedDate": "2021-05-09",
+        "description": "세상에서 가장 위험한 소설?! 걸리버 여행기(Gulliver's Travels into Several Remote Nations of the World)(1726) : 걸리버 여행기(Gulliver's Travels into Several Remote Nations of the World)(1726)는 작가가 리처드 심프슨(Richard Sympson)이란 필명으로 ...",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9791158849160"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 655,
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=HDUtEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=HDUtEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "previewLink": "http://books.google.co.kr/books?id=HDUtEAAAQBAJ&printsec=frontcover&hl=&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=HDUtEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=HDUtEAAAQBAJ"
+      },
+      "layerInfo": {
+        "layers": [
+          {
+            "layerId": "geo",
+            "volumeAnnotationsVersion": "3"
+          }
+        ]
+      },
+      "userInfo": {
+        "updated": "2024-03-07T02:29:57.692Z"
+      },
+      "saleInfo": {
+        "country": "KR",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 9900,
+          "currencyCode": "KRW"
+        },
+        "retailPrice": {
+          "amount": 8910,
+          "currencyCode": "KRW"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=HDUtEAAAQBAJ&rdid=book-HDUtEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 9900000000,
+              "currencyCode": "KRW"
+            },
+            "retailPrice": {
+              "amountInMicros": 8910000000,
+              "currencyCode": "KRW"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "KR",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%EC%98%81%EC%96%B4%EA%B3%A0%EC%A0%84092_%EC%A1%B0%EB%84%88%EC%84%A0_%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-sample-epub.acsm?id=HDUtEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%EC%98%81%EC%96%B4%EA%B3%A0%EC%A0%84092_%EC%A1%B0%EB%84%88%EC%84%A0_%EC%8A%A4%EC%9C%84%ED%94%84%ED%8A%B8-sample-pdf.acsm?id=HDUtEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=HDUtEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "oVoGDQAAQBAJ",
+      "etag": "qJZuX1FqWVk",
+      "selfLink": "https://content-books.googleapis.com/books/v1/volumes/oVoGDQAAQBAJ",
+      "volumeInfo": {
+        "title": "[연재] 뉴 에이지 123화",
+        "authors": [
+          "밀우"
+        ],
+        "publisher": "도서출판 청어람",
+        "publishedDate": "2015-01-12",
+        "description": "서기 20XX년, 판타지의 침략이 시작된다! 의욕없는 나날을 보내던 전직 특수부대요원, 강일. 어느날 의문의 사건을 만난다. \"우리의 세계는 멸망하고 있어요!\" 드래곤, 엘프, 오크, 마법사……. 책으로만 접하던 환상의 존재가 현실에 나타난다면? 지구 VS 판타지 ...",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "PKEY:CB0002998"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=oVoGDQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=oVoGDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "previewLink": "http://books.google.co.kr/books?id=oVoGDQAAQBAJ&printsec=frontcover&hl=&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=oVoGDQAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=oVoGDQAAQBAJ"
+      },
+      "layerInfo": {
+        "layers": [
+          {
+            "layerId": "geo",
+            "volumeAnnotationsVersion": "2"
+          }
+        ]
+      },
+      "userInfo": {
+        "updated": "2024-03-07T02:27:14.959Z"
+      },
+      "saleInfo": {
+        "country": "KR",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 100,
+          "currencyCode": "KRW"
+        },
+        "retailPrice": {
+          "amount": 90,
+          "currencyCode": "KRW"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=oVoGDQAAQBAJ&rdid=book-oVoGDQAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 100000000,
+              "currencyCode": "KRW"
+            },
+            "retailPrice": {
+              "amountInMicros": 90000000,
+              "currencyCode": "KRW"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "KR",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%EC%97%B0%EC%9E%AC_%EB%89%B4_%EC%97%90%EC%9D%B4%EC%A7%80_123%ED%99%94-sample-epub.acsm?id=oVoGDQAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%EC%97%B0%EC%9E%AC_%EB%89%B4_%EC%97%90%EC%9D%B4%EC%A7%80_123%ED%99%94-sample-pdf.acsm?id=oVoGDQAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=oVoGDQAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "SOrfEAAAQBAJ",
+      "etag": "ce9Xh31yYTg",
+      "selfLink": "https://content-books.googleapis.com/books/v1/volumes/SOrfEAAAQBAJ",
+      "volumeInfo": {
+        "title": "[연재] 능력을 빼앗아 성장하는 탐정 123화",
+        "authors": [
+          "라피드"
+        ],
+        "publisher": "컨텐츠헤라",
+        "publishedDate": "2023-07-18",
+        "description": "어린 시절 날 돌봐주던 아저씨 어느날 그는 붉은 눈에게 살해당했다. 복수를 위해, 그리고 잃어버린 기억을 찾기 위해 나는 탐정이 되었다. 초능력을 지닌 탐정 요한. 그의 능력을 알아본 가수 세나. 그녀 역시 과거를 쫓는 중이었다. 서서히 기억의 문이 열리고 ...",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "PKEY:HERA0051128"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 18,
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=SOrfEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=SOrfEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "previewLink": "http://books.google.co.kr/books?id=SOrfEAAAQBAJ&printsec=frontcover&hl=&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=SOrfEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=SOrfEAAAQBAJ"
+      },
+      "layerInfo": {
+        "layers": [
+          {
+            "layerId": "geo",
+            "volumeAnnotationsVersion": "1"
+          }
+        ]
+      },
+      "userInfo": {
+        "updated": "2024-03-07T02:25:38.782Z"
+      },
+      "saleInfo": {
+        "country": "KR",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 100,
+          "currencyCode": "KRW"
+        },
+        "retailPrice": {
+          "amount": 90,
+          "currencyCode": "KRW"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=SOrfEAAAQBAJ&rdid=book-SOrfEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 100000000,
+              "currencyCode": "KRW"
+            },
+            "retailPrice": {
+              "amountInMicros": 90000000,
+              "currencyCode": "KRW"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "KR",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%EC%97%B0%EC%9E%AC_%EB%8A%A5%EB%A0%A5%EC%9D%84_%EB%B9%BC%EC%95%97%EC%95%84_%EC%84%B1%EC%9E%A5%ED%95%98%EB%8A%94-sample-epub.acsm?id=SOrfEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/%EC%97%B0%EC%9E%AC_%EB%8A%A5%EB%A0%A5%EC%9D%84_%EB%B9%BC%EC%95%97%EC%95%84_%EC%84%B1%EC%9E%A5%ED%95%98%EB%8A%94-sample-pdf.acsm?id=SOrfEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=SOrfEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "TS5_DgAAQBAJ",
+      "etag": "rLaLlPL196k",
+      "selfLink": "https://content-books.googleapis.com/books/v1/volumes/TS5_DgAAQBAJ",
+      "volumeInfo": {
+        "title": "The Story of Treasure Seekers 보물을 찾는 아이들(랭컴 주니어 클래식 25)",
+        "authors": [
+          "에디스 네스빗"
+        ],
+        "publisher": "LanCom Publishing",
+        "publishedDate": "2015-01-15",
+        "description": "《보물을 찾는 아이들》은 에디스 네스빗의 대표작으로 출간된 지 백여 년이 지난 지금까지도 영미권에서는 아동 문학의 고전으로 끊임없이 재출간되고 있는 보석같은 동화책이다. 몰락한 집안을 일으켜 세우기 위해 배스터블가의 여섯 아이들이 벌이는 좌충우돌 사건 ...",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9788998469627"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "8998469626"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Literary Collections"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=TS5_DgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=TS5_DgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "previewLink": "http://books.google.co.kr/books?id=TS5_DgAAQBAJ&printsec=frontcover&hl=&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=TS5_DgAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=TS5_DgAAQBAJ"
+      },
+      "layerInfo": {
+        "layers": [
+          {
+            "layerId": "geo",
+            "volumeAnnotationsVersion": "2"
+          }
+        ]
+      },
+      "userInfo": {
+        "updated": "2024-03-07T01:27:50.429Z"
+      },
+      "saleInfo": {
+        "country": "KR",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 2500,
+          "currencyCode": "KRW"
+        },
+        "retailPrice": {
+          "amount": 2250,
+          "currencyCode": "KRW"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=TS5_DgAAQBAJ&rdid=book-TS5_DgAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 2500000000,
+              "currencyCode": "KRW"
+            },
+            "retailPrice": {
+              "amountInMicros": 2250000000,
+              "currencyCode": "KRW"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "KR",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/The_Story_of_Treasure_Seekers_%EB%B3%B4%EB%AC%BC%EC%9D%84-sample-epub.acsm?id=TS5_DgAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.co.kr/books/download/The_Story_of_Treasure_Seekers_%EB%B3%B4%EB%AC%BC%EC%9D%84-sample-pdf.acsm?id=TS5_DgAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=TS5_DgAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "Bg9QDwAAQBAJ",
+      "etag": "M76QQqJ6WSw",
+      "selfLink": "https://content-books.googleapis.com/books/v1/volumes/Bg9QDwAAQBAJ",
+      "volumeInfo": {
+        "title": "iOS 10 SDK Development",
+        "subtitle": "Creating iPhone and iPad Apps with Swift",
+        "authors": [
+          "Chris Adamson",
+          "Janie Clayton"
+        ],
+        "publisher": "Pragmatic Bookshelf",
+        "publishedDate": "2017-03-24",
+        "description": "All in on Swift! iOS 10 and Xcode 8 make it clearer than ever that Swift is Apple's language of the future. Core frameworks have been redesigned to work better with Swift, and the language itself continues to evolve quickly. iOS 10 SDK ...",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781680503708"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1680503707"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 374,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.2.3.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=Bg9QDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=Bg9QDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "previewLink": "http://books.google.co.kr/books?id=Bg9QDwAAQBAJ&printsec=frontcover&hl=&source=gbs_api",
+        "infoLink": "http://books.google.co.kr/books?id=Bg9QDwAAQBAJ&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/iOS_10_SDK_Development.html?hl=&id=Bg9QDwAAQBAJ"
+      },
+      "layerInfo": {
+        "layers": [
+          {
+            "layerId": "geo",
+            "volumeAnnotationsVersion": "5"
+          }
+        ]
+      },
+      "userInfo": {
+        "updated": "2024-03-06T14:02:39.137Z"
+      },
+      "saleInfo": {
+        "country": "KR",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "KR",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true
+        },
+        "pdf": {
+          "isAvailable": true
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=Bg9QDwAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      }
+    }
+  ]
+}
+

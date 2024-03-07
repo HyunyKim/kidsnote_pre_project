@@ -35,6 +35,7 @@ struct DefaultMyLibraryUseCase {
 }
 
 extension DefaultMyLibraryUseCase: MyLibraryUseCase {
+    @discardableResult
     func requestMylibrary(key: String,
                           completion: @escaping DefaultCompleteHandler<MyLibrary>) -> Cancellable? {
         myLibraryRepository.fetchMylibrary(key: key, completion: completion)

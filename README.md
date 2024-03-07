@@ -10,6 +10,8 @@
 - RxSwift
 - RxCocoa
 - Swinject
+- RxDataSources
+
 
 ## 의존성관리
 - Swift Package Manager
@@ -42,18 +44,15 @@ Mylibrary.bookshelves - https://www.googleapis.com/books/v1/mylibrary/bookshelve
 - 로그인시에 아래와 같은 GoogleBook 권한을 확인하는게 필요합니다
 - 아직 배포된 앱이 아니기떄문에 안전하지 않은 페이지 라고 나올 수 있는데 [고급] 을 눌러서 앱으로 돌아가기를 선택해 주세요.
 
-<img src="GooglePlayBook/GooglePlayBook/Resource/4.png" width = 150, height = 300>
-<img src="GooglePlayBook/GooglePlayBook/Resource/1.png" width = 150, height = 300>
-<img src="GooglePlayBook/GooglePlayBook/Resource/2.png" width = 150, height = 300>
-<img src="GooglePlayBook/GooglePlayBook/Resource/3.png" width = 150, height = 300>
+|![image4](GooglePlayBook/GooglePlayBook/Resource/4.png)|![image1](GooglePlayBook/GooglePlayBook/Resource/1.png)|![image2](GooglePlayBook/GooglePlayBook/Resource/2.png)|![image3](GooglePlayBook/GooglePlayBook/Resource/3.png)
+--- | --- | --- | --- |     
 
 # 내 라이브러리에 추가
 - 현재는 "To Read" 항목에 고정으로 추가 됩니다. 
 - 추후 개선으로 라이브러리 리스트를 얻어서 선택하도록 만들면 좋을것 같습니다. 
 - 
- <img src="GooglePlayBook/GooglePlayBook/Resource/5.png" width = 150, height = 300>
-<img src="GooglePlayBook/GooglePlayBook/Resource/6.png" width = 150, height = 300>
-ex) <img src="GooglePlayBook/GooglePlayBook/Resource/7.png" width = 200, height = 100>
+ ![image5](GooglePlayBook/GooglePlayBook/Resource/5.png)|![image6](GooglePlayBook/GooglePlayBook/Resource/6.png)|![image7](GooglePlayBook/GooglePlayBook/Resource/7.png)|Web Google Books|
+--- | --- | --- |  -- |
 
 ### 2/29일
 - 폴더구조/ 프로젝트 생성 / 요구사항정리

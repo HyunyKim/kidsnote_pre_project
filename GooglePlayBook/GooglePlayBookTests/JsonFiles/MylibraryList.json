@@ -1,0 +1,116 @@
+{
+  "kind": "books#bookshelves",
+  "items": [
+    {
+      "kind": "books#bookshelf",
+      "id": 7,
+      "title": "My Google eBooks",
+      "access": "PRIVATE",
+      "updated": "2024-03-07T08:41:06.000Z",
+      "created": "2024-03-07T08:41:06.000Z",
+      "volumeCount": 0,
+      "volumesLastUpdated": "2024-03-07T08:41:06.000Z"
+    },
+    {
+      "kind": "books#bookshelf",
+      "id": 1,
+      "title": "Purchased",
+      "access": "PRIVATE",
+      "updated": "2024-03-07T08:41:06.000Z",
+      "created": "2024-03-07T08:41:06.000Z",
+      "volumeCount": 0,
+      "volumesLastUpdated": "2024-03-07T08:41:06.000Z"
+    },
+    {
+      "kind": "books#bookshelf",
+      "id": 5,
+      "title": "Reviewed",
+      "access": "PUBLIC",
+      "updated": "2024-03-07T08:41:06.000Z",
+      "created": "2024-03-07T08:41:06.000Z",
+      "volumeCount": 0,
+      "volumesLastUpdated": "2024-03-07T08:41:06.000Z"
+    },
+    {
+      "kind": "books#bookshelf",
+      "id": 6,
+      "title": "Recently viewed",
+      "access": "PRIVATE",
+      "updated": "2024-03-07T08:41:06.000Z",
+      "created": "2024-03-07T08:41:06.000Z",
+      "volumeCount": 0,
+      "volumesLastUpdated": "2024-03-07T08:41:06.000Z"
+    },
+    {
+      "kind": "books#bookshelf",
+      "id": 9,
+      "title": "Browsing history",
+      "access": "PRIVATE",
+      "updated": "2024-03-07T08:41:06.000Z",
+      "created": "2024-03-07T08:41:06.000Z",
+      "volumeCount": 0,
+      "volumesLastUpdated": "2024-03-07T08:41:06.000Z"
+    },
+    {
+      "kind": "books#bookshelf",
+      "id": 0,
+      "title": "Favorites",
+      "access": "PRIVATE",
+      "updated": "2024-03-07T05:57:03.497Z",
+      "created": "2024-03-07T05:57:03.497Z",
+      "volumeCount": 0,
+      "volumesLastUpdated": "2024-03-07T05:57:03.494Z"
+    },
+    {
+      "kind": "books#bookshelf",
+      "id": 3,
+      "title": "Reading now",
+      "access": "PRIVATE",
+      "updated": "2024-03-07T05:57:02.650Z",
+      "created": "2024-03-07T05:57:02.650Z",
+      "volumeCount": 1,
+      "volumesLastUpdated": "2024-03-07T05:57:02.649Z"
+    },
+    {
+      "kind": "books#bookshelf",
+      "id": 2,
+      "title": "To read",
+      "access": "PRIVATE",
+      "updated": "2024-03-07T08:01:08.537Z",
+      "created": "2024-03-07T08:01:08.537Z",
+      "volumeCount": 17,
+      "volumesLastUpdated": "2024-03-07T08:01:08.534Z"
+    },
+    {
+      "kind": "books#bookshelf",
+      "id": 4,
+      "title": "Have read",
+      "access": "PRIVATE",
+      "updated": "2024-03-06T18:34:22.210Z",
+      "created": "2024-03-06T18:34:22.210Z",
+      "volumeCount": 3,
+      "volumesLastUpdated": "2024-03-06T18:34:22.209Z"
+    },
+    {
+      "kind": "books#bookshelf",
+      "id": 8,
+      "title": "Books for you",
+      "access": "PRIVATE",
+      "updated": "2024-03-07T08:41:06.000Z",
+      "created": "2024-03-07T08:41:06.000Z",
+      "volumeCount": 0,
+      "volumesLastUpdated": "2024-03-07T08:41:06.000Z"
+    },
+    {
+      "kind": "books#bookshelf",
+      "id": 1001,
+      "title": "테스트",
+      "access": "PRIVATE",
+      "updated": "2024-03-06T05:26:59.542Z",
+      "created": "2024-03-06T05:26:59.542Z",
+      "volumeCount": 0,
+      "volumesLastUpdated": "2024-03-07T08:41:06.000Z"
+    }
+  ]
+}
+
