@@ -106,6 +106,8 @@ final class BookMainInfoCell: UITableViewCell {
         addionalInfo.text = "\((bookInfo.isEBook ?? false) ? "eBook" : "") - \(bookInfo.pageCount ?? 0)"
         if let urlString = bookInfo.thumbNail {
             coverImageView.setImage(urlString: urlString)
+        } else {
+            coverImageView.image = .emptyBook
         }
     }
     

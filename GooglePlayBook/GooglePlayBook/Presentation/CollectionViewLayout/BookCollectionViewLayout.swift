@@ -40,10 +40,8 @@ extension BookCollectionViewLayout {
     
     func emitDataEBookSource(items: [EBook], hasMore: Bool) -> [SearchResultSectionModel] {
         let segmentSection = SearchResultSectionModel.segmentSection
-//        let ebookItemSection = SearchResultSectionModel.eBookItemSection(
-//            items: items.isEmpty ? [SearchResultSectionItem.emptyView] : items.map { SearchResultSectionItem.eBookItem(item: $0) } )
-        let ebookItemSection = SearchResultSectionModel.eBookItemSection(items: items.map {
-            SearchResultSectionItem.eBookItem(item: $0) })
+        let ebookItemSection = SearchResultSectionModel.eBookItemSection(
+            items: items.isEmpty ? [SearchResultSectionItem.emptyView] : items.map { SearchResultSectionItem.eBookItem(item: $0) } )
         let loadMoreSection = SearchResultSectionModel.loadMoreSection(item: hasMore ? [SearchResultSectionItem.loadMore] : [])
         return [segmentSection,ebookItemSection,loadMoreSection]
     }
