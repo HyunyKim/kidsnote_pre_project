@@ -25,7 +25,7 @@ extension MockMyLibraryRepository: MyLibraryRepository, ReadJsonParsing {
         return nil
     }
     
-    func fetchShelfList(key: String, shelfId: Int, completion: @escaping GooglePlayBook.DefaultCompleteHandler<GooglePlayBook.EBooksContainer>) -> GooglePlayBook.Cancellable? {
+    func fetchShelfList(key: String, shelfId: Int,startIndex: Int, completion: @escaping GooglePlayBook.DefaultCompleteHandler<GooglePlayBook.EBooksContainer>) -> GooglePlayBook.Cancellable? {
         readJsonNCompletion(fileName: "Searchvolumes") { (result: (Swift.Result<GooglePlayBook.EBooksResponseDTO,Error>)) in
             switch result {
             case .success(let responsDTO):
