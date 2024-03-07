@@ -14,7 +14,7 @@ final class GoogleManager {
 
     private var signInResult: GIDSignInResult? = nil
     private let scopeURLString = "https://www.googleapis.com/auth/books"
-    
+    let apiKey: String = "AIzaSyAnGsDsGGNhtKp9QJVPUYXA6ECiKBCzMU0"
     func getHiehestViewController() -> UIViewController? {
         let activeScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive })
         if let windowScene = activeScene as? UIWindowScene {

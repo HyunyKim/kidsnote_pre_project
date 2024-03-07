@@ -15,10 +15,6 @@ protocol SearchEBooksUseCase {
         query: SearchQuery,
         completion: @escaping DefaultCompleteHandler<EBooksContainer>
     ) -> Cancellable?
-    
-    func requestMylibrary(key: String,  completion: @escaping DefaultCompleteHandler<MyLibrary> ) -> Cancellable?
-    
-    func requestShelfList(key: String, shelfId: Int, completion: @escaping DefaultCompleteHandler<EBooksContainer>) -> Cancellable?
 }
 
 struct DefaultSearchEBooksUseCase {
@@ -37,13 +33,4 @@ extension DefaultSearchEBooksUseCase: SearchEBooksUseCase {
         completion: @escaping DefaultCompleteHandler<EBooksContainer>) -> Cancellable? {
         eBookItemsRepository.fetchEBookItems(parameter:query, completion: completion)
     }
-    
-    func requestMylibrary(key: String, completion: @escaping DefaultCompleteHandler<MyLibrary>) -> Cancellable? {
-        eBookItemsRepository.fetchMylibrary(key: key, completion: completion)
-    }
-    
-    func requestShelfList(key: String, shelfId: Int, completion: @escaping DefaultCompleteHandler<EBooksContainer>) -> Cancellable?{
-        eBookItemsRepository.fetchShelfList(key: key, shelfId: shelfId, completion: completion)
-    }
-    
 }

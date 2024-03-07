@@ -22,6 +22,7 @@ protocol API {
     var baseURL: String { get }
     var path: String { get }
     var method: HTTPMethod { get }
+    var customHeader: [String : String]? { get }
     var headerParamerter: [String : String]? { get }
     var queryParametersEncodable: ParameterEncodable? { get }
     var query: [String : Any]? { get }
@@ -35,13 +36,17 @@ protocol API {
 extension API {
     
     var header: [String : String] {
-        guard self.headerParamerter == nil else {
-            return self.headerParamerter!
+        guard customHeader == nil else {
+            return customHeader!
         }
         
         var header = ["Content-Type" : "application/json"]
         header["Accept"] = "application/json"
-        
+        if let addional = self.headerParamerter {
+            header.merge(addional) { currentKey, newKey in
+                newKey
+            }
+        }
         return header
     }
 
@@ -92,6 +97,7 @@ struct EndPoint<T:Decodable>: API {
     var baseURL: String
     var path: String
     var method: HTTPMethod
+    var customHeader: [String : String]?
     var headerParamerter: [String : String]?
     var queryParametersEncodable: ParameterEncodable?
     var query: [String : Any]?
@@ -101,6 +107,7 @@ struct EndPoint<T:Decodable>: API {
     init(baseURL: String,
          path: String,
          method: HTTPMethod,
+         customHeader: [String : String]? = nil,
          headerParamerter: [String : String]? = nil,
          queryParametersEncodable: ParameterEncodable? = nil,
          query: [String : Any]? = nil,
@@ -115,4 +122,8 @@ struct EndPoint<T:Decodable>: API {
         self.bodyParametersEncodable = bodyParametersEncodable
         self.bodyParameters = bodyParameters
     }
+}
+
+struct EmptyResult: Decodable {
+    
 }
