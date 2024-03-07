@@ -64,6 +64,7 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     private func registerCell() {
         collectionView.register(EBookInfoCell.self, forCellWithReuseIdentifier: EBookInfoCell.identifier)
         collectionView.register(LoadMoreCell.self, forCellWithReuseIdentifier: LoadMoreCell.identifier)
+        collectionView.register(EmptyCell.self, forCellWithReuseIdentifier: EmptyCell.identifier)
         collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
     }
     
@@ -122,13 +123,17 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
                     cell.updateUI(ebook: item)
                     
                     return cell
+                case.emptyView:
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCell.identifier, for: indexPath) as! EmptyCell
+                    cell.updateTitle(title: "서가에 책이 없습니다")
+                    return cell
                 default:
                     return UICollectionViewCell()
                 }
             },
             configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchResultResuableView.identifier, for: indexPath) as! SearchResultResuableView
-                header.updateUI(type: .myLibrarySearchResult)
+                header.updateUI(type: .myShelfResult)
                 return header
             }
         )

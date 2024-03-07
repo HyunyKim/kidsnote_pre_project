@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class EmptyCell: UICollectionViewCell {
-
+    
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.descriptionUI(alignment: .center)
@@ -25,12 +25,16 @@ class EmptyCell: UICollectionViewCell {
         super.init(coder: coder)
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     
     private func layoutUI() {
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(10)
         }
+    }
+    
+    func updateTitle(title: String) {
+        titleLabel.text = title
     }
 }
