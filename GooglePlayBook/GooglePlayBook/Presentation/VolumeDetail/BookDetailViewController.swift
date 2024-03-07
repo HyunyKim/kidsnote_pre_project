@@ -23,7 +23,8 @@ final class BookDetailViewController: UIViewController {
     // Variable
     private var disposeBag = DisposeBag()
     @Inject private var viewModel: BookViewModel
-    private let loadInfoSubject = PublishSubject<String>()
+    private let loadInfoAction = PublishSubject<String>()
+    private let addMyShelfAction = PublishSubject<(key: String,shelfId: Int,volumeId:String)>()
     private let sectionModelSubject = BehaviorSubject<[BookDetailInfoSectionModel]>(value: [])
     private var bookId: String
     
@@ -42,7 +43,7 @@ final class BookDetailViewController: UIViewController {
         registerCell()
         bindingUI()
         bindingViewModel()
-        loadInfoSubject.onNext(bookId)
+        loadInfoAction.onNext(bookId)
     }
     
     private func registerCell() {
@@ -112,7 +113,7 @@ final class BookDetailViewController: UIViewController {
     
     private func bindingViewModel() {
         
-        let output = viewModel.transform(input: .init(loadInfoAction: loadInfoSubject))
+        let output = viewModel.transform(input: .init(loadInfoAction: loadInfoAction,addMyShelfAction: addMyShelfAction))
         output.bookInfo
             .asObservable()
             .subscribe { [weak self] (result: Swift.Result<BookDetailInfo,Error>) in
@@ -123,6 +124,13 @@ final class BookDetailViewController: UIViewController {
                     Log.error(error.localizedDescription)
                 }
             }
+            .disposed(by: disposeBag)
+        output.addResult
+            .subscribe(onNext:{ [weak self] in
+                self?.showAlert(message: "추가되었습니다")
+            },onError: {[weak self] error in
+                self?.showAlert(message: error.localizedDescription)
+            })
             .disposed(by: disposeBag)
     }
     
@@ -177,10 +185,13 @@ extension BookDetailViewController: BookActiondelegate {
         self.showAlert(message: "샘플이 없습니다")
     }
     
+    /// To Read서가로 고정합니다
     func addMylibrary() {
         guard let googleInstance = GoogleManager.share.getGoogleInstance() else {
             return
         }
+        addMyShelfAction.onNext((key: googleInstance.user.accessToken.tokenString, shelfId: 2, volumeId: bookId))
+        
     }
     
     func removeMyLibrary() {

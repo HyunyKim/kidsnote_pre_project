@@ -19,9 +19,9 @@ final class BookshelfViewModel: ViewModelType {
         let volumeList: Driver<ShelfListResult>
         
     }
-    private var useCase: SearchEBooksUseCase
+    private var useCase: MyLibraryUseCase
     private var bookList: [EBook] = []
-    init(useCase: SearchEBooksUseCase) {
+    init(useCase: MyLibraryUseCase) {
         self.useCase = useCase
     }
     

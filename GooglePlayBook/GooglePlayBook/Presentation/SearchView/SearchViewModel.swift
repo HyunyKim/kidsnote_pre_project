@@ -27,10 +27,19 @@ final class SearchViewModel: ViewModelType {
         var mylibraryResult: Driver<MyLibraryResult>
     }
     
-    @Inject private var useCase: SearchEBooksUseCase
-    private var currentKeyword: String = ""
-    private var totalItems: Int = 0
-    private var ebookItems: [EBook] = []
+    private var useCase: SearchEBooksUseCase
+    private var libraryuseCase: MyLibraryUseCase
+    private var currentKeyword: String
+    private var totalItems: Int
+    private var ebookItems: [EBook]
+    
+    init(useCase: SearchEBooksUseCase, libraryuseCase: MyLibraryUseCase, currentKeyword: String = "", totalItems: Int = 0, ebookItems: [EBook] = []) {
+        self.useCase = useCase
+        self.libraryuseCase = libraryuseCase
+        self.currentKeyword = currentKeyword
+        self.totalItems = totalItems
+        self.ebookItems = ebookItems
+    }
     
     var searchedKeyword: String {
         currentKeyword
@@ -132,7 +141,7 @@ final class SearchViewModel: ViewModelType {
                 observer.onCompleted()
                 return Disposables.create()
             }
-            let cancelable = self.useCase.requestMylibrary(key: oauthKey) { result in
+            let cancelable = self.libraryuseCase.requestMylibrary(key: oauthKey) { result in
                 switch result {
                 case .success(let container):
                     observer.onNext(container)
