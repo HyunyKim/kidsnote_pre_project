@@ -15,7 +15,7 @@ import RxDataSources
 class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     
     private lazy var collectionView: UICollectionView = {
-        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: createListLayout())
+        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: createShelfListLayout())
         collectionview.backgroundColor = .background
         collectionview.showsVerticalScrollIndicator = false
         return collectionview
@@ -126,7 +126,7 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
             .drive { [weak self] result in
                 switch result {
                 case .success(let items):
-                    self?.sectionModelSubject.onNext(self?.emitDataEBookSource(items: items.items, hasMore: items.hasMore) ?? [])
+                    self?.sectionModelSubject.onNext(self?.emitDataMysheifVoloumSource(items: items.items, hasMore: items.hasMore) ?? [])
                 case .failure(let error):
                     self?.showAlert(message: error.localizedDescription)
                 }
@@ -156,7 +156,7 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
             },
             configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchResultResuableView.identifier, for: indexPath) as! SearchResultResuableView
-                header.updateUI(type: .myShelfResult)
+                header.updateUI(type: .myLibrarySearchResult)
                 return header
             }
         )

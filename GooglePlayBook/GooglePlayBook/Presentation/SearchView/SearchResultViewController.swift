@@ -22,7 +22,7 @@ protocol SearchResultVCDelegate: AnyObject {
 final class SearchResultViewController: UIViewController, BookCollectionViewLayout {
     // UIComponents
     private lazy var collectionView: UICollectionView = {
-        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: createListLayout())
+        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: createEBookListLayout())
         collectionview.backgroundColor = .background
         collectionview.showsVerticalScrollIndicator = false
         return collectionview

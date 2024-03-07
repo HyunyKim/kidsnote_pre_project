@@ -54,7 +54,7 @@ final class BookshelfViewModel: ViewModelType {
             }
         
         let loadMoreResult = input.loadMoreAction
-            .distinctUntilChanged()
+//            .distinctUntilChanged()
             .flatMapLatest { [weak self] _ -> Observable<EBooksContainer>  in
                 guard let self = self else { return .empty()}
                 return self.searchRequest(key: self.accessKey, shelfId: self.shelfId)
@@ -85,7 +85,7 @@ final class BookshelfViewModel: ViewModelType {
                 return Disposables.create()
             }
             
-            let cancelable = self.useCase.requestShelfList(key: key, shelfId: shelfId) { result in
+            let cancelable = self.useCase.requestShelfList(key: key, shelfId: shelfId,startIndex: self.bookList.count) { result in
                 switch result {
                 case .success(let container):
                     self.endOfPage = !(container.items.count > 0)

@@ -87,7 +87,7 @@ final class SearchViewModel: ViewModelType {
             }
         
         let loadMoreResult = input.loadMoreAction
-            .distinctUntilChanged()
+//            .distinctUntilChanged()
             .flatMapLatest { [weak self] _ -> Observable<EBooksContainer>  in
                 guard let self = self else { return .empty()}
                 return self.searchRequest(keyword: self.currentKeyword)
