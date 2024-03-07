@@ -13,13 +13,16 @@ final class BookViewModel: ViewModelType {
     typealias BookInfoResult = Swift.Result<BookDetailInfo,Error>
     struct Input {
         let loadInfoAction: Observable<String>
+        let addMyShelfAction: Observable<(key: String,shelfId: Int,volumeId:String)>
     }
     
     struct Output {
         let bookInfo: Driver<BookInfoResult>
+        let addResult: Observable<Void>
     }
     
     @Inject private var useCase: BookInfoUseCase
+    @Inject private var shelfUsecase: SearchEBooksUseCase
     private var bookId: String?
     private var bookInfo: BookDetailInfo?
     
@@ -39,10 +42,17 @@ final class BookViewModel: ViewModelType {
             .map { bookInfo in
                 BookInfoResult.success(bookInfo)
             }
+        
+        let addResult = input.addMyShelfAction
+            .flatMapLatest { [weak self] (key: String, shelfId: Int, volumeId: String) -> Observable<Void> in
+                guard let self = self else { return .empty() }
+                return self.addMyShelf(key: key, shelfId: shelfId, volumeId: volumeId)
+            }
+        
         let driver = result.asDriver { error in
                 .just(.failure(error))
         }
-        return Output(bookInfo: driver)
+        return Output(bookInfo: driver,addResult: addResult)
     }
     
     private func bookInfoRequest(requestBookId: String) -> Observable<BookDetailInfo> {
@@ -56,6 +66,27 @@ final class BookViewModel: ViewModelType {
                 switch result {
                 case .success(let ebook):
                     observer.onNext(ebook)
+                case .failure(let error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            return Disposables.create {
+                cancellable?.cancel()
+            }
+        }
+    }
+    
+    private func addMyShelf(key: String, shelfId: Int, volumeId: String) -> Observable<Void> {
+        return Observable<Void>.create { [weak self] observer in
+            guard let self = self else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            let cancellable = self.shelfUsecase.addToMyShelf(key: key, shelfId: shelfId, volumeId: volumeId) { result in
+                switch result {
+                case .success(_):
+                    observer.onNext(())
                 case .failure(let error):
                     observer.onError(error)
                 }

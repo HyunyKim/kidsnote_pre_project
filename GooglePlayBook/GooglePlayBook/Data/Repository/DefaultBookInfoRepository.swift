@@ -21,7 +21,7 @@ extension DefaultBookInfoRepository: BookInfoRepository {
         parameter: SearchQuery,
         completion: @escaping (Result<BookDetailInfo, Error>) -> Void) -> Cancellable? {
             let eBookInfoRequestDTO = BookInfoRequestDTO(projection: parameter.projection?.rawValue)
-            return networkService.request(endpoint: VolumeInfo.getBookInfo(bookId: bookId,
+            return networkService.request(endpoint: GoogleBooks.VolumeInfo.getBookInfo(bookId: bookId,
                                                                            with: eBookInfoRequestDTO)) { (result: Swift.Result<EBooksResponseDTO.EBookDTO, NetworkError>) in
                 switch result {
                 case .success(let responseDTO):

@@ -15,5 +15,7 @@ protocol EBookItemsRepository {
     
     func fetchMylibrary(key: String, completion: @escaping DefaultCompleteHandler<MyLibrary>) -> Cancellable?
     
-    func fetchShelfList(key: String, shelfId:Int, completion: @escaping DefaultCompleteHandler<EBooksContainer>) -> Cancellable?
+    func fetchShelfList(key: String, shelfId: Int, completion: @escaping DefaultCompleteHandler<EBooksContainer>) -> Cancellable?
+    
+    func registerToMyShelf(key: String, shelfId: Int, volumeId: String, completion: @escaping DefaultCompleteHandler<EmptyResult>) -> Cancellable?
 }
