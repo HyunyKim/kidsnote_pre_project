@@ -58,7 +58,7 @@ final class GooglePlayBookNetworkTest: XCTestCase {
         @Inject var networkService: NetworkService
         let expectation = XCTestExpectation(description: "PlayBookTest")
         var responseObject: EBooksContainer?
-        let endPoint = SearchAPI.getItems(with: EbookItemsRequestDTO(q: "iOS",maxResults: 5))
+        let endPoint = GoogleBooks.SearchAPI.getItems(with: EbookItemsRequestDTO(q: "iOS",maxResults: 5))
         
         let _ = networkService.request(endpoint: endPoint) {  (result : Result<EBooksResponseDTO,NetworkError>) in
             switch result {
@@ -76,14 +76,15 @@ final class GooglePlayBookNetworkTest: XCTestCase {
             XCTAssertFalse(true,"Transform Model이 생성되어야 한다.")
             return
         }
-        XCTAssertEqual(first.title, "iOS 15 Programming for Beginners","바뀔수도 있기 때문에 PostMan등으로 테스트가 필요합니다. 지금은 바로 테스트 진행시 해당 타이틀입니다.\(first.title ?? "")")
+        XCTAssertNotNil(first.title,"데이터가 있어야 합니다.")
+//        XCTAssertEqual(first.title, "iOS 15 Programming for Beginners","바뀔수도 있기 때문에 PostMan등으로 테스트가 필요합니다. 지금은 바로 테스트 진행시 해당 타이틀입니다.\(first.title ?? "")")
     }
     
     func testEndpoint_Info() throws {
         @Inject var networkService: NetworkService
         let expectation = XCTestExpectation(description: "PlayBookTest")
         var object: BookDetailInfo?
-        let endPoint = VolumeInfo.getBookInfo(bookId: "KCIlEAAAQBAJ", with: BookInfoRequestDTO(projection: "full"))
+        let endPoint = GoogleBooks.VolumeInfo.getBookInfo(bookId: "KCIlEAAAQBAJ", with: BookInfoRequestDTO(projection: "full"))
         
         let _ = networkService.request(endpoint: endPoint) {  (result : Result<EBooksResponseDTO.EBookDTO,NetworkError>) in
             switch result {

@@ -60,7 +60,7 @@ final class DIContainer {
         }
     }
     
-    func regitst<T>(_ dependency: T) {
+    func register<T>(_ dependency: T) {
         container.register(T.self) { _ in
             dependency
         }

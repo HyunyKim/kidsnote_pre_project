@@ -27,12 +27,12 @@ extension GoogleBooks.SearchAPI {
         return endpoint
     }
     
-    static func getShelfList(key: String, shelfId: Int) -> EndPoint<EBooksResponseDTO> {
+    static func getShelfList(key: String, shelfId: Int, startIndex: Int) -> EndPoint<EBooksResponseDTO> {
         var endpoint = EndPoint<EBooksResponseDTO>(
             baseURL: GoogleBooks.baseUrl,
             path: "mylibrary/bookshelves/\(shelfId)/volumes",
             method: .get,
-            query: ["key": GoogleManager.share.apiKey] )
+            query: ["key": GoogleManager.share.apiKey,"startIndex":startIndex] )
         
         endpoint.headerParamerter = ["Authorization" : "Bearer \(key)"]
         return endpoint

@@ -22,7 +22,7 @@ extension NetworkError: LocalizedError {
         case .invalidRequest:
             return "올바르지 않은 요청입니다"
         case .clientError(let statusCode, let description):
-            return "(\(statusCode)  \(description)"
+            return "\(statusCode)  \(description)"
         case .serverError(let statusCode, let description):
             return "\(statusCode)  \(description)"
         case .jsonParsingError(let description):

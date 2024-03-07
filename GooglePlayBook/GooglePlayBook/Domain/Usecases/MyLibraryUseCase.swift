@@ -16,6 +16,7 @@ protocol MyLibraryUseCase {
     func requestShelfList(
         key: String,
         shelfId: Int,
+        startIndex:Int,
         completion: @escaping DefaultCompleteHandler<EBooksContainer>
     ) -> Cancellable?
     
@@ -35,6 +36,7 @@ struct DefaultMyLibraryUseCase {
 }
 
 extension DefaultMyLibraryUseCase: MyLibraryUseCase {
+    @discardableResult
     func requestMylibrary(key: String,
                           completion: @escaping DefaultCompleteHandler<MyLibrary>) -> Cancellable? {
         myLibraryRepository.fetchMylibrary(key: key, completion: completion)
@@ -42,8 +44,9 @@ extension DefaultMyLibraryUseCase: MyLibraryUseCase {
     
     func requestShelfList(key: String,
                           shelfId: Int,
+                          startIndex:Int,
                           completion: @escaping DefaultCompleteHandler<EBooksContainer>) -> Cancellable?{
-        myLibraryRepository.fetchShelfList(key: key, shelfId: shelfId, completion: completion)
+        myLibraryRepository.fetchShelfList(key: key, shelfId: shelfId,startIndex:startIndex, completion: completion)
     }
     
     func addToMyShelf(key: String,
