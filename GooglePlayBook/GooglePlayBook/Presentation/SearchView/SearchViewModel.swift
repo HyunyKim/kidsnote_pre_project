@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import LevelOSLog
 
 final class SearchViewModel: ViewModelType {
     typealias SearchResult = Swift.Result<(items:[EBook],hasMore: Bool),Error>
@@ -124,6 +125,7 @@ final class SearchViewModel: ViewModelType {
                 switch result {
                 case .success(let container):
                     observer.onNext(container)
+                    Log.network("totalCount", container.totalItems)
                 case .failure(let error):
                     observer.onError(error)
                 }
