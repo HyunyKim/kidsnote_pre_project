@@ -20,7 +20,7 @@ extension DefaultEBookItemsRepository: EBookItemsRepository {
     
     func fetchEBookItems(
         parameter: SearchQuery,
-        completion: @escaping (Swift.Result<EBooksContainer, Error>) -> Void) -> Cancellable? {
+        completion: @escaping DefaultCompleteHandler<EBooksContainer>) -> Cancellable? {
             let itemsRequestDTO = EbookItemsRequestDTO(q: parameter.q,
                                                   filter: parameter.filter?.rawValue,
                                                   langRestrict: parameter.langRestrict,

@@ -8,7 +8,7 @@
 import UIKit
 
 final class BookMainInfoCell: UITableViewCell {
-
+    
     private var coverImageView: UIImageView = {
         let imageView = UIImageView()
         //        imageView.layer.cornerRadius = 2
@@ -38,7 +38,7 @@ final class BookMainInfoCell: UITableViewCell {
         label.descriptionUI(font: UIFont.systemFont(ofSize: 12, weight: .medium))
         return label
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layoutUI()
@@ -108,11 +108,11 @@ final class BookMainInfoCell: UITableViewCell {
             coverImageView.setImage(urlString: urlString)
         }
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

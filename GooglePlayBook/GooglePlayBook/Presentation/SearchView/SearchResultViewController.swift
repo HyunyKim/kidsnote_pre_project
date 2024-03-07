@@ -189,17 +189,12 @@ final class SearchResultViewController: UIViewController, BookCollectionViewLayo
                 switch result {
                 case .success((let myLibrary)):
                     self?.sectionModelSubject.onNext(self?.emitDataMylibrary(items: myLibrary.items) ?? [] )
-
                 case .failure(let error):
                     self?.showAlert(message: error.localizedDescription)
                 }
             }
             .disposed(by: disposeBag)
     }
-    
-
-    
-
     
     private func sectionReloadDataSource() -> RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel> {
         return RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel>(
@@ -249,7 +244,7 @@ extension SearchResultViewController: UICollectionViewDelegate {
 }
 
 extension SearchResultViewController: TopSegmentSegmentDelegate {
-
+    
     func stateChange(index: Int) {
         self.segmentSelectedIndex = index
         switch TopSegmentReuseableView.SegmentIndex(rawValue: index) {

@@ -32,5 +32,5 @@ extension DefaultBookInfoUseCase: BookInfoUseCase {
         query: SearchQuery,
         completion: @escaping GetBookInfoCompleteHandler) -> Cancellable? {
             eBookRepository.fetchBookInfo(bookId: bookId, parameter: query, completion: completion)
-    }
+        }
 }

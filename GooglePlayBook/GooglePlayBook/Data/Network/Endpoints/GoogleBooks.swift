@@ -19,6 +19,4 @@ struct GoogleBooks {
     struct VolumeInfo {
         
     }
-    
-    
 }

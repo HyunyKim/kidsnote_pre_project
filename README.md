@@ -15,6 +15,7 @@
 - Swift Package Manager
 
 
+## Gitflow
 
 
 ## API
@@ -22,8 +23,16 @@ Search
 https://www.googleapis.com/books/v1/volumes?q=swift&filter=ebooks&projection=lite
 
 특정 볼륨
-GET https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=yourAPIKey
+https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=yourAPIKey
 
+나의 라이브러리
+Mylibrary.bookshelves - https://www.googleapis.com/books/v1/mylibrary/bookshelves
+
+나의 서가 Book리스트
+Mylibrary.bookshelves.volumes - https://www.googleapis.com/books/v1/mylibrary/bookshelves/shelf/volumes 
+
+서가에 Volume 추가
+Mylibrary.bookshelves - https://www.googleapis.com/books/v1/mylibrary/bookshelves/shelf/addVolume
 
 ### 2/29일
 - 폴더구조/ 프로젝트 생성 / 요구사항정리

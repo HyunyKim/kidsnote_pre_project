@@ -14,31 +14,31 @@ final class SearchViewModel: ViewModelType {
     typealias MyLibraryResult = Swift.Result<MyLibrary,Error>
     
     struct Input {
-        var searchAction: Observable<String>
-        var typingAction: Observable<String>
-        var loadMoreAction: Observable<Void>
+        var searchAction        : Observable<String>
+        var typingAction        : Observable<String>
+        var loadMoreAction      : Observable<Void>
         var searchMylibraryAction: Observable<String>
-        var segmentAction: Observable<Int>
+        var segmentAction       : Observable<Int>
     }
     
     struct Output {
-        var searchResult: Driver<SearchResult>
-        var resetValue: Observable<Void>
-        var mylibraryResult: Driver<MyLibraryResult>
+        var searchResult    : Driver<SearchResult>
+        var resetValue      : Observable<Void>
+        var mylibraryResult : Driver<MyLibraryResult>
     }
     
-    private var useCase: SearchEBooksUseCase
+    private var useCase       : SearchEBooksUseCase
     private var libraryuseCase: MyLibraryUseCase
     private var currentKeyword: String
-    private var totalItems: Int
-    private var ebookItems: [EBook]
+    private var totalItems    : Int
+    private var ebookItems    : [EBook]
     
     init(useCase: SearchEBooksUseCase, libraryuseCase: MyLibraryUseCase, currentKeyword: String = "", totalItems: Int = 0, ebookItems: [EBook] = []) {
-        self.useCase = useCase
+        self.useCase        = useCase
         self.libraryuseCase = libraryuseCase
         self.currentKeyword = currentKeyword
-        self.totalItems = totalItems
-        self.ebookItems = ebookItems
+        self.totalItems     = totalItems
+        self.ebookItems     = ebookItems
     }
     
     var searchedKeyword: String {

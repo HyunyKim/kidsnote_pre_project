@@ -21,7 +21,7 @@ final class BookViewModel: ViewModelType {
         let addResult: Observable<Void>
     }
     
-    private var useCase: BookInfoUseCase
+    private var useCase     : BookInfoUseCase
     private var shelfUsecase: MyLibraryUseCase
     private var bookId: String?
     private var bookInfo: BookDetailInfo?
@@ -32,7 +32,6 @@ final class BookViewModel: ViewModelType {
         self.bookId = bookId
         self.bookInfo = bookInfo
     }
-    
     
     func transform(input: Input) -> Output {
         let result = input.loadInfoAction

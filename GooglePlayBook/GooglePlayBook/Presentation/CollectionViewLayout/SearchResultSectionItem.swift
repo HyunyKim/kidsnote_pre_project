@@ -26,6 +26,7 @@ extension SearchResultSectionModel: SectionModelType {
     typealias Item = SearchResultSectionItem
     
     var items: [SearchResultSectionItem] {
+        
         switch self {
         case .segmentSection:
             return []
@@ -35,11 +36,11 @@ extension SearchResultSectionModel: SectionModelType {
             return items.map({$0})
         case .myLibrarySection(item: let items):
             return items.map({$0})
-
         }
     }
     
     init(original: SearchResultSectionModel, items:[SearchResultSectionItem]) {
+        
         switch original {
         case .segmentSection:
             self = .segmentSection

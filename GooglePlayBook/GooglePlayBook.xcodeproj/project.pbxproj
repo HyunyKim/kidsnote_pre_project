@@ -220,6 +220,14 @@
 			path = Bookshelf;
 			sourceTree = "<group>";
 		};
+		530B1F892B99666B0072EC9F /* GoogleManager */ = {
+			isa = PBXGroup;
+			children = (
+				53FC09092B98D09200E577E0 /* GoogleManager.swift */,
+			);
+			path = GoogleManager;
+			sourceTree = "<group>";
+		};
 		5340F5962B98EA35006EA072 /* CollectionViewLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,10 +336,10 @@
 		53653F192B908ABE005454C1 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				530B1F892B99666B0072EC9F /* GoogleManager */,
 				535770B32B930963007EBCE4 /* DIContainer */,
 				53653EE92B9087F9005454C1 /* AppDelegate.swift */,
 				53653EEB2B9087F9005454C1 /* SceneDelegate.swift */,
-				53FC09092B98D09200E577E0 /* GoogleManager.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -407,9 +415,9 @@
 		536C6F932B945CB800089CDA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				536C6F9E2B948A6100089CDA /* UIImageView+Extension.swift */,
 				532BEF8A2B96D06D00F7B0B8 /* UILabel+Extension.swift */,
 				536C6F942B945CC900089CDA /* String+Extension.swift */,
-				536C6F9E2B948A6100089CDA /* UIImageView+Extension.swift */,
 				53F2800D2B94BC0700E073D4 /* URL+Extension.swift */,
 				53FEB16E2B98308000663C69 /* UIViewController+Extension.swift */,
 			);

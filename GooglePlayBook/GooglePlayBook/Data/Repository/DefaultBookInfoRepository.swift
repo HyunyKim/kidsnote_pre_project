@@ -19,10 +19,12 @@ extension DefaultBookInfoRepository: BookInfoRepository {
     func fetchBookInfo(
         bookId: String,
         parameter: SearchQuery,
-        completion: @escaping (Result<BookDetailInfo, Error>) -> Void) -> Cancellable? {
+        completion: @escaping DefaultCompleteHandler<BookDetailInfo>) -> Cancellable? {
             let eBookInfoRequestDTO = BookInfoRequestDTO(projection: parameter.projection?.rawValue)
-            return networkService.request(endpoint: GoogleBooks.VolumeInfo.getBookInfo(bookId: bookId,
-                                                                           with: eBookInfoRequestDTO)) { (result: Swift.Result<EBooksResponseDTO.EBookDTO, NetworkError>) in
+            return networkService.request(
+                endpoint: GoogleBooks.VolumeInfo.getBookInfo(bookId: bookId,
+                                                             with: eBookInfoRequestDTO)
+            ) { (result: Swift.Result<EBooksResponseDTO.EBookDTO, NetworkError>) in
                 switch result {
                 case .success(let responseDTO):
                     completion(.success(responseDTO.toDomain()))
@@ -30,5 +32,5 @@ extension DefaultBookInfoRepository: BookInfoRepository {
                     completion(.failure(error))
                 }
             }
-    }
+        }
 }

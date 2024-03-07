@@ -32,7 +32,7 @@ final class MainViewController: UIViewController {
     
     private lazy var googleButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("SignIn", for: .normal)
+//        button.setTitle("SignIn", for: .normal)
         return button
     }()
     
@@ -55,11 +55,14 @@ final class MainViewController: UIViewController {
         
         view.addSubview(googleButton)
         googleButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(200)
-            make.center.equalToSuperview()
+            make.height.equalTo(50.0)
+            make.width.equalTo(200.0)
+            make.bottom.equalToSuperview().inset(50)
+            make.centerX.equalToSuperview()
         }
         googleButton.addTarget(self, action: #selector(googleLoginAction), for: .touchUpInside)
+        googleButton.setBackgroundImage(
+            traitCollection.userInterfaceStyle != .dark ? .iosNeutralRdSI : .iosDarkRdSI, for: .normal)
     }
     
     private func configureSearchBar() {
@@ -84,6 +87,12 @@ final class MainViewController: UIViewController {
     @objc private func googleLoginAction(_ sender: UIControl) {
         GoogleManager.share.googleLogin()
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        googleButton.setBackgroundImage(
+            previousTraitCollection?.userInterfaceStyle == .dark ? .iosNeutralRdSI : .iosDarkRdSI, for: .normal)
+    }
 }
 
 
@@ -105,12 +114,8 @@ extension MainViewController: SearchResultVCDelegate {
     }
     
     func didBookshelfSelectedItem(itemId: Int) {
-        guard let instance = GoogleManager.share.getGoogleInstance() else {
-            return
-        }
+        guard let instance = GoogleManager.share.getGoogleInstance() else { return }
         let shelfVC = BookshelfViewController(shelfId: itemId, googleResult: instance)
         self.navigationController?.pushViewController(shelfVC, animated: true)
     }
-    
-
 }

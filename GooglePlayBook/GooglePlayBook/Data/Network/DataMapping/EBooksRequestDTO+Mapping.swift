@@ -18,7 +18,16 @@ struct EbookItemsRequestDTO: ParameterEncodable {
     var projection: String?
     var startIndex: Int?
     
-    init(q: String, filter: String? = nil, langRestrict: String? = nil, maxResults: Int? = nil, orderBy: String? = nil, printType: String? = nil, projection: String? = nil, startIndex: Int? = nil, specialKeyword: String? = nil) {
+    init(q: String,
+         filter: String? = nil,
+         langRestrict: String? = nil,
+         maxResults: Int? = nil,
+         orderBy: String? = nil,
+         printType: String? = nil,
+         projection: String? = nil,
+         startIndex: Int? = nil,
+         specialKeyword: String? = nil )
+    {
         self.q = specialKeyword != nil ? "\(q)+\(specialKeyword!)" : q
         self.filter = filter
         self.langRestrict = langRestrict

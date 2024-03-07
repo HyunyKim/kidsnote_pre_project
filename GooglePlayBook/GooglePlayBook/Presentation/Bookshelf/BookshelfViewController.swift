@@ -60,7 +60,7 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
         collectionView.register(LoadMoreCell.self, forCellWithReuseIdentifier: LoadMoreCell.identifier)
         collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
     }
-
+    
     
     override func viewSafeAreaInsetsDidChange() {
         collectionView.snp.removeConstraints()
