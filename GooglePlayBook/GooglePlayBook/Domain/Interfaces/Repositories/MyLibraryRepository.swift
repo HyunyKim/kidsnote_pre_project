@@ -17,6 +17,7 @@ protocol MyLibraryRepository {
     func fetchShelfList(
         key: String,
         shelfId: Int,
+        startIndex:Int,
         completion: @escaping DefaultCompleteHandler<EBooksContainer>
     ) -> Cancellable?
     

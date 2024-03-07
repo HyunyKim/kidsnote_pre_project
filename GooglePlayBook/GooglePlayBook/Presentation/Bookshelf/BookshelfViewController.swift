@@ -15,7 +15,7 @@ import RxDataSources
 class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     
     private lazy var collectionView: UICollectionView = {
-        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: createListLayout())
+        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: createShelfListLayout())
         collectionview.backgroundColor = .background
         collectionview.showsVerticalScrollIndicator = false
         return collectionview
@@ -25,6 +25,7 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     private var googleInstance: GIDSignInResult
     private var disposeBag = DisposeBag()
     private var requestAction = PublishSubject<(key: String, shelfId: Int)>()
+    private let loadMoreAction = PublishSubject<Int>()
     private let sectionModelSubject = BehaviorSubject<[SearchResultSectionModel]>(value: [])
     private var shelfTitle: String
     @Inject var viewModel: BookshelfViewModel
@@ -82,7 +83,9 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     private func layoutUI() {
         view.backgroundColor = .background
         navigationItem.title = shelfTitle
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backAction))
+        let barbuttonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backAction))
+        barbuttonItem.tintColor = .textColor1
+        navigationItem.leftBarButtonItem = barbuttonItem
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
@@ -97,16 +100,33 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
         sectionModelSubject
             .bind(to: collectionView.rx.items(dataSource: sectionReloadDataSource()))
             .disposed(by: disposeBag)
+        
+        collectionView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        collectionView.rx
+            .modelSelected(SearchResultSectionItem.self)
+            .observe(on: MainScheduler.instance)
+            .subscribe {[weak self] item in
+                switch item {
+                case .eBookItem(let item):
+                    self?.goBookDetail(itemId: item.id)
+                default:
+                    break
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     private func bindingViewModel() {
-        let output = viewModel.transform(input: .init(getShelfAction: requestAction))
+        let output = viewModel.transform(input: .init(getShelfAction: requestAction,loadMoreAction: loadMoreAction))
         
         output.volumeList
             .drive { [weak self] result in
                 switch result {
                 case .success(let items):
-                    self?.sectionModelSubject.onNext(self?.emitDataBookShelf(items: items) ?? [])
+                    self?.sectionModelSubject.onNext(self?.emitDataMysheifVoloumSource(items: items.items, hasMore: items.hasMore) ?? [])
                 case .failure(let error):
                     self?.showAlert(message: error.localizedDescription)
                 }
@@ -127,16 +147,32 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCell.identifier, for: indexPath) as! EmptyCell
                     cell.updateTitle(title: "서가에 책이 없습니다")
                     return cell
+                case .loadMore:
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoadMoreCell.identifier, for: indexPath) as! LoadMoreCell
+                    return cell
                 default:
                     return UICollectionViewCell()
                 }
             },
             configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchResultResuableView.identifier, for: indexPath) as! SearchResultResuableView
-                header.updateUI(type: .myShelfResult)
+                header.updateUI(type: .myLibrarySearchResult)
                 return header
             }
         )
     }
     
+    private func goBookDetail(itemId: String) {
+        let detaiVC = BookDetailViewController(bookId: itemId)
+        self.navigationController?.pushViewController(detaiVC, animated: true)
+        
+    }
+}
+
+extension BookshelfViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if cell.isKind(of: LoadMoreCell.self) {
+            self.loadMoreAction.onNext(indexPath.item)
+        }
+    }
 }

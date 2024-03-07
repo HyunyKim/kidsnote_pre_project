@@ -126,6 +126,7 @@ final class BookDetailViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         output.addResult
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext:{ [weak self] in
                 self?.showAlert(message: "추가되었습니다")
             },onError: {[weak self] error in

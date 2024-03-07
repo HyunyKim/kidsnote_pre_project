@@ -34,9 +34,10 @@ extension DefaultMyLibraryRepository: MyLibraryRepository {
     
     func fetchShelfList(key: String,
                         shelfId:Int,
+                        startIndex:Int,
                         completion: @escaping DefaultCompleteHandler<EBooksContainer>) -> Cancellable? {
         return networkService.request(
-            endpoint: GoogleBooks.SearchAPI.getShelfList(key: key, shelfId: shelfId)
+            endpoint: GoogleBooks.SearchAPI.getShelfList(key: key, shelfId: shelfId, startIndex: startIndex)
         ) { (result: Swift.Result<EBooksResponseDTO, NetworkError>) in
             
             switch result {
