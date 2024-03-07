@@ -113,9 +113,9 @@ extension MainViewController: SearchResultVCDelegate {
         self.navigationController?.pushViewController(detaiVC, animated: true)
     }
     
-    func didBookshelfSelectedItem(itemId: Int) {
+    func didBookshelfSelectedItem(itemId: Int, title: String) {
         guard let instance = GoogleManager.share.getGoogleInstance() else { return }
-        let shelfVC = BookshelfViewController(shelfId: itemId, googleResult: instance)
+        let shelfVC = BookshelfViewController(shelfId: itemId, googleResult: instance, shelfTitle: title)
         self.navigationController?.pushViewController(shelfVC, animated: true)
     }
 }

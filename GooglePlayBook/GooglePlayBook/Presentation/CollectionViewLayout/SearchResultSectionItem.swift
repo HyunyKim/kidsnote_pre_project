@@ -13,6 +13,7 @@ enum SearchResultSectionItem {
     case eBookItem(item: EBook)
     case loadMore
     case bookshelf(item: Bookshelf)
+    case emptyView
 }
 
 enum SearchResultSectionModel {

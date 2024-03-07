@@ -26,11 +26,17 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     private var disposeBag = DisposeBag()
     private var requestAction = PublishSubject<(key: String, shelfId: Int)>()
     private let sectionModelSubject = BehaviorSubject<[SearchResultSectionModel]>(value: [])
+    private var shelfTitle: String
     @Inject var viewModel: BookshelfViewModel
     
-    init(shelfId: Int, googleResult: GIDSignInResult) {
+    init(shelfId: Int, googleResult: GIDSignInResult, shelfTitle: String) {
         self.shelfId = shelfId
         self.googleInstance = googleResult
+        if shelfTitle.isEmpty {
+            self.shelfTitle = "MySehlf (\(shelfId)"
+        } else {
+            self.shelfTitle = shelfTitle
+        }
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -74,6 +80,7 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
     
     private func layoutUI() {
         view.backgroundColor = .background
+        navigationItem.title = shelfTitle
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backAction))
         
         view.addSubview(collectionView)

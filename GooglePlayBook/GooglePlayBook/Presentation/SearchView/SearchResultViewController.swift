@@ -16,7 +16,7 @@ import GoogleSignIn
 
 protocol SearchResultVCDelegate: AnyObject {
     func dideBookSelectedItem(itemId: String)
-    func didBookshelfSelectedItem(itemId: Int)
+    func didBookshelfSelectedItem(itemId: Int, title: String)
 }
 
 final class SearchResultViewController: UIViewController, BookCollectionViewLayout {
@@ -69,6 +69,7 @@ final class SearchResultViewController: UIViewController, BookCollectionViewLayo
         collectionView.register(EBookInfoCell.self, forCellWithReuseIdentifier: EBookInfoCell.identifier)
         collectionView.register(LoadMoreCell.self, forCellWithReuseIdentifier: LoadMoreCell.identifier)
         collectionView.register(MyLibrarayCell.self, forCellWithReuseIdentifier: MyLibrarayCell.identifier)
+        collectionView.register(EmptyCell.self, forCellWithReuseIdentifier: EmptyCell.identifier)
         collectionView.register(SearchResultResuableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchResultResuableView.identifier)
         collectionView.register(TopSegmentReuseableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TopSegmentReuseableView.identifier)
     }
@@ -129,7 +130,7 @@ final class SearchResultViewController: UIViewController, BookCollectionViewLayo
                 case .eBookItem(let item):
                     delegate.dideBookSelectedItem(itemId: item.id)
                 case .bookshelf(let item):
-                    delegate.didBookshelfSelectedItem(itemId: item.id)
+                    delegate.didBookshelfSelectedItem(itemId: item.id, title: item.title ?? "")
                 default:
                     break
                 }
@@ -215,6 +216,9 @@ final class SearchResultViewController: UIViewController, BookCollectionViewLayo
                 case .bookshelf(item: let item):
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyLibrarayCell.identifier, for: indexPath) as! MyLibrarayCell
                     cell.updateUI(libraryInfo: item)
+                    return cell
+                case .emptyView:
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCell.identifier, for: indexPath) as! EmptyCell
                     return cell
                 }
             },
