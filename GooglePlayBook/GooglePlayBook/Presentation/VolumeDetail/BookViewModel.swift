@@ -21,10 +21,17 @@ final class BookViewModel: ViewModelType {
         let addResult: Observable<Void>
     }
     
-    @Inject private var useCase: BookInfoUseCase
-    @Inject private var shelfUsecase: SearchEBooksUseCase
+    private var useCase: BookInfoUseCase
+    private var shelfUsecase: MyLibraryUseCase
     private var bookId: String?
     private var bookInfo: BookDetailInfo?
+    
+    init(useCase: BookInfoUseCase, shelfUsecase: MyLibraryUseCase, bookId: String? = nil, bookInfo: BookDetailInfo? = nil) {
+        self.useCase = useCase
+        self.shelfUsecase = shelfUsecase
+        self.bookId = bookId
+        self.bookInfo = bookInfo
+    }
     
     
     func transform(input: Input) -> Output {

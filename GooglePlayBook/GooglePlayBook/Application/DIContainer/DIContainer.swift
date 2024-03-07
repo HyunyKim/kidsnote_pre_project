@@ -29,8 +29,17 @@ final class DIContainer {
             DefaultSearchEBooksUseCase(ebookRepository: resolver.resolve(EBookItemsRepository.self)!)
         }
         
+        self.container.register(MyLibraryRepository.self) { resolver in
+            DefaultMyLibraryRepository(networkService: resolver.resolve(NetworkService.self)!)
+        }
+        
+        self.container.register(MyLibraryUseCase.self) { resolver in
+            DefaultMyLibraryUseCase(myLibraryRepository: resolver.resolve(MyLibraryRepository.self)!)
+        }
+        
         self.container.register(SearchViewModel.self) { resolver in
-            SearchViewModel()
+            SearchViewModel(useCase: resolver.resolve(SearchEBooksUseCase.self)!,
+                            libraryuseCase: resolver.resolve(MyLibraryUseCase.self)!)
         }
         
         self.container.register(BookInfoRepository.self) { resolver in
@@ -42,11 +51,12 @@ final class DIContainer {
         }
         
         self.container.register(BookViewModel.self) { resolver in
-            BookViewModel()
+            BookViewModel(useCase: resolver.resolve(BookInfoUseCase.self)!,
+                          shelfUsecase: resolver.resolve(MyLibraryUseCase.self)!)
         }
         
         self.container.register(BookshelfViewModel.self) { resolber in
-            BookshelfViewModel(useCase: resolber.resolve(SearchEBooksUseCase.self)!)
+            BookshelfViewModel(useCase: resolber.resolve(MyLibraryUseCase.self)!)
         }
     }
     
