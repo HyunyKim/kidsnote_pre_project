@@ -99,6 +99,19 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
         sectionModelSubject
             .bind(to: collectionView.rx.items(dataSource: sectionReloadDataSource()))
             .disposed(by: disposeBag)
+        
+        collectionView.rx
+            .modelSelected(SearchResultSectionItem.self)
+            .observe(on: MainScheduler.instance)
+            .subscribe {[weak self] item in
+                switch item {
+                case .eBookItem(let item):
+                    self?.goBookDetail(itemId: item.id)
+                default:
+                    break
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     private func bindingViewModel() {
@@ -141,4 +154,10 @@ class BookshelfViewController: UIViewController, BookCollectionViewLayout {
         )
     }
     
+    private func goBookDetail(itemId: String) {
+        let detaiVC = BookDetailViewController(bookId: itemId)
+        self.navigationController?.pushViewController(detaiVC, animated: true)
+
+    }
+ 
 }
