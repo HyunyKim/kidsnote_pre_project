@@ -11,10 +11,10 @@ import UIKit
 
 extension UILabel {
     func titleUI(font: UIFont = UIFont.systemFont(ofSize: 20, weight: .medium),
-                textColor: UIColor = .textColor1,
-                breakMode: NSLineBreakMode = .byWordWrapping,
-                lineNumber: Int = 1,
-                alignment: NSTextAlignment = .left) {
+                 textColor: UIColor = .textColor1,
+                 breakMode: NSLineBreakMode = .byWordWrapping,
+                 lineNumber: Int = 1,
+                 alignment: NSTextAlignment = .left) {
         
         make(font: font, textColor: textColor, breakMode: breakMode, lineNumber: lineNumber,alignment: alignment)
     }
@@ -57,11 +57,17 @@ extension UILabel {
     func htmlStringSet(text: String) {
         if let htmlData = text.data(using: .unicode) {
             do {
-                let attributedString = try NSMutableAttributedString(data: htmlData, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                let attributedString = try NSMutableAttributedString(
+                    data: htmlData,
+                    options: [.documentType: NSAttributedString.DocumentType.html],
+                    documentAttributes: nil )
                 let range = NSRange(location: 0, length: attributedString.length)
                 let paragraphStyle = NSMutableParagraphStyle()
+                
                 paragraphStyle.lineSpacing = 5
-                attributedString.addAttributes([.paragraphStyle: paragraphStyle, .foregroundColor: UIColor.textColor1], range: range)
+                attributedString.addAttributes(
+                    [.paragraphStyle: paragraphStyle, .foregroundColor: UIColor.textColor1],
+                    range: range )
                 self.attributedText = attributedString
             } catch {
                 self.text = text

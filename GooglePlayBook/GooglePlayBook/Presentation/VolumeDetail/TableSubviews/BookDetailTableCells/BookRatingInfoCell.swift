@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class BookRatingInfoCell: UITableViewCell {
-
+    
     private var ratingScoreLabel: UILabel = {
         let label = UILabel()
         label.titleUI()
@@ -17,11 +17,11 @@ final class BookRatingInfoCell: UITableViewCell {
     }()
     
     private var ratingLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         return label
     }()
-
+    
     private var descriptionLabel: UILabel = {
         let label = UILabel()
         label.descriptionUI()
@@ -73,11 +73,11 @@ final class BookRatingInfoCell: UITableViewCell {
         ratingScoreLabel.text = String(format: "%0.1f", info.bookRating ?? 0.0)
         ratingLabel.text = String.ratingValue(rating: info.bookRating ?? 0)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

@@ -75,7 +75,7 @@ extension UIImageView {
             downloadCancellable = canceallable
         }
     }
-
+    
     func cancelImageDownload() {
         downloadCancellable?.cancel()
         downloadCancellable = nil

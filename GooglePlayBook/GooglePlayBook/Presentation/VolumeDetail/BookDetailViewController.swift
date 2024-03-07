@@ -13,7 +13,7 @@ import RxDataSources
 import LevelOSLog
 
 final class BookDetailViewController: UIViewController {
-
+    
     // UIComponents
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -54,7 +54,7 @@ final class BookDetailViewController: UIViewController {
         tableView.register(BookPublishInfoCell.self, forCellReuseIdentifier: BookPublishInfoCell.identifier)
     }
     
-
+    
     @objc private func backAction(sender: UIControl) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -78,7 +78,7 @@ final class BookDetailViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
         tableView.separatorStyle = .none
-
+        
     }
     
     private func bindingUI() {
@@ -94,7 +94,7 @@ final class BookDetailViewController: UIViewController {
             .subscribe(onNext: {[weak self] item in
                 switch item {
                 case .bookDescription(description: let description, title: let title):
-//                    Log.debug("전달", description)
+                    //                    Log.debug("전달", description)
                     DispatchQueue.main.async {
                         let viewController = DescriptionViewController(description: description, title: title)
                         self?.navigationController?.pushViewController(viewController, animated: true)
@@ -158,23 +158,23 @@ final class BookDetailViewController: UIViewController {
                 cell.updateUI(bookInfo: item)
                 return cell
             case .userAction(webreaderLink: let link):
-                 let cell = tableView.dequeueReusableCell(withIdentifier: BookUserActionCell.identifier) as! BookUserActionCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: BookUserActionCell.identifier) as! BookUserActionCell
                 cell.sampleURLString = link
                 cell.delegate = self
                 return cell
             case .bookDescription(description: let description, title: _):
                 let cell = tableView.dequeueReusableCell(withIdentifier: BookDescriptionCell.identifier) as! BookDescriptionCell
                 cell.updateDescription(text: description)
-               return cell
+                return cell
             case .ratingInfo(item: let item):
                 let cell = tableView.dequeueReusableCell(withIdentifier: BookRatingInfoCell.identifier) as! BookRatingInfoCell
                 cell.updateRatingInfo(info: item)
                 
-               return cell
+                return cell
             case .publishInfo(publishing: let publishing):
                 let cell = tableView.dequeueReusableCell(withIdentifier: BookPublishInfoCell.identifier) as! BookPublishInfoCell
                 cell.updatePublishInfo(info: publishing)
-               return cell
+                return cell
             }
         }
     }
@@ -184,16 +184,11 @@ extension BookDetailViewController: BookActiondelegate {
     func emptySampleURL() {
         self.showAlert(message: "샘플이 없습니다")
     }
-    
     /// To Read서가로 고정합니다
     func addMylibrary() {
-        guard let googleInstance = GoogleManager.share.getGoogleInstance() else {
-            return
-        }
+        guard let googleInstance = GoogleManager.share.getGoogleInstance() else { return }
         addMyShelfAction.onNext((key: googleInstance.user.accessToken.tokenString, shelfId: 2, volumeId: bookId))
-        
     }
-    
     func removeMyLibrary() {
         
     }

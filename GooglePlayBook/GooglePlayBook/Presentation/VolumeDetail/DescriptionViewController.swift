@@ -11,7 +11,7 @@ import SnapKit
 class DescriptionViewController: UIViewController {
     private var scrollView: UIScrollView = UIScrollView()
     private var descriptionLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.descriptionUI(lineNumber: 0)
         return label
     }()
@@ -19,7 +19,7 @@ class DescriptionViewController: UIViewController {
     
     private var bookDescription: String?
     private var titleString: String?
-
+    
     init(description: String, title: String) {
         self.bookDescription = description
         self.titleString = title
