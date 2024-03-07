@@ -8,37 +8,39 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import LevelOSLog
 
 final class SearchViewModel: ViewModelType {
     typealias SearchResult = Swift.Result<(items:[EBook],hasMore: Bool),Error>
     typealias MyLibraryResult = Swift.Result<MyLibrary,Error>
     
     struct Input {
-        var searchAction: Observable<String>
-        var typingAction: Observable<String>
-        var loadMoreAction: Observable<Void>
+        var searchAction        : Observable<String>
+        var typingAction        : Observable<String>
+        var loadMoreAction      : Observable<Void>
         var searchMylibraryAction: Observable<String>
-        var segmentAction: Observable<Int>
+        var segmentAction       : Observable<Int>
     }
     
     struct Output {
-        var searchResult: Driver<SearchResult>
-        var resetValue: Observable<Void>
-        var mylibraryResult: Driver<MyLibraryResult>
+        var searchResult    : Driver<SearchResult>
+        var resetValue      : Observable<Void>
+        var mylibraryResult : Driver<MyLibraryResult>
     }
     
-    private var useCase: SearchEBooksUseCase
+    private var useCase       : SearchEBooksUseCase
     private var libraryuseCase: MyLibraryUseCase
     private var currentKeyword: String
-    private var totalItems: Int
-    private var ebookItems: [EBook]
+    private var totalItems    : Int
+    private var ebookItems    : [EBook]
+    private var endfPage      : Bool = false
     
     init(useCase: SearchEBooksUseCase, libraryuseCase: MyLibraryUseCase, currentKeyword: String = "", totalItems: Int = 0, ebookItems: [EBook] = []) {
-        self.useCase = useCase
+        self.useCase        = useCase
         self.libraryuseCase = libraryuseCase
         self.currentKeyword = currentKeyword
-        self.totalItems = totalItems
-        self.ebookItems = ebookItems
+        self.totalItems     = totalItems
+        self.ebookItems     = ebookItems
     }
     
     var searchedKeyword: String {
@@ -60,6 +62,7 @@ final class SearchViewModel: ViewModelType {
         let reset = input.typingAction
             .do { [weak self] _ in
                 self?.currentKeyword = ""
+                self?.endfPage = false
                 self?.ebookItems.removeAll()
             }.flatMapLatest { _ -> Observable<Void> in
                 return .just(())
@@ -68,6 +71,7 @@ final class SearchViewModel: ViewModelType {
         let result = input.searchAction
             .do { [weak self] keyword in
                 self?.currentKeyword = keyword
+                self?.endfPage = false
                 self?.ebookItems.removeAll()
             }
             .flatMapLatest { [weak self] keyword -> Observable<EBooksContainer> in
@@ -78,7 +82,7 @@ final class SearchViewModel: ViewModelType {
                 self?.totalItems = result.totalItems
                 self?.ebookItems = result.items
             }.map { [weak self] _ in
-                SearchResult.success((self?.ebookItems ?? [], (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
+                SearchResult.success((self?.ebookItems ?? [], (self?.endfPage == true) ? false : (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
             }
         
         let loadMoreResult = input.loadMoreAction
@@ -91,11 +95,12 @@ final class SearchViewModel: ViewModelType {
                 self?.ebookItems.append(contentsOf: result.items)
             }
             .map { [weak self] _ in
-                SearchResult.success((self?.ebookItems ?? [], (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
+                SearchResult.success((self?.ebookItems ?? [], (self?.endfPage == true) ? false : (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
             }
+        
         let showEbook = input.segmentAction
             .map { [weak self] _ in
-                SearchResult.success((self?.ebookItems ?? [], (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
+                SearchResult.success((self?.ebookItems ?? [], (self?.endfPage == true) ? false : (self?.ebookItems.count ?? 0) < (self?.totalItems ?? 0)))
             }
         
         let total = Observable<SearchResult>
@@ -115,7 +120,7 @@ final class SearchViewModel: ViewModelType {
                 return Disposables.create()
             }
             let query = SearchQuery(q: keyword,
-                                    filter: .ebooks,
+                                    filter: .paidEbooks,
                                     langRestrict: (Locale.current.language.languageCode?.identifier ?? "ko"),
                                     printType: .books,
                                     maxResults: 20,
@@ -123,7 +128,9 @@ final class SearchViewModel: ViewModelType {
             let cancelable = self.useCase.requestItems(query: query) { result in
                 switch result {
                 case .success(let container):
+                    self.endfPage = !(container.items.count > 0)
                     observer.onNext(container)
+                    Log.network("totalCount", container.totalItems,container.items.count)
                 case .failure(let error):
                     observer.onError(error)
                 }

@@ -95,7 +95,7 @@ struct DefaultNetworkService: NetworkService {
                 case 500..<600:
                     var message: String = "Server Error"
                     if httpResponse.statusCode == 500 {
-                       message = "Internal Server Error - 서버에서 에러가 발생했습니다"
+                        message = "Internal Server Error - 서버에서 에러가 발생했습니다"
                     } else if httpResponse.statusCode == 501 {
                         message = "Not Implementd - 서버에서 에러가 발생했습니다"
                     } else if httpResponse.statusCode == 402 {

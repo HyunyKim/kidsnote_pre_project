@@ -15,6 +15,7 @@
 - Swift Package Manager
 
 
+## Gitflow
 
 
 ## API
@@ -22,8 +23,37 @@ Search
 https://www.googleapis.com/books/v1/volumes?q=swift&filter=ebooks&projection=lite
 
 특정 볼륨
-GET https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=yourAPIKey
+https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=yourAPIKey
 
+나의 라이브러리
+Mylibrary.bookshelves - https://www.googleapis.com/books/v1/mylibrary/bookshelves
+
+나의 서가 Book리스트
+Mylibrary.bookshelves.volumes - https://www.googleapis.com/books/v1/mylibrary/bookshelves/shelf/volumes 
+
+서가에 Volume 추가
+Mylibrary.bookshelves - https://www.googleapis.com/books/v1/mylibrary/bookshelves/shelf/addVolume
+
+
+
+
+# 구글 로그인 
+- 구글 로그인이 필요한 기능이 있습니다.
+- 로그인시에 아래와 같은 GoogleBook 권한을 확인하는게 필요합니다
+- 아직 배포된 앱이 아니기떄문에 안전하지 않은 페이지 라고 나올 수 있는데 [고급] 을 눌러서 앱으로 돌아가기를 선택해 주세요.
+
+<img src="4.png" width = 200, height = 400>
+<img src="1.png" width = 200, height = 400>
+<img src="2.png" width = 200, height = 400>
+<img src="3.png" width = 200, height = 400>
+
+# 내 라이브러리에 추가
+- 현재는 "To Read" 항목에 고정으로 추가 됩니다. 
+- 추후 개선으로 라이브러리 리스트를 얻어서 선택하도록 만들면 좋을것 같습니다. 
+- 
+ <img src="5.png" width = 200, height = 400>
+<img src="6.png" width = 200, height = 400>
+ex) <img src="7.png" width = 200, height = 100>
 
 ### 2/29일
 - 폴더구조/ 프로젝트 생성 / 요구사항정리
@@ -65,6 +95,7 @@ GET https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=yourAPIKey
 ## 3/7
 - 내 라이브러리에 추가하기 : 2 - To Read에 추가
 - 내 서가 리스트에서 더 보기 구현
-
+- 정리
 
 ###
+ 

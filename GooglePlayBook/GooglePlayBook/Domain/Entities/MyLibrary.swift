@@ -9,13 +9,13 @@ import Foundation
 
 struct Bookshelf: Equatable, Identifier {
     typealias Identifier = Int
-    let id: Identifier
-    let title: String?
-    let volumeCount: Int?
+    let id          : Identifier
+    let title       : String?
+    let volumeCount : Int?
 }
 
 struct MyLibrary: Equatable {
-    let kind: String
-    let items: [Bookshelf]
+    let kind   : String
+    let items  : [Bookshelf]
 }
 

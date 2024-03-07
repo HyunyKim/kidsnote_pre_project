@@ -15,9 +15,9 @@ protocol BookActiondelegate: AnyObject {
 }
 
 final class BookUserActionCell: UITableViewCell {
-
+    
     private var stackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 15
@@ -101,11 +101,11 @@ final class BookUserActionCell: UITableViewCell {
         }
         delegate.addMylibrary()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

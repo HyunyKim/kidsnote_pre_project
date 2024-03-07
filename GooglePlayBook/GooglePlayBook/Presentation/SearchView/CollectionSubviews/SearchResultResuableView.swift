@@ -11,6 +11,7 @@ enum HeaderType {
     case sementControll
     case googlePlaySearchResult
     case myLibrarySearchResult
+    case myShelfResult
 }
 
 protocol TopSegmentSegmentDelegate: AnyObject {
@@ -111,6 +112,8 @@ final class SearchResultResuableView: UICollectionReusableView {
             titleLabel.text = "Google Play 검색결과"
         case .myLibrarySearchResult:
             titleLabel.text = "내 라이브러리 검색결과"
+        case .myShelfResult:
+            titleLabel.text = "나의 서가"
         default:
             titleLabel.text = ""
         }

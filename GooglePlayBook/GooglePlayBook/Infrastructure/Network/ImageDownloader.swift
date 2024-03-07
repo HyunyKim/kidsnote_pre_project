@@ -42,9 +42,27 @@ final class ImageDownloader: ImageDownloadable {
                 case 304:
                     completion(.success(nil))
             case 400..<500:
-                completion(.failure(NetworkError.clientError(statusCode: httpResponse.statusCode, description: "Client Error") as Error))
+                var message: String = "Client Error"
+                if httpResponse.statusCode == 400 {
+                    message = "Bad Request - 잘못된 요청입니다"
+                } else if httpResponse.statusCode == 401 {
+                    message = "Unauthorized - 권한이 없습니다"
+                } else if httpResponse.statusCode == 403 {
+                    message = "Forbidden - 금지된 접근입니다"
+                } else if httpResponse.statusCode == 404 {
+                    message = "NotFound - 찾을 수 없습니다"
+                }
+                completion(.failure(NetworkError.clientError(statusCode: httpResponse.statusCode, description: message)))
             case 500..<600:
-                completion(.failure(NetworkError.serverError(statusCode: httpResponse.statusCode, description: "Server Error") as Error))
+                var message: String = "Server Error"
+                if httpResponse.statusCode == 500 {
+                    message = "Internal Server Error - 서버에서 에러가 발생했습니다"
+                } else if httpResponse.statusCode == 501 {
+                    message = "Not Implementd - 서버에서 에러가 발생했습니다"
+                } else if httpResponse.statusCode == 402 {
+                    message = "Bad Gateway - 서버에서 에러가 발생했습니다"
+                }
+                completion(.failure(NetworkError.serverError(statusCode: httpResponse.statusCode, description: message)))
             default:
                 completion(.failure(NetworkError.unKownError(description: "Not Defined Error \(httpResponse.statusCode)")))
             }

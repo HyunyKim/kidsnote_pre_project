@@ -17,8 +17,8 @@ final class BookshelfViewModel: ViewModelType {
     
     struct Output {
         let volumeList: Driver<ShelfListResult>
-        
     }
+    
     private var useCase: MyLibraryUseCase
     private var bookList: [EBook] = []
     init(useCase: MyLibraryUseCase) {

@@ -14,10 +14,6 @@ enum HTTPMethod: String {
     case post   = "POST"
 }
 
-protocol RequestAble {
-    
-}
-
 protocol API {
     var baseURL: String { get }
     var path: String { get }
@@ -49,7 +45,7 @@ extension API {
         }
         return header
     }
-
+    
     var timeOut: TimeInterval {
         30.0
     }

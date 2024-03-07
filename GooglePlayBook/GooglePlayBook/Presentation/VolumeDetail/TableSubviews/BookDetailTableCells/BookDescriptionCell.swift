@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class BookDescriptionCell: UITableViewCell {
-
+    
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.titleUI()
@@ -22,12 +22,12 @@ final class BookDescriptionCell: UITableViewCell {
         label.descriptionUI(lineNumber: 4)
         return label
     }()
-
+    
     private var chevronImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.init(systemName: "chevron.right")?.withTintColor(.eBlue)
         imageView.contentMode = .scaleAspectFit
-         return imageView
+        return imageView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -68,15 +68,15 @@ final class BookDescriptionCell: UITableViewCell {
             make.bottom.equalToSuperview().inset(16.0)
         }
     }
-
+    
     func updateDescription(text: String) {
         self.descriptionLabel.htmlStringSet(text: text)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

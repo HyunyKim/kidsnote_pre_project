@@ -7,14 +7,16 @@
 
 import Foundation
 import GoogleSignIn
+import LevelOSLog
 
 final class GoogleManager {
     static let share = GoogleManager()
     private init() {}
-
+    
     private var signInResult: GIDSignInResult? = nil
     private let scopeURLString = "https://www.googleapis.com/auth/books"
     let apiKey: String = "AIzaSyAnGsDsGGNhtKp9QJVPUYXA6ECiKBCzMU0"
+    
     func getHiehestViewController() -> UIViewController? {
         let activeScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive })
         if let windowScene = activeScene as? UIWindowScene {
@@ -47,7 +49,7 @@ final class GoogleManager {
         }
         GIDSignIn.sharedInstance.signIn(withPresenting: vc) {[weak self] result, error in
             guard error == nil else {
-                print("error",error ?? "")
+                Log.error(error ?? "")
                 return
             }
             self?.signInResult = result
@@ -81,7 +83,7 @@ final class GoogleManager {
                 guard let user = user else { return }
                 let accessToken = user.accessToken.tokenString
                 let authorizer = googleInstance.user.fetcherAuthorizer
-                print("check ",googleInstance.user.accessToken.tokenString, accessToken,authorizer)
+                Log.info(googleInstance.user.accessToken.tokenString, accessToken,authorizer)
             }
         }
     }
